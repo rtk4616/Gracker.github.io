@@ -238,16 +238,6 @@
      </em> @return<br>     */<br>    public static boolean init(Context ctx, String fileName)<br>    {<br>        if(!logInit)<br>        {<br>            String state = Environment.getExternalStorageState();<br>            if (Environment.MEDIA_MOUNTED.equals(state))<br>            {<br>                File sdDir = Environment.getExternalStorageDirectory();<br>                File logDir = new File(sdDir.getAbsolutePath() + “/log2file/“ +<br>                        ctx.getPackageName() + “/“);<br><br>                try {<br>                    if(!logDir.exists())<br>                    {<br>                        logDir.mkdirs();<br>                    }<br><br>                    File logFile = new File(logDir, fileName);<br>                    logFile.createNewFile();<br><br>                    writer = new BufferedWriter(new FileWriter(logFile, true));<br>                    logInit = true;<br>                } catch (IOException e) {<br>                    // TODO Auto-generated catch block<br>                    e.printStackTrace();<br>                }<br><br>            }<br><br>        }<br><br>        return logInit;<br>    }<br><br>    /</strong><br>     <em> 写一条log
      </em> @param msg<br>     <em>/<br>    public static void w(String msg)<br>    {<br>        if(logInit)<br>        {<br>            try {<br>                Date date = new Date();<br>                writer.write(“[“ + date.toLocaleString() + “] “ + msg);<br>                writer.newLine();<br>                writer.flush();<br>            } catch (IOException e) {<br>                // TODO Auto-generated catch block<br>            }<br>        }<br>    }<br><br>    /**
      </em> 关闭log<br>     */<br>    public static void close()<br>    {<br>        if(logInit)<br>        {<br>            try {<br>                writer.close();<br>                writer = null;<br><br>            } catch (IOException e) {<br>                // TODO Auto-generated catch block<br>                e.printStackTrace();<br>            }<br><br>            logInit = false;<br>        }<br>    }<br>}<br></pre><br><br>##  2.Log2File类的使用<br><br><div>这个工具类的使用比较简单</div><br><div>1.首先调用init进行初始化</div><br><div><br><pre class="lang:java decode:true " title="Log2File类的初始化">Log2File.init(context, fileName);</pre><br>2.调用w()进行输出<br><pre class="lang:java decode:true " title="调用w(String msg)函数进行输出">Log2File.w(String msg);</pre><br>3.使用完毕后，记得要关闭Log<br><pre class="lang:java decode:true  crayon-selected" title="关闭Log">Log2File.close();</pre><br></div><br></div>
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Gracker -->
-<ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-1951577487702931"
-data-ad-slot="8203642608"
-data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
       
       
     </div>
