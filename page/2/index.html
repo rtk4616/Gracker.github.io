@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Performance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="True mastery of any skill takes a lifetime">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Performance">
+<meta property="og:url" content="http://androidperformance.com/page/2/index.html">
+<meta property="og:site_name" content="Performance">
+<meta property="og:description" content="True mastery of any skill takes a lifetime">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Performance">
+<meta name="twitter:description" content="True mastery of any skill takes a lifetime">
+  
+    <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/favicon.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Gracker</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">专注 Android 性能优化</p>
+		
+				
+
+
+		
+			<div id="switch-btn" class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div id="switch-area" class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+							<li><a href="/tags">标签云</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/MAT/" style="font-size: 15px;">MAT</a> <a href="/tags/Menory/" style="font-size: 17.5px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 15px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 10px;">启动优化</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gracker</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img lazy-src="/img/favicon.png" class="js-avatar">
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">Gracker</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">专注 Android 性能优化</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+					<li><a href="/tags">标签云</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-Android-Performance-Patterns-4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/19/Android-Performance-Patterns-4.html" class="article-date">
+  	<time datetime="2015-04-19T07:53:31.000Z" itemprop="datePublished">2015-04-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/19/Android-Performance-Patterns-4.html">Android性能优化典范之Profile GPU Rendering</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>“If you can measure it, you can optimize it” is a common term in the computing world, and for Android’s rendering system, the same thing holds true. In order to optimize your pipeline to be more efficient for rendering, you need a tool to give you feedback on where the current perf problems lie.</p>
+<p>And in this video, +Colt McAnlis walks you through an on-device tool that’s built for this exact reason. “Profile GPU Rendering” will help you understand the stages of the rendering pipeline, and also get a chance to see what portions of it might be taking too long, and what you can do about it for your application.</p>
+</blockquote>
+<h2 id="GPU_Profile工具">GPU Profile工具</h2><p>渲染性能问题往往是偷取你宝贵帧数的罪魁祸首,这种问题很容易产生,很容易出现,而且在一个非常方便的工具的帮助下,也非常容易去追踪. 使用Peofile GPU Rendering tool,你可以在手机上就可以看到究竟是什么导致你的应用程序出现卡顿,变慢的情况.</p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a><a class="article-category-link" href="/categories/Android/Menory/Performance/">Performance</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/04/19/Android-Performance-Patterns-4.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
+    <article id="post-Android-Performance-Patterns-3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/19/Android-Performance-Patterns-3.html" class="article-date">
+  	<time datetime="2015-04-19T07:47:25.000Z" itemprop="datePublished">2015-04-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/19/Android-Performance-Patterns-3.html">Android性能优化典范之Understanding VSYNC</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Unbeknown to most developers, there’s a simple hardware design that defines everything about how fast your application can draw things to the screen.</p>
+<p>You may have heard the term VSYNC - VSYNC stands for vertical synchronization and it’s an event that happens every time your screen starts to refresh the content it wants to show you.</p>
+<p>Effectively, VSYNC is the product of two components Refresh Rate (how fast the hardware can refresh the screen), and Frames Per Second (how fast the GPU can draw images), and in this video +Colt McAnlis walks through each of these topics, and discusses where VSYNC (and the 16ms rendering barrier) comes from, and why it’s critical to understand if you want a silky smooth application.</p>
+</blockquote>
+<h2 id="基本概念">基本概念</h2><p>想要开发一个高性能的应用程序,首先你得了解他的硬件工作原理,那么最好的办法就是去使用它,应用程序运行速度的快慢,很容易被人误解为硬件进程的控制问题,然而这最主要的根源在于渲染性能.如果你想要提高你应用程序的渲染性能,你就必须知道什么是<strong>VSYNC</strong>.</p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a><a class="article-category-link" href="/categories/Android/Menory/Performance/">Performance</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/04/19/Android-Performance-Patterns-3.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
+    <article id="post-Android-Performance-Patterns-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/19/Android-Performance-Patterns-2.html" class="article-date">
+  	<time datetime="2015-04-19T07:38:48.000Z" itemprop="datePublished">2015-04-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/19/Android-Performance-Patterns-2.html">Android性能优化典范之Understanding Overdraw</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>One of the most problematic performance problems on Android is the easiest to create; thankfully, it’s also easy to fix.</p>
+<p><strong>OVERDRAW</strong> is a term used to describe how many times a pixel has been re-drawn in a single frame of rendering. It’s a troublesome issue, because in most cases, pixels that are overdrawn do not end up contributing to the final rendered image. As such, it amounts to wasted work for your GPU and CPU. </p>
+<p>Fixing overdraw has everything to do with using the available on-device tools, like Show GPU Overdraw, and then adjusting your view hierarchy in order to reduce areas where it may be occurring.</p>
+</blockquote>
+<h2 id="OverDraw概念">OverDraw概念</h2><p>视频开头作者举了一个例子，说如果你是一个粉刷匠，你应该会知道，给墙壁粉刷是一件工作量非常大的工作，而且如果你需要重新粉刷一遍的话(比如对颜色不满意),那么第一次的粉刷就白干了. 同样的道理,如果你的应用程序中出现了过度绘制问题,那么你之前所做的事情也就白费了.如果你想兼顾高性能和完美的设计,那么你的程序可能会出现一个性能问题:<strong>OverDraw</strong>!</p>
+<p><strong>OverDraw</strong>是一个术语, 它表示某些组件在屏幕上的一个像素点的绘制超过1次.如下面的图所示,我们有一堆重叠的卡片,被用户激活的卡片在最上面,而那些没有激活的卡片在下面,这意味着我们画大力气绘制的那些卡片,基本都是不可见的.问题就在于次,我们像素渲染的并不全是用户最后能看打的部分, 这是在浪费GPU的时间!</p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a><a class="article-category-link" href="/categories/Android/Menory/Performance/">Performance</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/04/19/Android-Performance-Patterns-2.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
+    <article id="post-Android-Performance-Patterns-1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/19/Android-Performance-Patterns-1.html" class="article-date">
+  	<time datetime="2015-04-19T07:26:47.000Z" itemprop="datePublished">2015-04-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/19/Android-Performance-Patterns-1.html">Android性能优化典范之Render Performance</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Rendering performance is all about how fast you can draw your activity, and get it updated on the screen. Success here means your users feeling like your application is smooth and responsive, which means that you’ve got to get all your logic completed, <em>and</em> all your rendering done in 16ms or less, each and every frame. But that might be a bit more difficult than you think.</p>
+<p>In this video, +Colt McAnlis takes a look at what “rendering performance” means to developers, alongside some of the most common pitfalls that are ran into; and let’s not forget the important stuff: the tools that help you track down, and fix these issues before they become large problems.</p>
+</blockquote>
+<h2 id="Android渲染知识">Android渲染知识</h2><p>当你觉得自己开发了一个改变世界的应用的时候，你的用户可能并不会这么认为，他们认为你的应用又慢又卡，达不到他们所期望的那种顺滑，更谈不上改变这该死的世界了，回收站走你！等等！明明我这个应用在我的Nexus5上非常顺滑啊？你咋能说又慢又卡呢？如果你对Android的碎片化有一定了解的话，你就应该知道，很多低配置的手机并不像Nexus5那样有强大的处理器和GPU，以及没有被怎么污染的原生系统。</p>
+<p>如果有大量的用户投诉说你的应用又卡又慢的时候，不要总是抱怨用户的低端手机，有时候问题就出在你的应用本身，也就意味着你的Android存在比较严重的渲染性能问题。只有真正了解问题发生的根源，才能有效的解决问题。所以了解Android渲染相关的知识，是一个Android开发者必不可少的知识。</p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a><a class="article-category-link" href="/categories/Android/Menory/Performance/">Performance</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/04/19/Android-Performance-Patterns-1.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
+    <article id="post-Android-Performance-Patterns" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/19/Android-Performance-Patterns.html" class="article-date">
+  	<time datetime="2015-04-19T07:20:35.000Z" itemprop="datePublished">2015-04-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/19/Android-Performance-Patterns.html">Android性能优化典范综述</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>2015年1月6日，Google官方发布了一系列关于Android性能优化的小视频，将其命名为Android Performance Patterns，这一些列视频放在<a href="https://www.youtube.com/playlist?list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE">YouTube</a>上，观看的话需要科学地上网。</p>
+<p><img src="/images/performance-0/1.jpg" alt="Android性能优化典范"></p>
+<p>官方简介：</p>
+<blockquote>
+<p>Android Performance Patterns is a collection of videos focused entirely on helping developers write faster, more performant Android Applications. On one side, it’s about peeling back the layers of the Android System, and exposing how things are working under the hood. On the other side, it’s about teaching you how the tools work, and what to look for in order to extract the right perf out of your app.<br>But at the end of the day, Android Performance Patterns is all giving you the right resources, at the right time to help make the fastest, smoothest, most awesome experience for your users. And that’s the whole point, right?</p>
+</blockquote>
+<p>总之就是一系列讲解Android性能相关的视频。这些小视频的时间非常短，在3-5分钟之内，主讲人的英文语速也非常快，初期这些视频没有翻译的时候，着实考验了一把听力。好消息是现在这些视频已经都有中英文字幕了。</p>
+<p>这些视频的时间虽然很短，但是信息量却非常大，有些他一句话带过的内容，我们却需要花费很多的时间去研究他的原理，或者研究一个调试工具如何使用。也就是说，这一系列视频并没有真正教你如何去优化你的应用，而是告诉你关于Android性能优化你需要知道的知识，这样你去优化你的Android应用的时候，<strong>知道该用什么工具，该采取什么样的步骤，需要达到什么样的目标。</strong></p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a><a class="article-category-link" href="/categories/Android/Menory/Performance/">Performance</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/04/19/Android-Performance-Patterns.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
+    <article id="post-AndroidMemory-Open-Bitmap-Object-In-MAT" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/11/AndroidMemory-Open-Bitmap-Object-In-MAT.html" class="article-date">
+  	<time datetime="2015-04-11T10:41:32.000Z" itemprop="datePublished">2015-04-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/11/AndroidMemory-Open-Bitmap-Object-In-MAT.html">Android内存优化之三：打开MAT中的Bitmap原图</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在使用MAT查看应用程序内存使用情况的时候,我们经常会碰到Bitmap对象以及BitmapDrawable$BitmapState对象,而且在内存使用上,Bitmap所占用的内存占大多数.在这样的情况下, Bitmap所造成的内存泄露尤其严重, 需要及时发现并且及时处理.在这样的需求下, 当我们在MAT中发现和图片相关的内存泄露的时候, 如果能知道是那一张图片,对分析问题会有很大的帮助.</p>
+<p>本文就介绍如何将MAT中的Bitmap数组对象还原成一张图片。</p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/04/11/AndroidMemory-Open-Bitmap-Object-In-MAT.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
+    <article id="post-AndroidMemory-Usage-Of-MAT-Pro" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html" class="article-date">
+  	<time datetime="2015-04-11T10:26:36.000Z" itemprop="datePublished">2015-04-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html">Android内存优化之二：MAT使用进阶</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言">前言</h2><p>第一篇文章<a href="http://androidperformance.com/2015/04/11/AndroidMemory-Usage-Of-MAT/">《Android内存优化之一：MAT使用入门》</a>介绍了MAT的基本使用方法，包括下载、安装、打开HPROF文件，和一些基本的视图。这篇文章介绍一下一些最新的工具使用方法，和第一篇中没有提到的一些其他的用法。</p>
+<h2 id="Java的内存泄露的特点">Java的内存泄露的特点</h2><ul>
+<li>Java中的内存泄露主要特征：可达，无用</li>
+<li>无用指的是创建了但是不再使用之后没有释放</li>
+<li>能重用但是却创建了新的对象进行处理</li>
+</ul>
+<h2 id="MAT使用技巧进阶">MAT使用技巧进阶</h2><h3 id="使用Android_Studio_Dump内存文件">使用Android Studio Dump内存文件</h3><p>Android Studio的最新版本可以直接获取hprof文件：</p>
+<p><img src="/images/MAT_Pro/MAT_1.png" alt="Android-Studio"></p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
+    <article id="post-AndroidMemory-Usage-Of-MAT" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html" class="article-date">
+  	<time datetime="2015-04-11T10:10:29.000Z" itemprop="datePublished">2015-04-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html">Android内存优化之一：MAT使用入门</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MAT简介">MAT简介</h2><h3 id="MAT介绍">MAT介绍</h3><p>MAT(Memory Analyzer Tool)，一个基于Eclipse的内存分析工具，是一个快速、功能丰富的JAVA heap分析工具，它可以帮助我们查找内存泄漏和减少内存消耗。使用内存分析工具从众多的对象中进行分析，快速的计算出在内存中对象的占用大小，看看是谁阻止了垃圾收集器的回收工作，并可以通过报表直观的查看到可能造成这种结果的对象。  </p>
+<p><img src="/images/MAT/MAT_Intro.png" alt="image"></p>
+<p>当然MAT也有独立的不依赖Eclipse的版本，只不过这个版本在调试Android内存的时候，需要将DDMS生成的文件进行转换，才可以在独立版本的MAT上打开。不过Android SDK中已经提供了这个Tools，所以使用起来也是很方便的。</p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
+    <article id="post-android-performance-case-study-follow-up" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/31/android-performance-case-study-follow-up.html" class="article-date">
+  	<time datetime="2015-03-31T01:29:00.000Z" itemprop="datePublished">2015-03-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/31/android-performance-case-study-follow-up.html">Android性能优化后续</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言">前言</h1><p>本文是一篇译文，原文<a href="http://www.curious-creature.com/2015/03/25/android-performance-case-study-follow-up/?utm_source=Android+Weekly&amp;utm_campaign=0692ef161b-Android_Weekly_146&amp;utm_medium=email&amp;utm_term=0_4eb677ad19-0692ef161b-337850757">Android Performance Case Study Follow-up</a>的作者是大名鼎鼎的<a href="http://www.curious-creature.com/">Romain Guy</a>。本文讲述了Android性能优化的一些技巧、方法和工具。</p>
+<h1 id="译文正文">译文正文</h1><p>两年前，我发表了一篇名为<a href="http://www.curious-creature.com/2012/12/01/android-performance-case-study/">Android Performance Case Study</a> 的文章，来帮助Android开发者了解需要使用什么工具和技术手段来确定、追踪和优化性能问题。</p>
+<p>那篇文章以一个Twitter客户端 <a href="https://play.google.com/store/apps/details?id=com.jv.materialfalcon">Falcon Pro</a>为典范，其开发人员为 Joaquim Vergès. Joaquim人不错，他允许我在我的文章中使用它的程序作为例子，并且快速处理了我发现的所有问题。一切都OK，直到Joaquim 从头开始开发Falcon Pro 3，前不久在他准备发布它的新应用的时候，他联系了我，因为他有一个和滚动相关的性能问题需要我来帮助他，这一次我依然没有源代码可以参考。</p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a><a class="article-category-link" href="/categories/Android/Menory/Performance/">Performance</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/03/31/android-performance-case-study-follow-up.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
+    <article id="post-android-tips-round-up-5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/15/android-tips-round-up-5.html" class="article-date">
+  	<time datetime="2015-03-14T16:32:11.000Z" itemprop="datePublished">2015-03-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/15/android-tips-round-up-5.html">[译]Android小技巧(5)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文是一篇译文,这篇是这个系列的第五篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a  href="/2015/03/15/android-tips-round-up-5.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    </nav>
+  
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2015 Gracker
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+        </div>
+    </div>
+    <div class="visit">
+      <span id="busuanzi_container_site_pv" style='display:none'>
+        <span id="site-visit" >本站到访数: 
+        <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </span>
+      <span id="busuanzi_container_page_pv" style='display:none'>
+        <span id="page-visit">, 本页阅读量: 
+        <span id="busuanzi_value_page_pv"></span>
+        </span>
+      </span>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+	<script>
+		var yiliaConfig = {
+			fancybox: false,
+			mathjax: true,
+			animate: true,
+			isHome: true,
+			isPost: false,
+			isArchive: false,
+			isTag: false,
+			isCategory: false,
+			open_in_new: false
+		}
+	</script>
+
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+<script>
+  var backgroundnum = 5;
+  var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+
+  $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+</script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50993302-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

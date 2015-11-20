@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android Frame animation模拟脉搏跳动小动画 | Performance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="逐帧动画是一种常见的动画形式（Frame By Frame），其原理是在“连续的关键帧”中分解动画动作，也就是在时间轴的每帧上逐帧绘制不同的内容，使其连续播放而成动画。 因为逐帧动画的帧序列内容不一样，不但给制作增加了负担而且最终输出的文件量也很大，但它的优势也很明显：逐帧动画具有非常大的灵活性，几乎可以表现任何想表现的内容，而它类似与电影的播放模式，很适合于表演细腻的动画。例如：人物或动物急剧转">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Frame animation模拟脉搏跳动小动画">
+<meta property="og:url" content="http://androidperformance.com/2014/06/01/android-frame-animation.html">
+<meta property="og:site_name" content="Performance">
+<meta property="og:description" content="逐帧动画是一种常见的动画形式（Frame By Frame），其原理是在“连续的关键帧”中分解动画动作，也就是在时间轴的每帧上逐帧绘制不同的内容，使其连续播放而成动画。 因为逐帧动画的帧序列内容不一样，不但给制作增加了负担而且最终输出的文件量也很大，但它的优势也很明显：逐帧动画具有非常大的灵活性，几乎可以表现任何想表现的内容，而它类似与电影的播放模式，很适合于表演细腻的动画。例如：人物或动物急剧转">
+<meta property="og:image" content="http://androidperformance.com/\">
+<meta property="og:image" content="http://androidperformance.com/\">
+<meta property="og:updated_time" content="2015-03-27T05:26:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Frame animation模拟脉搏跳动小动画">
+<meta name="twitter:description" content="逐帧动画是一种常见的动画形式（Frame By Frame），其原理是在“连续的关键帧”中分解动画动作，也就是在时间轴的每帧上逐帧绘制不同的内容，使其连续播放而成动画。 因为逐帧动画的帧序列内容不一样，不但给制作增加了负担而且最终输出的文件量也很大，但它的优势也很明显：逐帧动画具有非常大的灵活性，几乎可以表现任何想表现的内容，而它类似与电影的播放模式，很适合于表演细腻的动画。例如：人物或动物急剧转">
+  
+    <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/favicon.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Gracker</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">专注 Android 性能优化</p>
+		
+				
+
+
+		
+			<div id="switch-btn" class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div id="switch-area" class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+							<li><a href="/tags">标签云</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/MAT/" style="font-size: 15px;">MAT</a> <a href="/tags/Menory/" style="font-size: 17.5px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 15px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 10px;">启动优化</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gracker</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img lazy-src="/img/favicon.png" class="js-avatar">
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">Gracker</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">专注 Android 性能优化</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+					<li><a href="/tags">标签云</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-android-frame-animation" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/06/01/android-frame-animation.html" class="article-date">
+  	<time datetime="2014-06-01T10:07:18.000Z" itemprop="datePublished">2014-06-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android Frame animation模拟脉搏跳动小动画
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>逐帧动画是一种常见的动画形式（Frame By Frame），其原理是在“连续的关键帧”中分解动画动作，也就是在时间轴的每帧上逐帧绘制不同的内容，使其连续播放而成动画。 因为逐帧动画的帧序列内容不一样，不但给制作增加了负担而且最终输出的文件量也很大，但它的优势也很明显：逐帧动画具有非常大的灵活性，几乎可以表现任何想表现的内容，而它类似与电影的播放模式，很适合于表演细腻的动画。例如：人物或动物急剧转身、 头发及衣服的飘动、走路、说话以及精致的3D效果等等。</p>
+<p>Android中的逐帧动画是Frame animation。<span style="\"color:" #000000;\"="">Frame animation可以被定义在XML文件中，也可以完全编码实现。3.0以前，android支持两种动画模式，tween animation,frame animation，在android3.0中又引入了一个新的动画系统：property animation，这三种动画模式在SDK中被称为property animation,view animation,drawable animation。 </span></p>
+<a id="more"></a>
+<p>本篇使用的方法是在xml中定义效果，以下是想达到的动画的效果。</p>
+<p><a href="\"><img src="\" alt="\"></a></p>
+<p>1.首先准备所需图片（逐帧）。</p>
+<p><a href="\"><img src="\" alt="\"></a></p>
+<p>2.在res/anim下或res/rawable下新建xml来编写动画效果。内容类似下图：</p>
+<pre class="\"lang:java" decode:true\"="">&lt;animation-list xmlns:android=\"http://schemas.android.com/apk/res/android\"
+    android:oneshot=\"false\"&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00040\" android:duration=\"100\" /&gt;//duration是每帧图片的时长，单位ms
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00041\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00042\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00043\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00044\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00045\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00046\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00047\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00048\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00049\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00050\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00051\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00052\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00053\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00054\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00055\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00056\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00057\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00058\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00059\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00060\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00061\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00062\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00063\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00064\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00065\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00066\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00067\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00068\" android:duration=\"100\" /&gt;
+    &lt;item android:drawable=\"@drawable/soundwave_new_1_00069\" android:duration=\"100\" /&gt;
+&lt;/animation-list&gt;</pre>
+
+<p>xml保存为scanning_anim.xml.其中,</p>
+<pre class="\"lang:java" decode:true\"="">animation-list//最外层是animition-list控件，可以容纳item，每个item是一帧图片。</pre>
+
+<pre class="\"lang:java" decode:true\"="">android:oneshot=\"false\"<span style="\"color:" #000000;\"="">//如果为true，表示动画只播放一次停止在最后一帧上，如果设置为false表示动画循环播放。</span></pre>
+
+<p>3.以上xml中定义的动画要以一个imageView作为载体来显示。以下例子用一个类稍稍封装：</p>
+<pre class="\"lang:java" decode:true\"="">public class ScanningAnimationView extends ImageView {
+    AnimationDrawable scanningDrawable;
+    public ScanningAnimationView(Context context) {
+        super(context);
+    }
+    public ScanningAnimationView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        setBackgroundResource(R.anim.scanning_anim);
+        scanningDrawable=(AnimationDrawable)this.getBackground();
+    }
+
+    public void start() {
+        scanningDrawable.start();
+    }
+    public void stop() {
+        scanningDrawable.stop();
+    }
+}</pre>
+
+<p>4.用户直接使用这个封装好的ImageView调用start和stop即可。</p>
+<p>调用动画：</p>
+<pre class="\"lang:java" decode:true\"="">public class MainActivity extends ActionBarActivity {
+    ScanningAnimationView image;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        image = (ScanningAnimationView)findViewById(R.id.imageView);
+        Button startButton = (Button) findViewById(R.id.start);
+        Button endButton = (Button)findViewById(R.id.end);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                image.start();
+            }
+        });
+
+        endButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                image.stop();
+            }
+        });
+    }
+</pre>
+
+<p>imageView的布局：</p>
+<pre class="\"lang:java" decode:true\"="">&lt;com.example.nurse.app.util.ScanningAnimationView
+    android:layout_width=\"wrap_content\"
+    android:layout_height=\"wrap_content\"
+    android:id=\"@+id/imageView\"
+    android:layout_centerHorizontal=\"true\"
+    android:layout_alignParentTop=\"true\"
+    android:layout_alignParentStart=\"true\"/&gt;</pre>
+
+<p>本篇完。</p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+<div class="copyright">
+  <p><span>本文标题:</span><a href="/2014/06/01/android-frame-animation.html">Android Frame animation模拟脉搏跳动小动画</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
+  <p><span>发布时间:</span>2014年06月01日 - 18时07分</p>
+  <p><span>最后更新:</span>2015年03月27日 - 13时26分</p>
+  <p>
+    <span>原始链接:</span><a href="/2014/06/01/android-frame-animation.html" title="Android Frame animation模拟脉搏跳动小动画">http://androidperformance.com/2014/06/01/android-frame-animation.html</a>
+    <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2014/06/01/android-frame-animation.html　　作者: Gracker" title="点击复制文章链接">
+        <i class="fa fa-clipboard"></i>
+    </span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。</p>
+  <script src="/js/clipboard.min.js"></script>
+  <script> var clipboard = new Clipboard('.btn'); </script>
+</div>
+<style type="text/css">
+  .copyright p .btn {
+    margin-left: 1em;
+  }
+  .copyright:hover p .btn::after {
+    content: "复制"
+  }
+  .copyright p .btn:hover {
+      color: gray;
+      cursor: pointer;
+    };
+</style>
+
+
+
+<nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2014/06/03/android-edittext-do-not-auto-get-focus.html">
+        [Android小技巧]:如何让EditText不自动获取焦点
+      </a>
+    </div>
+  
+  
+    <div id="article-nav-older" class="article-nav-title">
+      <a href="/2014/05/31/android-tips-round-up-2.html">
+        [译]Android小技巧(2)
+      </a>
+    </div>
+  
+</nav>
+
+  
+</article>
+
+<!-- 默认显示文章目录，在文章---前输入toc: false关闭目录 -->
+<!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
+<div id="toc" class="toc-article">
+<strong class="toc-title">文章目录</strong>
+
+</div>
+<style type="text/css">
+  .left-col .switch-btn {
+    display: none;
+  }
+  .left-col .switch-area {
+    display: none;
+  }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script type="text/javascript">
+  var toc_button= document.getElementById("tocButton");
+  var toc_div= document.getElementById("toc");
+  /* Show or hide toc when click on tocButton.
+  通过点击设置的按钮显示或者隐藏文章目录.*/
+  toc_button.onclick=function(){
+  if(toc_div.style.display=="none"){
+  toc_div.style.display="block";
+  toc_button.value="隐藏目录";
+  document.getElementById("switch-btn").style.display="none";
+  document.getElementById("switch-area").style.display="none";
+  }
+  else{
+  toc_div.style.display="none";
+  toc_button.value="显示目录";
+  document.getElementById("switch-btn").style.display="block";
+  document.getElementById("switch-area").style.display="block";
+  }
+  }
+</script>
+
+
+<div class="share">
+	<div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+	</div>
+	<script>
+	window._bd_share_config={
+		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2014/06/01/android-frame-animation.html" data-title="Android Frame animation模拟脉搏跳动小动画" data-url="http://androidperformance.com/2014/06/01/android-frame-animation.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"grackertalk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    </div>
+
+
+  
+  
+    
+    <div  class="post-nav-button">
+    <a href="/2014/06/03/android-edittext-do-not-auto-get-focus.html" title="上一篇: [Android小技巧]:如何让EditText不自动获取焦点">
+    <i class="fa fa-angle-left"></i>
+    </a>
+    <a href="/2014/05/31/android-tips-round-up-2.html" title="下一篇: [译]Android小技巧(2)">
+    <i class="fa fa-angle-right"></i>
+    </a>
+    </div>
+  
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2015 Gracker
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+        </div>
+    </div>
+    <div class="visit">
+      <span id="busuanzi_container_site_pv" style='display:none'>
+        <span id="site-visit" >本站到访数: 
+        <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </span>
+      <span id="busuanzi_container_page_pv" style='display:none'>
+        <span id="page-visit">, 本页阅读量: 
+        <span id="busuanzi_value_page_pv"></span>
+        </span>
+      </span>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+<script>
+  var backgroundnum = 5;
+  var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+
+  $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+</script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50993302-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android性能优化典范综述 | Performance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="2015年1月6日，Google官方发布了一系列关于Android性能优化的小视频，将其命名为Android Performance Patterns，这一些列视频放在YouTube上，观看的话需要科学地上网。
+
+官方简介：
+
+Android Performance Patterns is a collection of videos focused entirely on helping dev">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android性能优化典范综述">
+<meta property="og:url" content="http://androidperformance.com/2015/04/19/Android-Performance-Patterns.html">
+<meta property="og:site_name" content="Performance">
+<meta property="og:description" content="2015年1月6日，Google官方发布了一系列关于Android性能优化的小视频，将其命名为Android Performance Patterns，这一些列视频放在YouTube上，观看的话需要科学地上网。
+
+官方简介：
+
+Android Performance Patterns is a collection of videos focused entirely on helping dev">
+<meta property="og:image" content="http://androidperformance.com/images/performance-0/1.jpg">
+<meta property="og:updated_time" content="2015-04-19T07:25:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android性能优化典范综述">
+<meta name="twitter:description" content="2015年1月6日，Google官方发布了一系列关于Android性能优化的小视频，将其命名为Android Performance Patterns，这一些列视频放在YouTube上，观看的话需要科学地上网。
+
+官方简介：
+
+Android Performance Patterns is a collection of videos focused entirely on helping dev">
+  
+    <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/favicon.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Gracker</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">专注 Android 性能优化</p>
+		
+				
+
+
+		
+			<div id="switch-btn" class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div id="switch-area" class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+							<li><a href="/tags">标签云</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/MAT/" style="font-size: 15px;">MAT</a> <a href="/tags/Menory/" style="font-size: 17.5px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 15px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 10px;">启动优化</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gracker</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img lazy-src="/img/favicon.png" class="js-avatar">
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">Gracker</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">专注 Android 性能优化</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+					<li><a href="/tags">标签云</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Android-Performance-Patterns" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/19/Android-Performance-Patterns.html" class="article-date">
+  	<time datetime="2015-04-19T07:20:35.000Z" itemprop="datePublished">2015-04-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android性能优化典范综述
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a><a class="article-category-link" href="/categories/Android/Menory/Performance/">Performance</a>
+	</div>
+
+
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>2015年1月6日，Google官方发布了一系列关于Android性能优化的小视频，将其命名为Android Performance Patterns，这一些列视频放在<a href="https://www.youtube.com/playlist?list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE" target="_blank" rel="external">YouTube</a>上，观看的话需要科学地上网。</p>
+<p><img src="/images/performance-0/1.jpg" alt="Android性能优化典范"></p>
+<p>官方简介：</p>
+<blockquote>
+<p>Android Performance Patterns is a collection of videos focused entirely on helping developers write faster, more performant Android Applications. On one side, it’s about peeling back the layers of the Android System, and exposing how things are working under the hood. On the other side, it’s about teaching you how the tools work, and what to look for in order to extract the right perf out of your app.<br>But at the end of the day, Android Performance Patterns is all giving you the right resources, at the right time to help make the fastest, smoothest, most awesome experience for your users. And that’s the whole point, right?</p>
+</blockquote>
+<p>总之就是一系列讲解Android性能相关的视频。这些小视频的时间非常短，在3-5分钟之内，主讲人的英文语速也非常快，初期这些视频没有翻译的时候，着实考验了一把听力。好消息是现在这些视频已经都有中英文字幕了。</p>
+<p>这些视频的时间虽然很短，但是信息量却非常大，有些他一句话带过的内容，我们却需要花费很多的时间去研究他的原理，或者研究一个调试工具如何使用。也就是说，这一系列视频并没有真正教你如何去优化你的应用，而是告诉你关于Android性能优化你需要知道的知识，这样你去优化你的Android应用的时候，<strong>知道该用什么工具，该采取什么样的步骤，需要达到什么样的目标。</strong></p>
+<a id="more"></a>
+<p>由于我最近也在研究Android性能优化相关的课题，这个视频第一时间出来的时候我就看了好几遍，所以一早就有将这一系列视频翻译成中文的想法。后来看了几遍之后，我发现仅仅翻译成中文其实意义不大，他所讲述的每一个知识点，都是可以写成一篇博文甚至好几篇博文的，所以就有了这一系列文章的出现。</p>
+<p>每一篇文章中，我都会先将视频中涉及到的知识点列出来，然后一一进行讲解。有些调试工具由于篇幅原因，可能会写到单独的博文中。</p>
+<p>另外催生我写这一系列文章的是胡凯，他的博客 <a href="http://hukai.me/android-performance-patterns" target="_blank" rel="external">http://hukai.me/android-performance-patterns</a> 第一时间就将这一些列视频的内容翻译成了中文，优美的排版加上过硬的翻译，让这篇博文被广泛传播，备受好评。同时他也是github上 <a href="https://github.com/kesenhoo/android-training-course-in-chinese" target="_blank" rel="external">android-training-course-in-chinese</a> 项目的发起人，他的Github主页：<a href="https://github.com/kesenhoo" target="_blank" rel="external">https://github.com/kesenhoo</a>。他对于分享的热情我非常敬佩。如果你并非是Android应用开发者或者对技术细节不感兴趣的话，直接看他的那篇Android性能优化典范即可，看完之后你会对这一些列视频有一个大概的认识。</p>
+<p>下面是关于Android性能优化典范这一些列视频的一些资源信息：</p>
+<ul>
+<li>YouTube主页：<a href="https://www.youtube.com/playlist?list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE" target="_blank" rel="external">Android Performance Patterns</a></li>
+<li>作者Google+主页：</li>
+<li>Android Performance Patterns的Google+社群：</li>
+</ul>
+<p>OK，Let us start！！！</p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+<div class="copyright">
+  <p><span>本文标题:</span><a href="/2015/04/19/Android-Performance-Patterns.html">Android性能优化典范综述</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
+  <p><span>发布时间:</span>2015年04月19日 - 15时20分</p>
+  <p><span>最后更新:</span>2015年04月19日 - 15时25分</p>
+  <p>
+    <span>原始链接:</span><a href="/2015/04/19/Android-Performance-Patterns.html" title="Android性能优化典范综述">http://androidperformance.com/2015/04/19/Android-Performance-Patterns.html</a>
+    <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2015/04/19/Android-Performance-Patterns.html　　作者: Gracker" title="点击复制文章链接">
+        <i class="fa fa-clipboard"></i>
+    </span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。</p>
+  <script src="/js/clipboard.min.js"></script>
+  <script> var clipboard = new Clipboard('.btn'); </script>
+</div>
+<style type="text/css">
+  .copyright p .btn {
+    margin-left: 1em;
+  }
+  .copyright:hover p .btn::after {
+    content: "复制"
+  }
+  .copyright p .btn:hover {
+      color: gray;
+      cursor: pointer;
+    };
+</style>
+
+
+
+<nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2015/04/19/Android-Performance-Patterns-1.html">
+        Android性能优化典范之Render Performance
+      </a>
+    </div>
+  
+  
+    <div id="article-nav-older" class="article-nav-title">
+      <a href="/2015/04/11/AndroidMemory-Open-Bitmap-Object-In-MAT.html">
+        Android内存优化之三：打开MAT中的Bitmap原图
+      </a>
+    </div>
+  
+</nav>
+
+  
+</article>
+
+<!-- 默认显示文章目录，在文章---前输入toc: false关闭目录 -->
+<!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
+<div id="toc" class="toc-article">
+<strong class="toc-title">文章目录</strong>
+
+</div>
+<style type="text/css">
+  .left-col .switch-btn {
+    display: none;
+  }
+  .left-col .switch-area {
+    display: none;
+  }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script type="text/javascript">
+  var toc_button= document.getElementById("tocButton");
+  var toc_div= document.getElementById("toc");
+  /* Show or hide toc when click on tocButton.
+  通过点击设置的按钮显示或者隐藏文章目录.*/
+  toc_button.onclick=function(){
+  if(toc_div.style.display=="none"){
+  toc_div.style.display="block";
+  toc_button.value="隐藏目录";
+  document.getElementById("switch-btn").style.display="none";
+  document.getElementById("switch-area").style.display="none";
+  }
+  else{
+  toc_div.style.display="none";
+  toc_button.value="显示目录";
+  document.getElementById("switch-btn").style.display="block";
+  document.getElementById("switch-area").style.display="block";
+  }
+  }
+</script>
+
+
+<div class="share">
+	<div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+	</div>
+	<script>
+	window._bd_share_config={
+		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2015/04/19/Android-Performance-Patterns.html" data-title="Android性能优化典范综述" data-url="http://androidperformance.com/2015/04/19/Android-Performance-Patterns.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"grackertalk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    </div>
+
+
+  
+  
+    
+    <div  class="post-nav-button">
+    <a href="/2015/04/19/Android-Performance-Patterns-1.html" title="上一篇: Android性能优化典范之Render Performance">
+    <i class="fa fa-angle-left"></i>
+    </a>
+    <a href="/2015/04/11/AndroidMemory-Open-Bitmap-Object-In-MAT.html" title="下一篇: Android内存优化之三：打开MAT中的Bitmap原图">
+    <i class="fa fa-angle-right"></i>
+    </a>
+    </div>
+  
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2015 Gracker
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+        </div>
+    </div>
+    <div class="visit">
+      <span id="busuanzi_container_site_pv" style='display:none'>
+        <span id="site-visit" >本站到访数: 
+        <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </span>
+      <span id="busuanzi_container_page_pv" style='display:none'>
+        <span id="page-visit">, 本页阅读量: 
+        <span id="busuanzi_value_page_pv"></span>
+        </span>
+      </span>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+<script>
+  var backgroundnum = 5;
+  var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+
+  $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+</script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50993302-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

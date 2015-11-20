@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android性能优化后续 | Performance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言本文是一篇译文，原文Android Performance Case Study Follow-up的作者是大名鼎鼎的Romain Guy。本文讲述了Android性能优化的一些技巧、方法和工具。
+译文正文两年前，我发表了一篇名为Android Performance Case Study 的文章，来帮助Android开发者了解需要使用什么工具和技术手段来确定、追踪和优化性能问题。
+那篇文章以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android性能优化后续">
+<meta property="og:url" content="http://androidperformance.com/2015/03/31/android-performance-case-study-follow-up.html">
+<meta property="og:site_name" content="Performance">
+<meta property="og:description" content="前言本文是一篇译文，原文Android Performance Case Study Follow-up的作者是大名鼎鼎的Romain Guy。本文讲述了Android性能优化的一些技巧、方法和工具。
+译文正文两年前，我发表了一篇名为Android Performance Case Study 的文章，来帮助Android开发者了解需要使用什么工具和技术手段来确定、追踪和优化性能问题。
+那篇文章以">
+<meta property="og:image" content="http://androidperformance.com/images/android-performance-case-study-follow-up/falconpro3.png">
+<meta property="og:image" content="http://androidperformance.com/images/android-performance-case-study-follow-up/glTrace.png">
+<meta property="og:image" content="http://androidperformance.com/images/android-performance-case-study-follow-up/before.png">
+<meta property="og:updated_time" content="2015-04-20T07:53:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android性能优化后续">
+<meta name="twitter:description" content="前言本文是一篇译文，原文Android Performance Case Study Follow-up的作者是大名鼎鼎的Romain Guy。本文讲述了Android性能优化的一些技巧、方法和工具。
+译文正文两年前，我发表了一篇名为Android Performance Case Study 的文章，来帮助Android开发者了解需要使用什么工具和技术手段来确定、追踪和优化性能问题。
+那篇文章以">
+  
+    <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/favicon.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Gracker</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">专注 Android 性能优化</p>
+		
+				
+
+
+		
+			<div id="switch-btn" class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div id="switch-area" class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+							<li><a href="/tags">标签云</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/MAT/" style="font-size: 15px;">MAT</a> <a href="/tags/Menory/" style="font-size: 17.5px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 15px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 10px;">启动优化</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gracker</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img lazy-src="/img/favicon.png" class="js-avatar">
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">Gracker</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">专注 Android 性能优化</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+					<li><a href="/tags">标签云</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-android-performance-case-study-follow-up" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/31/android-performance-case-study-follow-up.html" class="article-date">
+  	<time datetime="2015-03-31T01:29:00.000Z" itemprop="datePublished">2015-03-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android性能优化后续
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a><a class="article-category-link" href="/categories/Android/Menory/Performance/">Performance</a>
+	</div>
+
+
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言">前言</h1><p>本文是一篇译文，原文<a href="http://www.curious-creature.com/2015/03/25/android-performance-case-study-follow-up/?utm_source=Android+Weekly&amp;utm_campaign=0692ef161b-Android_Weekly_146&amp;utm_medium=email&amp;utm_term=0_4eb677ad19-0692ef161b-337850757" target="_blank" rel="external">Android Performance Case Study Follow-up</a>的作者是大名鼎鼎的<a href="http://www.curious-creature.com/" target="_blank" rel="external">Romain Guy</a>。本文讲述了Android性能优化的一些技巧、方法和工具。</p>
+<h1 id="译文正文">译文正文</h1><p>两年前，我发表了一篇名为<a href="http://www.curious-creature.com/2012/12/01/android-performance-case-study/" target="_blank" rel="external">Android Performance Case Study</a> 的文章，来帮助Android开发者了解需要使用什么工具和技术手段来确定、追踪和优化性能问题。</p>
+<p>那篇文章以一个Twitter客户端 <a href="https://play.google.com/store/apps/details?id=com.jv.materialfalcon" target="_blank" rel="external">Falcon Pro</a>为典范，其开发人员为 Joaquim Vergès. Joaquim人不错，他允许我在我的文章中使用它的程序作为例子，并且快速处理了我发现的所有问题。一切都OK，直到Joaquim 从头开始开发Falcon Pro 3，前不久在他准备发布它的新应用的时候，他联系了我，因为他有一个和滚动相关的性能问题需要我来帮助他，这一次我依然没有源代码可以参考。</p>
+<a id="more"></a>
+<p>Joaquim使用了所有的工具来找出问题所在，他发现Overdraw不是问题的原因，他觉得是 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank" rel="external">ViewPager</a> 的用法导致了这个问题。他给我发来了下面的截图：</p>
+<p><img src="/images/android-performance-case-study-follow-up/falconpro3.png" alt="Falcon Pro"></p>
+<p>Joaquim使用了系统内置的GPU profiling工具来发现掉帧现象， 左边的截图是在没有ViewPager 的情况下滑动时间线，右边的截图是有ViewPager的情况下滑动（他使用的是2014年的Moto x来截的图），问题看起来很明显。</p>
+<p>我最先想到的是查看ViewPager是不是由于滥用硬件加速导致，这个性能问题看起来像是在滑动的过程中每一帧都使用了硬件加速。系统的 <a href="http://www.curious-creature.com/2013/09/13/optimizing-hardware-layers/" target="_blank" rel="external">hardware layers updates debugging tool</a>没有显示什么有用的信息。我反复使用HierarchyViewer 查看布局情况，令我满意的是ViewPager的表现很正确（相反，不太可能会出问题）</p>
+<p>之后我打开了另一个强大的工具却很少用到的工具：Tracer for OpenGL 。我之前的那篇<a href="http://www.curious-creature.com/2012/12/01/android-performance-case-study" target="_blank" rel="external">文章</a>解释了如何使用工具获得更多细节。你首先需要知道的是这个工具收集了所有UI界面发给GPU的绘制命令。</p>
+<blockquote>
+<p><strong>Android 4.3 and up</strong>: <em>Tracer</em> has unfortunately become a little more difficult to use since Android 4.3 when we introduced<a href="https://developers.google.com/events/io/sessions/325418001" target="_blank" rel="external">reordering and merging of drawing commands</a>. It’s an amazingly useful optimization but it prevents <em>Tracer</em> from grouping drawing commands by view. You can restore the old behavior by disabling display lists optimization using the following command (before you start your application)(意思是说Android4.3之后，这个工具不太好用了，因为有reordering and merging 机制的引进)</p>
+<p><strong>Reading OpenGL traces</strong>: Commands shown in blue are GL operations that draw pixels on screen. All other commands are used to transfer data or set state and can easily be ignored. Every time you click on one of the blue commands, Tracer will update the Details tab and show you the content of the current render target right after the command you clicked is executed. You can thus reconstruct a frame by clicking on each blue command one after another. It’s pretty much how I analyze performance issues with Tracer. Seeing how a frame is rendered gives a lot of insight on what the application is doing.(意思是说只蓝色的行是真正进行绘制的命令，点击可以看到绘制的这一帧的图像，其他的命令都是一些数据的转换)</p>
+</blockquote>
+<p>滑动一段时间Falcon Pro应用后，我仔细查看Gl Trace收集到的数据，我很惊奇地发现很多SaveLayer/ComposeLayer阻塞命令。</p>
+<p><img src="/images/android-performance-case-study-follow-up/glTrace.png" alt="Paste_Image.png"></p>
+<p>这些命令表明应用在生成一个临时的Hardware Layer。这些临时的Layer被不同的 <a href="http://developer.android.com/reference/android/graphics/Canvas.html#saveLayer(float, float, float, float, android.graphics.Paint, int" target="_blank" rel="external">Canvas.saveLayer()</a>)所创建，这些UI控件在下面的情况下使用Canvas.saveLayer()方法去绘制 alpha &lt; 1 (see<a href="http://developer.android.com/reference/android/view/View.html#setAlpha(float" target="_blank" rel="external">View.setAlpha()</a>)的View(即半透明View)：</p>
+<ul>
+<li><a href="http://developer.android.com/reference/android/view/View.html#getAlpha(" target="_blank" rel="external">getAlpha()</a> returns a value &lt; 1</li>
+<li><a href="http://developer.android.com/reference/android/view/View.html#onSetAlpha(int" target="_blank" rel="external">onSetAlpha()</a> returns false</li>
+<li><a href="http://developer.android.com/reference/android/view/View.html#getLayerType(" target="_blank" rel="external">getLayerType()</a> returns LAYER_TYPE_NONE</li>
+<li><a href="http://developer.android.com/reference/android/view/View.html#hasOverlappingRendering(" target="_blank" rel="external">hasOverlappingRendering()</a> returns true</li>
+</ul>
+<p>我和Chet 在很多演示中解释过为什么你应该 <a href="https://youtu.be/vQZFaec9NpA?t=29m51s" target="_blank" rel="external">use alpha with care</a>，每次UI控件使用一个临时的Layer，绘制命令会发送不同的渲染目标，对GPU来说，切换渲染目标是很昂贵的操作,这对于使用tiling/deferred架构的GPU（ImaginationTech’s SGX, Qualcomm’s Adreno, etc）等是硬伤，直接渲染架构的GPU，比如 Nvidia，则会好一点。因为我和Joaquim 使用的是搭载高通处理器的Moto X 2014版本，所以使用多个临时硬件层是最有可能的性能问题的根源。</p>
+<p>那么问题来了，是什么创建了这些临时的Layer呢？<em>Tracer</em>告诉我们了答案，如果你看了刚刚上面那张<a href="http://www.curious-creature.com/blog/wp-content/uploads/2015/03/Screen-Shot-2015-03-25-at-11.00.53-AM-950x552.png" target="_blank" rel="external">图</a>,你可以看到只有SaveLayer这个组中OpenGl命令绘制了一个小圆圈（图被工具放大了），我们来看一下应用截图：</p>
+<p><img src="/images/android-performance-case-study-follow-up/before.png" alt="Falcon Pro 3"></p>
+<p>你看到最上面的小圆圈了么？那是ViewPager的指示器，来显示当前的位置。Joaquim 使用了一个第三方库来绘制这些指示器，有趣的是这些库如何绘制指示器的：当前的Page用一个白色的圈指示，其他的页用类似灰色的圆圈来指示。我说类似灰色因为这个圆圈其实是半透明的白色圆圈。这个库使用 setAlpha()方法来给每个圆圈设置颜色。</p>
+<p>有下面几种方法来解决这个问题：</p>
+<ul>
+<li>Use a customizable “inactive” color instead of setting an opacity on the View（ 使用动态的“inactive”颜色(即根据状态来设置View的颜色)而不是设置透明度。）</li>
+<li><p>Return false from hasOverlappingRendering() and the framework will set the proper alpha on the Paint<br>for you（使hasOverlappingRendering()返回false，这样系统会设置适当的alpha，关于这个的用法，这篇<a href="http://imid.me/blog/2014/01/17/best-practices-for-using-alpha/" target="_blank" rel="external">文章</a>中有提到：同时Android提供了hasOverlappingRendering()接口，通过重写该接口可以告知系统当前View是否存在内容重叠的情况，帮助系统优化绘制流程，原理是这样的：对于有重叠内容的View，系统简单粗暴的使用 offscreen buffer来协助处理。当告知系统该View无重叠内容时，系统会分别使用合适的alpha值绘制每一层。）</p>
+ <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Returns whether this View has content which overlaps. This function, intended <span class="keyword">to</span> be</span><br><span class="line"> * overridden <span class="keyword">by</span> specific View types, <span class="keyword">is</span> an optimization when alpha <span class="keyword">is</span> <span class="keyword">set</span> <span class="function_start"><span class="keyword">on</span></span> a view. If</span><br><span class="line"> * rendering overlaps <span class="keyword">in</span> a view <span class="keyword">with</span> alpha &lt; <span class="number">1</span>, <span class="keyword">that</span> view <span class="keyword">is</span> drawn <span class="keyword">to</span> an offscreen buffer</span><br><span class="line"> * <span class="keyword">and</span> <span class="keyword">then</span> composited <span class="keyword">it</span> <span class="keyword">into</span> place, which can be expensive. If <span class="keyword">the</span> view has no overlapping</span><br><span class="line"> * rendering, <span class="keyword">the</span> view can draw each primitive <span class="keyword">with</span> <span class="keyword">the</span> appropriate alpha value directly.</span><br><span class="line"> * An example <span class="keyword">of</span> overlapping rendering <span class="keyword">is</span> a TextView <span class="keyword">with</span> a background image, such <span class="keyword">as</span> a</span><br><span class="line"> * Button. An example <span class="keyword">of</span> non-overlapping rendering <span class="keyword">is</span> a TextView <span class="keyword">with</span> no background, <span class="keyword">or</span></span><br><span class="line"> * an ImageView <span class="keyword">with</span> only <span class="keyword">the</span> foreground image. The default implementation returns <span class="constant">true</span>;</span><br><span class="line"> * subclasses should override <span class="keyword">if</span> they have cases which can be optimized.</span><br><span class="line"> *</span><br><span class="line"> * @<span class="constant">return</span> <span class="constant">true</span> <span class="keyword">if</span> <span class="keyword">the</span> content <span class="keyword">in</span> this view might overlap, <span class="constant">false</span> otherwise.</span><br><span class="line"> */</span><br><span class="line">public <span class="type">boolean</span> hasOverlappingRendering() &#123;</span><br><span class="line"><span class="command">    return</span> <span class="constant">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Return true from onSetAlpha() and set an alpha on the Paint used to draw the “gray” circles（使onSetAlpha() 返回True并对Paint设置alpha来绘制“gray”圆圈）</p>
+ <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">paint.setAlpha((<span class="built_in">int</span>) <span class="built_in">alpha</span> * <span class="number">255</span>);</span><br><span class="line">canvas.<span class="title">draw</span>*(..., paint);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>最简单的方法是使用第二种，但是他只能在API16以上使用，如果你要支持旧版本的Android，使用其他两个方法，我相信Joaquim 已经丢弃那个第三方库并使用自己的指示器了。</p>
+<p>我希望这篇文章能让大家清楚如何从看似无辜的和无害的操作中寻找可能会出现性能问题。所以请记住:不要仅仅做出假设,要实际去验证、测量。</p>
+<h1 id="附录">附录</h1><p>更多关于Alpha的使用，可以参考这篇文章：<br><a href="http://imid.me/blog/2014/01/17/best-practices-for-using-alpha/" target="_blank" rel="external">Android Tips: Best Practices for Using Alpha</a></p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+<div class="copyright">
+  <p><span>本文标题:</span><a href="/2015/03/31/android-performance-case-study-follow-up.html">Android性能优化后续</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
+  <p><span>发布时间:</span>2015年03月31日 - 09时29分</p>
+  <p><span>最后更新:</span>2015年04月20日 - 15时53分</p>
+  <p>
+    <span>原始链接:</span><a href="/2015/03/31/android-performance-case-study-follow-up.html" title="Android性能优化后续">http://androidperformance.com/2015/03/31/android-performance-case-study-follow-up.html</a>
+    <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2015/03/31/android-performance-case-study-follow-up.html　　作者: Gracker" title="点击复制文章链接">
+        <i class="fa fa-clipboard"></i>
+    </span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。</p>
+  <script src="/js/clipboard.min.js"></script>
+  <script> var clipboard = new Clipboard('.btn'); </script>
+</div>
+<style type="text/css">
+  .copyright p .btn {
+    margin-left: 1em;
+  }
+  .copyright:hover p .btn::after {
+    content: "复制"
+  }
+  .copyright p .btn:hover {
+      color: gray;
+      cursor: pointer;
+    };
+</style>
+
+
+
+<nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html">
+        Android内存优化之一：MAT使用入门
+      </a>
+    </div>
+  
+  
+    <div id="article-nav-older" class="article-nav-title">
+      <a href="/2015/03/15/android-tips-round-up-5.html">
+        [译]Android小技巧(5)
+      </a>
+    </div>
+  
+</nav>
+
+  
+</article>
+
+<!-- 默认显示文章目录，在文章---前输入toc: false关闭目录 -->
+<!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
+<div id="toc" class="toc-article">
+<strong class="toc-title">文章目录</strong>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#译文正文"><span class="toc-number">2.</span> <span class="toc-text">译文正文</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#附录"><span class="toc-number">3.</span> <span class="toc-text">附录</span></a></li></ol>
+</div>
+<style type="text/css">
+  .left-col .switch-btn {
+    display: none;
+  }
+  .left-col .switch-area {
+    display: none;
+  }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script type="text/javascript">
+  var toc_button= document.getElementById("tocButton");
+  var toc_div= document.getElementById("toc");
+  /* Show or hide toc when click on tocButton.
+  通过点击设置的按钮显示或者隐藏文章目录.*/
+  toc_button.onclick=function(){
+  if(toc_div.style.display=="none"){
+  toc_div.style.display="block";
+  toc_button.value="隐藏目录";
+  document.getElementById("switch-btn").style.display="none";
+  document.getElementById("switch-area").style.display="none";
+  }
+  else{
+  toc_div.style.display="none";
+  toc_button.value="显示目录";
+  document.getElementById("switch-btn").style.display="block";
+  document.getElementById("switch-area").style.display="block";
+  }
+  }
+</script>
+
+
+<div class="share">
+	<div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+	</div>
+	<script>
+	window._bd_share_config={
+		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2015/03/31/android-performance-case-study-follow-up.html" data-title="Android性能优化后续" data-url="http://androidperformance.com/2015/03/31/android-performance-case-study-follow-up.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"grackertalk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    </div>
+
+
+  
+  
+    
+    <div  class="post-nav-button">
+    <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html" title="上一篇: Android内存优化之一：MAT使用入门">
+    <i class="fa fa-angle-left"></i>
+    </a>
+    <a href="/2015/03/15/android-tips-round-up-5.html" title="下一篇: [译]Android小技巧(5)">
+    <i class="fa fa-angle-right"></i>
+    </a>
+    </div>
+  
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2015 Gracker
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+        </div>
+    </div>
+    <div class="visit">
+      <span id="busuanzi_container_site_pv" style='display:none'>
+        <span id="site-visit" >本站到访数: 
+        <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </span>
+      <span id="busuanzi_container_page_pv" style='display:none'>
+        <span id="page-visit">, 本页阅读量: 
+        <span id="busuanzi_value_page_pv"></span>
+        </span>
+      </span>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+<script>
+  var backgroundnum = 5;
+  var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+
+  $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+</script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50993302-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

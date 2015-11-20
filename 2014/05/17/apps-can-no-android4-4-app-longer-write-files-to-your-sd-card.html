@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>[Android4.4]第三方APP无法操作外置SD卡原因分析以及延伸阅读 | Performance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.问题背景:最近做Android4.4的平台移植,遇到一个问题:在Android4.4中,第三方App是没有权限操作外置SD卡的(除非是与自己包名相同的目录),开始以为是自己申请的权限不足,最后发现是Google在Android中限制了这一权限.这是原文:
+
+The WRITE_EXTERNAL_STORAGE permission must only grant write access to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Android4.4]第三方APP无法操作外置SD卡原因分析以及延伸阅读">
+<meta property="og:url" content="http://androidperformance.com/2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card.html">
+<meta property="og:site_name" content="Performance">
+<meta property="og:description" content="1.问题背景:最近做Android4.4的平台移植,遇到一个问题:在Android4.4中,第三方App是没有权限操作外置SD卡的(除非是与自己包名相同的目录),开始以为是自己申请的权限不足,最后发现是Google在Android中限制了这一权限.这是原文:
+
+The WRITE_EXTERNAL_STORAGE permission must only grant write access to">
+<meta property="og:updated_time" content="2015-03-27T05:20:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Android4.4]第三方APP无法操作外置SD卡原因分析以及延伸阅读">
+<meta name="twitter:description" content="1.问题背景:最近做Android4.4的平台移植,遇到一个问题:在Android4.4中,第三方App是没有权限操作外置SD卡的(除非是与自己包名相同的目录),开始以为是自己申请的权限不足,最后发现是Google在Android中限制了这一权限.这是原文:
+
+The WRITE_EXTERNAL_STORAGE permission must only grant write access to">
+  
+    <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/favicon.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Gracker</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">专注 Android 性能优化</p>
+		
+				
+
+
+		
+			<div id="switch-btn" class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div id="switch-area" class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+							<li><a href="/tags">标签云</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/MAT/" style="font-size: 15px;">MAT</a> <a href="/tags/Menory/" style="font-size: 17.5px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 15px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 10px;">启动优化</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gracker</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img lazy-src="/img/favicon.png" class="js-avatar">
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">Gracker</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">专注 Android 性能优化</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+					<li><a href="/tags">标签云</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-apps-can-no-android4-4-app-longer-write-files-to-your-sd-card" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card.html" class="article-date">
+  	<time datetime="2014-05-17T03:20:30.000Z" itemprop="datePublished">2014-05-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [Android4.4]第三方APP无法操作外置SD卡原因分析以及延伸阅读
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-问题背景:">1.问题背景:</h3><p>最近做Android4.4的平台移植,遇到一个问题:在Android4.4中,第三方App是没有权限操作外置SD卡的(除非是与自己包名相同的目录),开始以为是自己申请的权限不足,最后发现是Google在Android中限制了这一权限.这是原文:</p>
+<blockquote>
+<p><span style="\"color:" #404040;\"="">The WRITE_EXTERNAL_STORAGE permission must only grant write access to the primary external storage on a device. Apps must not be allowed to write to secondary external storage devices, except in their package-specific directories as allowed by synthesized permissions.</span></p>
+</blockquote>
+<p>意思就是说,只有主存储有读写的权限,第二存储(通常是外置SD卡或者USBOTG,这个可以在设置菜单中自己设置)只有读的权限.原因也有给出:</p>
+<blockquote>
+<p><span style="\"color:" #404040;\"="">Restricting writes in this way ensures the system can clean up files when applications are uninstalled.</span></p>
+</blockquote>
+<p>另一个原因我觉得是安全的问题,这一方面的陈述会在下面详细介绍.</p>
+<a id="more"></a>
+<h3 id="2-解决办法:">2.解决办法:</h3><p>解决办法分两种,一种针对用户,一种针对开发者.</p>
+<p><strong><em>针对用户:</em></strong></p>
+<p>已经root的用户可以通过修改:<span style="\"color:" #444444;\"="">/system/etc/permissions/platform.xml</span> 文件(使用RE文件管理器即可),找到如下代码块:</p>
+<pre class="\"lang:java" decode:true\"="" title="\"写sd卡的权限\"">    &lt;permission name=\"android.permission.WRITE_EXTERNAL_STORAGE\" &gt;
+        &lt;group gid=\"sdcard_r\" /&gt;
+        &lt;group gid=\"sdcard_rw\" /&gt;
+    &lt;/permission&gt;</pre>
+
+<p>修改为:</p>
+<pre class="\"lang:java" decode:true\"="" title="\"修改后的写SD卡权限\"">    &lt;permission name=\"android.permission.WRITE_EXTERNAL_STORAGE\" &gt;
+        &lt;group gid=\"sdcard_r\" /&gt;
+        &lt;group gid=\"sdcard_rw\" /&gt;
+    &lt;group gid=\"media_rw\" /&gt;
+    &lt;/permission&gt;</pre>
+
+<p>然后重启.就可以读写SD卡了.</p>
+<p>这个做法其实就是给<span style="\"color:" #666666;\"="">android.permission.WRITE_EXTERNAL_STORAGE</span> 这个权限组加上对media的读写权限.</p>
+<p><strong><em>针对开发者:</em></strong></p>
+<p><span style="\"color:" #323333;\"="">XDA论坛上的方法，先把文件改为图片类型，再用media content provider来删除.</span></p>
+<pre class="\"lang:java" decode:true\"="" title="\"转换成媒体文件,再进行操作\"">private static final Uri FILES_URI = MediaStore.Files.getContentUri(\"external\");
+    public static boolean deleteFile(Context context, String path) {
+        ContentResolver cr = context.getContentResolver();
+        if (cr == null) return false;
+        final String selection = FileColumns.DATA + \"=?\";
+        final String[] selectionArgs = new String[] { path };
+        ContentValues values = new ContentValues();
+        values.put(FileColumns.MEDIA_TYPE, FileColumns.MEDIA_TYPE_IMAGE);
+        return cr.update(FILES_URI, values, selection, selectionArgs) &gt; 0
+                &amp;&amp; cr.delete(FILES_URI, selection, selectionArgs) &gt; 0;
+    }</pre>
+
+<p>这样做是因为MediaProvider拥有读写SD卡的 权限,通过它去操作文件也可以达到目标.不过有人反映如果把默认存储设置为内置SD卡，该方法貌似就失效了。不知道有没有更好的办法？</p>
+<p><strong><em>针对rom开发者:</em></strong></p>
+<p>rom开发者有更好的选择,<span style="\"color:" #444444;\"="">platform.xml的文件位置在源代码:frameworks/base/data/etc/中,和方法1中的步骤一样:</span></p>
+<pre class="\"lang:java" decode:true\"="" title="\"写sd卡的权限\"">    &lt;permission name=\"android.permission.WRITE_EXTERNAL_STORAGE\" &gt;
+        &lt;group gid=\"sdcard_r\" /&gt;
+        &lt;group gid=\"sdcard_rw\" /&gt;
+    &lt;/permission&gt;</pre>
+
+<p>修改为:</p>
+<pre class="\"lang:java" decode:true\"="" title="\"修改后的写SD卡权限\"">    &lt;permission name=\"android.permission.WRITE_EXTERNAL_STORAGE\" &gt;
+        &lt;group gid=\"sdcard_r\" /&gt;
+        &lt;group gid=\"sdcard_rw\" /&gt;
+    &lt;group gid=\"media_rw\" /&gt;
+    &lt;/permission&gt;</pre>
+
+<p>然后重新编译一个rom即可.</p>
+<p>&nbsp;</p>
+<h3 id="3-延伸阅读">3.延伸阅读</h3><p>Google这么做的原因,我也查阅了一些文章,下面是一些我觉得比较好的回答,大家感兴趣可以自己看一下:</p>
+<p>第一篇是Google+上的一个人的分析,大概解释了一下google这样做的原因以及造成的影响(英文很简单):</p>
+<blockquote>
+<p><span style="\"color:" #404040;\"="">KitKat will make your SD Card completely useless: per the Android API specification, apps can no longer write files to your SD card.  And Samsung is following it.This only applies to dual-storage devices, i.e., devices with a user-writable internal flash storage <strong>AND</strong> a removable SD card.</span></p>
+<p><span style="\"color:" #404040;\"="">From </span><span style="\"color:" #427fed;\"=""><a href="http://source.android.com/devices/tech/storage/index.html" target="_blank" rel="external">http://source.android.com/devices/tech/storage/index.html</a></span><span style="\"color:" #404040;\"="">:\”The WRITE_EXTERNAL_STORAGE permission must only grant write access to the primary external storage on a device. Apps must not be allowed to write to secondary external storage devices, except in their package-specific directories as allowed by synthesized permissions.\”</span></p>
+<p><span style="\"color:" #404040;\"="">If your device has user-accessible internal flash storage, your SD Card is a \”secondary external storage device\”.</span></p>
+<p><span style="\"color:" #404040;\"="">What this means is that with KitKat, applications will no longer be able create, modify, or remove files and folders on your external SD card.  As a for-instance, you can no longer use a file manager to copy files from your computer to the SD card over a network.  This ability, which has existed since the beginning of Android, has been taken away.</span></p>
+<p><span style="\"color:" #404040;\"="">The only stated reason for this removal of functionality is that, \”Restricting writes in this way ensures the system can clean up files when applications are uninstalled.\”  I do not pretend to understand this logic.  Apps are still allowed to write in arbitrary directories on the primary storage (with the appropriate permission), but are denied the same access to external storage.</span></p>
+<p><span style="\"color:" #404040;\"="">Samsung has implemented this feature with their KitKat OTA updates.  Note3 users are now complaining that FX File Explorer can no longer write to their external SD cards.  There are solutions to this problem for users with root access.  Users without root access appear to be screwed.</span></p>
+<p><span style="\"color:" #404040;\"="">I\’m not quite certain how Google intends for you to place files on your SD card.  Perhaps you have to use proprietary Google apps that contain permissions unavailable to the rest of the developer world.  Perhaps you\’re supposed to put everything on the cloud and pay carrier data fees to get it there.  Perhaps you\’re supposed to use some kind of WIRE to attach your WIRELESS device to your computer and have the computer do that work for you.</span></p>
+<p><span style="\"color:" #404040;\"="">In my opinion this is a horrible misstep by Google and the Android Open Source Project.  Functionality has been removed without reason, to the severe detriment of users and developers alike.</span></p>
+<p><span style="\"color:" #404040;\"="">I apologize for not bringing this to everyone\’s attention when KitKat 4.4 was released, but it was not mentioned in the Android 4.4 changes document:</span><span style="\"color:" #427fed;\"=""><a href="http://developer.android.com/about/versions/android-4.4.html" target="_blank" rel="external">http://developer.android.com/about/versions/android-4.4.html</a></span><span style="\"color:" #404040;\"="">.  It\’s only mentioned in the article on </span><span style="\"color:" #427fed;\"="">source.android.com</span><span style="\"color:" #404040;\"="">.  I was only made aware of its existence from user reports as a result of Samsung implementing this change in its KitKat OTA updates. </span></p>
+</blockquote>
+<p>第二篇是知乎上的讨论,大家自行脑补:</p>
+<blockquote>
+<p><span style="\"color:" #232323;\"="">这有可能真的只是一个限制，影响很小，因为这个限制并不彻底，primary external storage 仍然可写，而支持双 SD 的设备并不很多。我们大家更期待的是让 primary external storage 也同样受到这个限制，虽然这个修改将涉及到更多应用的不兼容。</span></p>
+<p><span style="\"color:" #232323;\"="">所以这个问题并没有彻底解决，到对 primary external storage 也限制的那个时候，才真正的解决了这个问题。</span></p>
+<p><span style="\"color:" #232323;\"="">就目前而言，第二 SD 卡仍然是可以读写的，只是要读写到指定的目录（具体应该在 /Android/data/）。这样的规定意味着应用程序只能对 SD 卡的指定目录进行读写，不能读写任意目录。相当于 Google 出手对 SD 卡目录结构进行了规范。之前 android 不限制目录，所以各种应用就随意的在 SD 卡上建一个目录。然后 SD 卡上的目录到处都是，用户对这种现象早就深恶痛绝了！如果 Google 对这件事情下狠手，只能说是<strong>大快人心</strong>。</span></p>
+<p><span style="\"color:" #232323;\"="">另外说一下，SD 卡上的指定目录是这样获取的：</span><br><span style="\"color:" #232323;\"="">1，程序相关的 内置存储目录，这个目录位于内置 flash，应用程序可以随意读写：</span></p>
+<p><pre class="\"lang:java" decode:true\"="">getFilesDir();</pre><br><span style="\"color:" #232323;\"="">2，程序相关的 SD 卡外部存储目录，这个目录位于 SD 卡，应用程序可以随意读写：</span></p>
+<p><pre class="\"lang:java" decode:true="" crayon-selected\"="">getExternalFilesDir(null);</pre><br><span style="\"color:" #232323;\"="">3，SD 卡公共目录，这些目录仍然可以访问，不受权限限制：</span></p>
+<p><pre class="\"lang:java" decode:true\"="">Environment.getExternalStoragePublicDirectory(x)</pre><br><span style="\"color:" #232323;\"="">其中 x 可以是 Environment.DIRECTORY_ALARMS 等预定义的常量。可以查找 Environment 的帮助。</span></p>
+<p><span style="\"color:" #232323;\"="">如果大家要存储数据，可以用 1 或者 2 的方法，获取正确的目录，然后进行任意读写，这样不会把 SD 卡的目录写乱。</span></p>
+</blockquote>
+<p>第三篇也是知乎上一个讨论:</p>
+<blockquote>
+<p><span style="\"color:" #232323;\"="">Google 给出的理由有一定的道理——相信很多有洁癖的人都很讨厌第三方应用在 SD 卡或者内置存储下随意建立文件夹吧，有节操的应用应该只在以自己的包名区分的目录下存放需要的文件。</span></p>
+<p><span style="\"color:" #232323;\"="">至于为什么只限制 SD 卡，不包括内置存储，我觉得是因为 SD 卡是可以插在别的地方的，目录结构是有可能暴露出来的，也有可能被修改。规范应用在 SD 卡的读写，可以使得这个 SD 卡上的目录和文件可以在其他设备上被电脑「理解」——「这个目录是在某一个 Android 设备上用到的，我不必理会它」，如果第三方应用随意在 SD 卡根目录创建命名不规范并且无规律的目录，这个 SD 卡在其他地方就会使电脑或者人迷惑——「这个目录是干什么的？是谁创建的？我可不可以删掉它？」。手机的内部存储空间不能拆卸，所以其目录结构不会轻易暴露给用户，也不会放在别的设备上，所以可以暂时不管。</span></p>
+</blockquote>
+<p>&nbsp;</p>
+<p>参考:</p>
+<p>1.<a href="\">https://plus.google.com/+TodLiebeck/posts/gjnmuaDM8sn</a></p>
+<p>2.<a href="\">http://www.zhihu.com/question/22778889</a></p>
+<p>3.<a href="\">http://source.android.com/devices/tech/storage/index.html</a></p>
+<p>&nbsp;</p>
+<p>相关阅读 :</p>
+<ol>
+<li><a href="\">Android4.4中扫描文件广播权限变更分析</a></li>
+</ol>
+<blockquote>
+<p><span style="\"color:" #ff0000;\"="">作者：<a href="\" title="\">Gracker</a></span><br><span style="\"color:" #ff0000;\"="">出处：<a href="\" title="\">androidperformance.com</a></span><br><span style="\"color:" #ff0000;\"="">本文版权归作者所有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</span><br><span style="\"color:" #ff0000;\"="">打赏一下： <a href="\">微博打赏</a></span></p>
+</blockquote>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+<div class="copyright">
+  <p><span>本文标题:</span><a href="/2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card.html">[Android4.4]第三方APP无法操作外置SD卡原因分析以及延伸阅读</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
+  <p><span>发布时间:</span>2014年05月17日 - 11时20分</p>
+  <p><span>最后更新:</span>2015年03月27日 - 13时20分</p>
+  <p>
+    <span>原始链接:</span><a href="/2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card.html" title="[Android4.4]第三方APP无法操作外置SD卡原因分析以及延伸阅读">http://androidperformance.com/2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card.html</a>
+    <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card.html　　作者: Gracker" title="点击复制文章链接">
+        <i class="fa fa-clipboard"></i>
+    </span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。</p>
+  <script src="/js/clipboard.min.js"></script>
+  <script> var clipboard = new Clipboard('.btn'); </script>
+</div>
+<style type="text/css">
+  .copyright p .btn {
+    margin-left: 1em;
+  }
+  .copyright:hover p .btn::after {
+    content: "复制"
+  }
+  .copyright p .btn:hover {
+      color: gray;
+      cursor: pointer;
+    };
+</style>
+
+
+
+<nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2014/05/28/android-tips-round-up-1.html">
+        [译]Android小技巧(1)
+      </a>
+    </div>
+  
+  
+    <div id="article-nav-older" class="article-nav-title">
+      <a href="/2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted.html">
+        [Android4.4]Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED
+      </a>
+    </div>
+  
+</nav>
+
+  
+</article>
+
+<!-- 默认显示文章目录，在文章---前输入toc: false关闭目录 -->
+<!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
+<div id="toc" class="toc-article">
+<strong class="toc-title">文章目录</strong>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-问题背景:"><span class="toc-number">1.</span> <span class="toc-text">1.问题背景:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-解决办法:"><span class="toc-number">2.</span> <span class="toc-text">2.解决办法:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-延伸阅读"><span class="toc-number">3.</span> <span class="toc-text">3.延伸阅读</span></a></li></ol>
+</div>
+<style type="text/css">
+  .left-col .switch-btn {
+    display: none;
+  }
+  .left-col .switch-area {
+    display: none;
+  }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script type="text/javascript">
+  var toc_button= document.getElementById("tocButton");
+  var toc_div= document.getElementById("toc");
+  /* Show or hide toc when click on tocButton.
+  通过点击设置的按钮显示或者隐藏文章目录.*/
+  toc_button.onclick=function(){
+  if(toc_div.style.display=="none"){
+  toc_div.style.display="block";
+  toc_button.value="隐藏目录";
+  document.getElementById("switch-btn").style.display="none";
+  document.getElementById("switch-area").style.display="none";
+  }
+  else{
+  toc_div.style.display="none";
+  toc_button.value="显示目录";
+  document.getElementById("switch-btn").style.display="block";
+  document.getElementById("switch-area").style.display="block";
+  }
+  }
+</script>
+
+
+<div class="share">
+	<div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+	</div>
+	<script>
+	window._bd_share_config={
+		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card.html" data-title="[Android4.4]第三方APP无法操作外置SD卡原因分析以及延伸阅读" data-url="http://androidperformance.com/2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"grackertalk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    </div>
+
+
+  
+  
+    
+    <div  class="post-nav-button">
+    <a href="/2014/05/28/android-tips-round-up-1.html" title="上一篇: [译]Android小技巧(1)">
+    <i class="fa fa-angle-left"></i>
+    </a>
+    <a href="/2014/05/14/android4-4permission-denial-not-allowed-to-send-broadcast-android-intent-action-media-mounted.html" title="下一篇: [Android4.4]Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED">
+    <i class="fa fa-angle-right"></i>
+    </a>
+    </div>
+  
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2015 Gracker
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+        </div>
+    </div>
+    <div class="visit">
+      <span id="busuanzi_container_site_pv" style='display:none'>
+        <span id="site-visit" >本站到访数: 
+        <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </span>
+      <span id="busuanzi_container_page_pv" style='display:none'>
+        <span id="page-visit">, 本页阅读量: 
+        <span id="busuanzi_value_page_pv"></span>
+        </span>
+      </span>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+<script>
+  var backgroundnum = 5;
+  var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+
+  $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+</script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50993302-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

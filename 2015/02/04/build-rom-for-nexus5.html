@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>为Nexus5编译AndroidL固件 | Performance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="接前一篇文章使用Android Studio查看Android Lollipop源码, 我们知道,仅仅看代码,提高是比较有限的,而且理解起来也比较肤浅,往往过目就忘. 而自己写过的代码,往往会印象比较深刻,在写的时候也会比较容易理解流程. 所以我们在看代码的同时, 如果能修改代码, 在手机上跑起来并看到修改的效果,这无疑会加快看代码的效率和积极性. 所以这篇文章,就讲解一下如何自己编译Androi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为Nexus5编译AndroidL固件">
+<meta property="og:url" content="http://androidperformance.com/2015/02/04/build-rom-for-nexus5.html">
+<meta property="og:site_name" content="Performance">
+<meta property="og:description" content="接前一篇文章使用Android Studio查看Android Lollipop源码, 我们知道,仅仅看代码,提高是比较有限的,而且理解起来也比较肤浅,往往过目就忘. 而自己写过的代码,往往会印象比较深刻,在写的时候也会比较容易理解流程. 所以我们在看代码的同时, 如果能修改代码, 在手机上跑起来并看到修改的效果,这无疑会加快看代码的效率和积极性. 所以这篇文章,就讲解一下如何自己编译Androi">
+<meta property="og:image" content="http://androidperformance.com/images/build-image-for-nexus-5/Nexus5.png">
+<meta property="og:updated_time" content="2015-04-01T13:11:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为Nexus5编译AndroidL固件">
+<meta name="twitter:description" content="接前一篇文章使用Android Studio查看Android Lollipop源码, 我们知道,仅仅看代码,提高是比较有限的,而且理解起来也比较肤浅,往往过目就忘. 而自己写过的代码,往往会印象比较深刻,在写的时候也会比较容易理解流程. 所以我们在看代码的同时, 如果能修改代码, 在手机上跑起来并看到修改的效果,这无疑会加快看代码的效率和积极性. 所以这篇文章,就讲解一下如何自己编译Androi">
+  
+    <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/favicon.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Gracker</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">专注 Android 性能优化</p>
+		
+				
+
+
+		
+			<div id="switch-btn" class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div id="switch-area" class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+							<li><a href="/tags">标签云</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/MAT/" style="font-size: 15px;">MAT</a> <a href="/tags/Menory/" style="font-size: 17.5px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 15px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 10px;">启动优化</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gracker</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img lazy-src="/img/favicon.png" class="js-avatar">
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">Gracker</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">专注 Android 性能优化</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+					<li><a href="/tags">标签云</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-build-rom-for-nexus5" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/04/build-rom-for-nexus5.html" class="article-date">
+  	<time datetime="2015-02-04T12:51:19.000Z" itemprop="datePublished">2015-02-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      为Nexus5编译AndroidL固件
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>接前一篇文章<a href="http://www.androidperformance.com/view-android-source-code-with-androidstudio.html" target="_blank" rel="external">使用Android Studio查看Android Lollipop源码</a>, 我们知道,仅仅看代码,提高是比较有限的,而且理解起来也比较肤浅,往往过目就忘. 而自己写过的代码,往往会印象比较深刻,在写的时候也会比较容易理解流程. 所以我们在看代码的同时, 如果能修改代码, 在手机上跑起来并看到修改的效果,这无疑会加快看代码的效率和积极性. 所以这篇文章,就讲解一下如何自己编译AndroidL的源码,并且在Nexus5上跑起来. 至于为何需要自己编译固件,而不是直接安装Google给出的工厂固件?原因是Google给出的工厂固件是User版本,是没法随心所欲Push东西进去的. 所以我们需要编译自己的Userdebug版本.</p>
+<p>本文假设你已经下载了AndroidL的源码,并且有一台Nexus5手机(手机系统开发人员必备), 如果你还没有AndroidL的源码,或者你有源码但是没有配置编译的环境,那么 <a href="https://source.android.com/source/initializing.html" target="_blank" rel="external">Initializing a Build Environment</a> 和<a href="https://source.android.com/source/downloading.html" target="_blank" rel="external">Downloading the Source</a>这两篇文章你应该先去看一下(我又一次假设你会翻墙,如果你不会翻墙,那么下代码也是一个痛苦的事情). 这后面的教程Google官网也有教程.所以我只针对Nexus5进行讲解.</p>
+<p>另外你需要知道AOSP,AOSP即Android Open Source Project 汉语意思是：谷歌开放源代码项目.我们通过Google官方下载的源代码,就是AOSP的代码, 其中是不包含Google开发的那些个应用的,各个厂商拿到的也是这个版本,在这个版本的基础上进行修改. 而Google发布的工厂固件则是包含全套Google服务的. 厂商如果想安装Google服务,就需要过Google的那一套认证,比较麻烦,而且价格不菲,鉴于Google在国内的尴尬地位,国内很多厂商都没有过这个认证.</p>
+<a id="more"></a>
+<h3 id="1-_初始化编译环境">1. 初始化编译环境</h3><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">. </span>build/envsetup.sh</span><br></pre></td></tr></table></figure>
+<h3 id="2-_加载机型">2. 加载机型</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lunch</span><br></pre></td></tr></table></figure>
+<h3 id="3-_选择要编译的机器">3. 选择要编译的机器</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">You're building <span class="function_start"><span class="keyword">on</span></span> Linux</span><br><span class="line"></span><br><span class="line">Lunch menu... pick a combo:</span><br><span class="line">     <span class="number">1.</span> aosp_arm-eng</span><br><span class="line">     <span class="number">2.</span> aosp_arm64-eng</span><br><span class="line">     <span class="number">3.</span> aosp_mips-eng</span><br><span class="line">     <span class="number">4.</span> aosp_mips64-eng</span><br><span class="line">     <span class="number">5.</span> aosp_x86-eng</span><br><span class="line">     <span class="number">6.</span> aosp_x86_64-eng</span><br><span class="line">     <span class="number">7.</span> aosp_shamu-userdebug</span><br><span class="line">     <span class="number">8.</span> aosp_manta-userdebug</span><br><span class="line">     <span class="number">9.</span> full_fugu-userdebug</span><br><span class="line">     <span class="number">10.</span> aosp_fugu-userdebug</span><br><span class="line">     <span class="number">11.</span> aosp_grouper-userdebug</span><br><span class="line">     <span class="number">12.</span> aosp_tilapia-userdebug</span><br><span class="line">     <span class="number">13.</span> aosp_deb-userdebug</span><br><span class="line">     <span class="number">14.</span> aosp_flo-userdebug</span><br><span class="line">     <span class="number">15.</span> aosp_mako-userdebug</span><br><span class="line">     <span class="number">16.</span> aosp_hammerhead-userdebug</span><br><span class="line">     <span class="number">17.</span> aosp_flounder-userdebug</span><br><span class="line">     <span class="number">18.</span> mini_emulator_x86_64-userdebug</span><br><span class="line">     <span class="number">19.</span> mini_emulator_arm-userdebug</span><br><span class="line">     <span class="number">20.</span> mini_emulator_x86-userdebug</span><br><span class="line">     <span class="number">21.</span> mini_emulator_mips-userdebug</span><br><span class="line">     <span class="number">22.</span> mini_emulator_arm64-userdebug</span><br></pre></td></tr></table></figure>
+<h4 id="3-1_机型对照表">3.1 机型对照表</h4><table>
+<thead>
+<tr>
+<th>DEVICE</th>
+<th>CODE NAME</th>
+<th>BUILD CONFIGURATION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nexus 6</td>
+<td>shamu</td>
+<td>aosp_shamu-userdebug</td>
+</tr>
+<tr>
+<td>Nexus Player</td>
+<td>fugu</td>
+<td>aosp_fugu-userdebug</td>
+</tr>
+<tr>
+<td>Nexus 9</td>
+<td>volantis (flounder)</td>
+<td>aosp_flounder-userdebug</td>
+</tr>
+<tr>
+<td>Nexus 5 (GSM/LTE)</td>
+<td>hammerhead</td>
+<td>aosp_hammerhead-userdebug</td>
+</tr>
+<tr>
+<td>Nexus 7 (Wi-Fi)</td>
+<td>razor (flo)</td>
+<td>aosp_flo-userdebug</td>
+</tr>
+<tr>
+<td>Nexus 7 (Mobile)</td>
+<td>razorg (deb)</td>
+<td>aosp_deb-userdebug</td>
+</tr>
+<tr>
+<td>Nexus 10</td>
+<td>mantaray (manta)</td>
+<td>full_manta-userdebug</td>
+</tr>
+<tr>
+<td>Nexus 4</td>
+<td>occam (mako)</td>
+<td>full_mako-userdebug</td>
+</tr>
+<tr>
+<td>Nexus 7 (Wi-Fi)</td>
+<td>nakasi (grouper)</td>
+<td>full_grouper-userdebug</td>
+</tr>
+<tr>
+<td>Nexus 7 (Mobile)</td>
+<td>nakasig (tilapia)</td>
+<td>full_tilapia-userdebug</td>
+</tr>
+<tr>
+<td>Galaxy Nexus (GSM/HSPA+)</td>
+<td>yakju (maguro)</td>
+<td>full_maguro-userdebug</td>
+</tr>
+<tr>
+<td>Galaxy Nexus (Verizon)</td>
+<td>mysid (toro)</td>
+<td>aosp_toro-userdebug</td>
+</tr>
+<tr>
+<td>Galaxy Nexus (Experimental)</td>
+<td>mysidspr (toroplus)</td>
+<td>aosp_toroplus-userdebug</td>
+</tr>
+<tr>
+<td>PandaBoard (Archived)</td>
+<td>panda</td>
+<td>aosp_panda-userdebug</td>
+</tr>
+<tr>
+<td>Motorola Xoom (U.S. Wi-Fi)</td>
+<td>wingray</td>
+<td>full_wingray-userdebug</td>
+</tr>
+<tr>
+<td>Nexus S</td>
+<td>soju (crespo)</td>
+<td>full_crespo-userdebug</td>
+</tr>
+<tr>
+<td>Nexus S 4G</td>
+<td>sojus (crespo4g)</td>
+<td>full_crespo4g-userdebug3.2</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-2_三个版本说明版本">3.2 三个版本说明版本</h4><table>
+<thead>
+<tr>
+<th>BUILDTYPE</th>
+<th>USE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user</td>
+<td>limited access; suited for production</td>
+</tr>
+<tr>
+<td>userdebug</td>
+<td>like “user” but with root access and debuggability; preferred for debugging</td>
+</tr>
+<tr>
+<td>eng</td>
+<td>development configuration with additional debugging tools</td>
+</tr>
+</tbody>
+</table>
+<p>选择aosp_hammerhead-userdebug之后,会有下面的确认信息:</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">============================================</span><br><span class="line"><span class="constant">PLATFORM_VERSION_CODENAME</span>=REL</span><br><span class="line"><span class="constant">PLATFORM_VERSION</span>=5.0.50.50.50.50</span><br><span class="line"><span class="constant">TARGET_PRODUCT</span>=aosp_hammerhead</span><br><span class="line"><span class="constant">TARGET_BUILD_VARIANT</span>=userdebug</span><br><span class="line"><span class="constant">TARGET_BUILD_TYPE</span>=release</span><br><span class="line"><span class="constant">TARGET_BUILD_APPS</span>=</span><br><span class="line"><span class="constant">TARGET_ARCH</span>=arm</span><br><span class="line"><span class="constant">TARGET_ARCH_VARIANT</span>=armv7-a-neon</span><br><span class="line"><span class="constant">TARGET_CPU_VARIANT</span>=krait</span><br><span class="line"><span class="constant">TARGET_2ND_ARCH</span>=</span><br><span class="line"><span class="constant">TARGET_2ND_ARCH_VARIANT</span>=</span><br><span class="line"><span class="constant">TARGET_2ND_CPU_VARIANT</span>=</span><br><span class="line"><span class="constant">HOST_ARCH</span>=x86_64</span><br><span class="line"><span class="constant">HOST_OS</span>=linux</span><br><span class="line"><span class="constant">HOST_OS_EXTRA</span>=Linux-3.13.0-37-generic-x86_64-with-Ubuntu-14.10-utopic</span><br><span class="line"><span class="constant">HOST_BUILD_TYPE</span>=release</span><br><span class="line"><span class="constant">BUILD_ID</span>=AOSP</span><br><span class="line"><span class="constant">OUT_DIR</span>=out</span><br><span class="line">============================================</span><br></pre></td></tr></table></figure>
+<h3 id="4-_生成驱动目录">4. 生成驱动目录</h3><p>接下来需要在<a href="https://developers.google.com/android/nexus/drivers#hammerheadlrx22c" target="_blank" rel="external">Android官网</a>下载 Nexus5所需要的驱动:</p>
+<table>
+<thead>
+<tr>
+<th>HARDWARE COMPONENT</th>
+<th>COMPANY</th>
+<th>DOWNLOAD</th>
+<th>MD5 CHECKSUM</th>
+<th>SHA-1 CHECKSUM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NFC, Bluetooth, Wi-Fi</td>
+<td>Broadcom</td>
+<td><a href="https://dl.google.com/dl/android/aosp/broadcom-hammerhead-lrx22c-964d941e.tgz" target="_blank" rel="external">Link</a></td>
+<td>2c398994e37093df51b105d63f0eb611</td>
+<td>991346159c95ae75f760014a6822b8b3e8667700</td>
+</tr>
+<tr>
+<td>Camera, Sensors, Audio</td>
+<td>LG</td>
+<td><a href="https://dl.google.com/dl/android/aosp/lge-hammerhead-lrx22c-95a9d465.tgz" target="_blank" rel="external">Link</a></td>
+<td>74cf8235e6bb04da28b2ff738b13eee9</td>
+<td>175dd5bae81bb54030d072cb0f0b4ec81eb3f71f</td>
+</tr>
+<tr>
+<td>Graphics, GSM, Camera, GPS, Sensors, Media, DSP, USB</td>
+<td>Qualcomm</td>
+<td><a href="https://dl.google.com/dl/android/aosp/lge-hammerhead-lrx22c-95a9d465.tgz" target="_blank" rel="external">Link</a></td>
+<td>0a43395e175d3de3dc312d8abdcb4f20</td>
+<td>007cf9d49f0409d5c703e7f2811fd153fee22353</td>
+</tr>
+</tbody>
+</table>
+<p>下载完成后,解压出来是三个.sh文件,放到Android源码目录下面,然后执行.会将相关驱动放到vender目录下面.</p>
+<h3 id="5-_执行编译命令">5. 执行编译命令</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span> -j8</span><br></pre></td></tr></table></figure>
+<p>如果没有出错的话,在经过漫长的时间之后,编译成功:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Installed file <span class="string">list:</span> out<span class="regexp">/target/</span>product<span class="regexp">/hammerhead/</span>installed-files.txt</span><br><span class="line">Target system fs <span class="string">image:</span> out<span class="regexp">/target/</span>product<span class="regexp">/hammerhead/</span>obj<span class="regexp">/PACKAGING/</span>systemimage_intermediates/system.img</span><br><span class="line"><span class="string">Running:</span>  mkuserimg.sh -s out<span class="regexp">/target/</span>product<span class="regexp">/hammerhead/</span>system out<span class="regexp">/target/</span>product<span class="regexp">/hammerhead/</span>obj<span class="regexp">/PACKAGING/</span>systemimage_intermediates<span class="regexp">/system.img ext4 system 1073741824 -L system out/</span>target<span class="regexp">/product/</span>hammerhead<span class="regexp">/root/</span>file_contexts</span><br><span class="line">make_ext4fs -s -T -<span class="number">1</span> -S out<span class="regexp">/target/</span>product<span class="regexp">/hammerhead/</span>root<span class="regexp">/file_contexts -L system -l 1073741824 -a system out/</span>target<span class="regexp">/product/</span>hammerhead<span class="regexp">/obj/</span>PACKAGING<span class="regexp">/systemimage_intermediates/</span>system.img out<span class="regexp">/target/</span>product<span class="regexp">/hammerhead/</span>system</span><br><span class="line">Creating filesystem with <span class="string">parameters:</span></span><br><span class="line"><span class="label">    Size:</span> <span class="number">1073741824</span></span><br><span class="line">    Block <span class="string">size:</span> <span class="number">4096</span></span><br><span class="line">    Blocks per <span class="string">group:</span> <span class="number">32768</span></span><br><span class="line">    Inodes per <span class="string">group:</span> <span class="number">8192</span></span><br><span class="line">    Inode <span class="string">size:</span> <span class="number">256</span></span><br><span class="line">    Journal <span class="string">blocks:</span> <span class="number">4096</span></span><br><span class="line"><span class="label">    Label:</span> system</span><br><span class="line"><span class="label">    Blocks:</span> <span class="number">262144</span></span><br><span class="line">    Block <span class="string">groups:</span> <span class="number">8</span></span><br><span class="line">    Reserved block group <span class="string">size:</span> <span class="number">63</span></span><br><span class="line">Created filesystem with <span class="number">1445</span><span class="regexp">/65536 inodes and 85879/</span><span class="number">262144</span> blocks</span><br><span class="line">Install system fs <span class="string">image:</span> out<span class="regexp">/target/</span>product<span class="regexp">/hammerhead/</span>system.img</span><br><span class="line">out<span class="regexp">/target/</span>product<span class="regexp">/hammerhead/</span>system.img+out<span class="regexp">/target/</span>product<span class="regexp">/hammerhead/</span>obj<span class="regexp">/PACKAGING/</span>recovery_patch_intermediates/recovery_from_boot.p maxsize=<span class="number">1096212480</span> blocksize=<span class="number">135168</span> total=<span class="number">336629666</span> reserve=<span class="number">11083776</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-_刷机命令">6. 刷机命令</h3><p>Nexus5关机状态下,长按音量下+电源,即可进入recovery模式, 然后在源码根目录下执行下面命令:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fastboot</span> -w flashall</span><br></pre></td></tr></table></figure>
+<p>刷机成功后会自动重启</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">~/<span class="name">Android</span>-<span class="name">SourceCode</span> <span class="atom">fastboot</span> -<span class="atom">w</span> <span class="atom">flashall</span></span><br><span class="line"><span class="atom">target</span> <span class="atom">reported</span> <span class="atom">max</span> <span class="atom">download</span> <span class="atom">size</span> <span class="atom">of</span> <span class="number">1073741824</span> <span class="atom">bytes</span></span><br><span class="line"><span class="name">Creating</span> <span class="atom">filesystem</span> <span class="atom">with</span> <span class="atom">parameters</span>:</span><br><span class="line">    <span class="name">Size</span>: <span class="number">13725835264</span></span><br><span class="line">    <span class="name">Block</span> <span class="atom">size</span>: <span class="number">4096</span></span><br><span class="line">    <span class="name">Blocks</span> <span class="atom">per</span> <span class="atom">group</span>: <span class="number">32768</span></span><br><span class="line">    <span class="name">Inodes</span> <span class="atom">per</span> <span class="atom">group</span>: <span class="number">8144</span></span><br><span class="line">    <span class="name">Inode</span> <span class="atom">size</span>: <span class="number">256</span></span><br><span class="line">    <span class="name">Journal</span> <span class="atom">blocks</span>: <span class="number">32768</span></span><br><span class="line">    <span class="name">Label</span>: </span><br><span class="line">    <span class="name">Blocks</span>: <span class="number">3351034</span></span><br><span class="line">    <span class="name">Block</span> <span class="atom">groups</span>: <span class="number">103</span></span><br><span class="line">    <span class="name">Reserved</span> <span class="atom">block</span> <span class="atom">group</span> <span class="atom">size</span>: <span class="number">823</span></span><br><span class="line"><span class="name">Created</span> <span class="atom">filesystem</span> <span class="atom">with</span> <span class="number">11</span>/<span class="number">838832</span> <span class="atom">inodes</span> <span class="atom">and</span> <span class="number">93654</span>/<span class="number">3351034</span> <span class="atom">blocks</span></span><br><span class="line"><span class="name">Creating</span> <span class="atom">filesystem</span> <span class="atom">with</span> <span class="atom">parameters</span>:</span><br><span class="line">    <span class="name">Size</span>: <span class="number">734003200</span></span><br><span class="line">    <span class="name">Block</span> <span class="atom">size</span>: <span class="number">4096</span></span><br><span class="line">    <span class="name">Blocks</span> <span class="atom">per</span> <span class="atom">group</span>: <span class="number">32768</span></span><br><span class="line">    <span class="name">Inodes</span> <span class="atom">per</span> <span class="atom">group</span>: <span class="number">7472</span></span><br><span class="line">    <span class="name">Inode</span> <span class="atom">size</span>: <span class="number">256</span></span><br><span class="line">    <span class="name">Journal</span> <span class="atom">blocks</span>: <span class="number">2800</span></span><br><span class="line">    <span class="name">Label</span>: </span><br><span class="line">    <span class="name">Blocks</span>: <span class="number">179200</span></span><br><span class="line">    <span class="name">Block</span> <span class="atom">groups</span>: <span class="number">6</span></span><br><span class="line">    <span class="name">Reserved</span> <span class="atom">block</span> <span class="atom">group</span> <span class="atom">size</span>: <span class="number">47</span></span><br><span class="line"><span class="name">Created</span> <span class="atom">filesystem</span> <span class="atom">with</span> <span class="number">11</span>/<span class="number">44832</span> <span class="atom">inodes</span> <span class="atom">and</span> <span class="number">5813</span>/<span class="number">179200</span> <span class="atom">blocks</span></span><br><span class="line">--------------------------------------------</span><br><span class="line"><span class="name">Bootloader</span> <span class="name">Version</span>...: <span class="name">HHZ12d</span></span><br><span class="line"><span class="name">Baseband</span> <span class="name">Version</span>.....: <span class="name">M8974A</span>-<span class="number">2.0</span><span class="number">.50</span><span class="number">.2</span><span class="number">.22</span></span><br><span class="line"><span class="name">Serial</span> <span class="name">Number</span>........: <span class="number">08</span><span class="atom">ade1a513dc087b</span></span><br><span class="line">--------------------------------------------</span><br><span class="line"><span class="atom">checking</span> <span class="atom">product</span>...</span><br><span class="line"><span class="name">OKAY</span> [  <span class="number">0.100</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">sending</span> <span class="string">'boot'</span> (<span class="number">8950</span> <span class="name">KB</span>)...</span><br><span class="line"><span class="name">OKAY</span> [  <span class="number">0.500</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">writing</span> <span class="string">'boot'</span>...</span><br><span class="line"><span class="name">OKAY</span> [  <span class="number">0.784</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">sending</span> <span class="string">'recovery'</span> (<span class="number">9672</span> <span class="name">KB</span>)...</span><br><span class="line"><span class="name">OKAY</span> [  <span class="number">0.556</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">writing</span> <span class="string">'recovery'</span>...</span><br><span class="line"><span class="name">OKAY</span> [  <span class="number">0.814</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">erasing</span> <span class="string">'system'</span>...</span><br><span class="line"><span class="name">OKAY</span> [  <span class="number">1.166</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">sending</span> <span class="string">'system'</span> (<span class="number">328187</span> <span class="name">KB</span>)...</span><br><span class="line"><span class="name">OKAY</span> [ <span class="number">10.501</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">writing</span> <span class="string">'system'</span>...</span><br><span class="line"><span class="name">OKAY</span> [ <span class="number">23.623</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">erasing</span> <span class="string">'userdata'</span>...</span><br><span class="line"><span class="name">OKAY</span> [ <span class="number">14.657</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">sending</span> <span class="string">'userdata'</span> (<span class="number">137318</span> <span class="name">KB</span>)...</span><br><span class="line"><span class="name">OKAY</span> [  <span class="number">4.520</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">writing</span> <span class="string">'userdata'</span>...</span><br><span class="line"><span class="name">OKAY</span> [  <span class="number">9.776</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">erasing</span> <span class="string">'cache'</span>...</span><br><span class="line"><span class="name">OKAY</span> [  <span class="number">0.618</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">sending</span> <span class="string">'cache'</span> (<span class="number">13348</span> <span class="name">KB</span>)...</span><br><span class="line"><span class="name">OKAY</span> [  <span class="number">0.630</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">writing</span> <span class="string">'cache'</span>...</span><br><span class="line"><span class="name">OKAY</span> [  <span class="number">1.070</span><span class="atom">s</span>]</span><br><span class="line"><span class="atom">rebooting</span>...</span><br><span class="line"></span><br><span class="line"><span class="atom">finished</span>. <span class="atom">total</span> <span class="atom">time</span>: <span class="number">70.095</span><span class="atom">s</span></span><br></pre></td></tr></table></figure>
+<h3 id="7-秀桌面">7.秀桌面</h3><p><img src="/images/build-image-for-nexus-5/Nexus5.png" alt="image"></p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+<div class="copyright">
+  <p><span>本文标题:</span><a href="/2015/02/04/build-rom-for-nexus5.html">为Nexus5编译AndroidL固件</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
+  <p><span>发布时间:</span>2015年02月04日 - 20时51分</p>
+  <p><span>最后更新:</span>2015年04月01日 - 21时11分</p>
+  <p>
+    <span>原始链接:</span><a href="/2015/02/04/build-rom-for-nexus5.html" title="为Nexus5编译AndroidL固件">http://androidperformance.com/2015/02/04/build-rom-for-nexus5.html</a>
+    <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2015/02/04/build-rom-for-nexus5.html　　作者: Gracker" title="点击复制文章链接">
+        <i class="fa fa-clipboard"></i>
+    </span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。</p>
+  <script src="/js/clipboard.min.js"></script>
+  <script> var clipboard = new Clipboard('.btn'); </script>
+</div>
+<style type="text/css">
+  .copyright p .btn {
+    margin-left: 1em;
+  }
+  .copyright:hover p .btn::after {
+    content: "复制"
+  }
+  .copyright p .btn:hover {
+      color: gray;
+      cursor: pointer;
+    };
+</style>
+
+
+
+<nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2015/03/15/android-tips-round-up-3.html">
+        [译]Android小技巧(3)
+      </a>
+    </div>
+  
+  
+    <div id="article-nav-older" class="article-nav-title">
+      <a href="/2015/01/30/android-performance-tools-systrace-1.html">
+        Android性能优化之Systrace工具介绍(一)
+      </a>
+    </div>
+  
+</nav>
+
+  
+</article>
+
+<!-- 默认显示文章目录，在文章---前输入toc: false关闭目录 -->
+<!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
+<div id="toc" class="toc-article">
+<strong class="toc-title">文章目录</strong>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_初始化编译环境"><span class="toc-number">1.</span> <span class="toc-text">1. 初始化编译环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_加载机型"><span class="toc-number">2.</span> <span class="toc-text">2. 加载机型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_选择要编译的机器"><span class="toc-number">3.</span> <span class="toc-text">3. 选择要编译的机器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1_机型对照表"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 机型对照表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2_三个版本说明版本"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 三个版本说明版本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_生成驱动目录"><span class="toc-number">4.</span> <span class="toc-text">4. 生成驱动目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-_执行编译命令"><span class="toc-number">5.</span> <span class="toc-text">5. 执行编译命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-_刷机命令"><span class="toc-number">6.</span> <span class="toc-text">6. 刷机命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-秀桌面"><span class="toc-number">7.</span> <span class="toc-text">7.秀桌面</span></a></li></ol>
+</div>
+<style type="text/css">
+  .left-col .switch-btn {
+    display: none;
+  }
+  .left-col .switch-area {
+    display: none;
+  }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script type="text/javascript">
+  var toc_button= document.getElementById("tocButton");
+  var toc_div= document.getElementById("toc");
+  /* Show or hide toc when click on tocButton.
+  通过点击设置的按钮显示或者隐藏文章目录.*/
+  toc_button.onclick=function(){
+  if(toc_div.style.display=="none"){
+  toc_div.style.display="block";
+  toc_button.value="隐藏目录";
+  document.getElementById("switch-btn").style.display="none";
+  document.getElementById("switch-area").style.display="none";
+  }
+  else{
+  toc_div.style.display="none";
+  toc_button.value="显示目录";
+  document.getElementById("switch-btn").style.display="block";
+  document.getElementById("switch-area").style.display="block";
+  }
+  }
+</script>
+
+
+<div class="share">
+	<div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+	</div>
+	<script>
+	window._bd_share_config={
+		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2015/02/04/build-rom-for-nexus5.html" data-title="为Nexus5编译AndroidL固件" data-url="http://androidperformance.com/2015/02/04/build-rom-for-nexus5.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"grackertalk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    </div>
+
+
+  
+  
+    
+    <div  class="post-nav-button">
+    <a href="/2015/03/15/android-tips-round-up-3.html" title="上一篇: [译]Android小技巧(3)">
+    <i class="fa fa-angle-left"></i>
+    </a>
+    <a href="/2015/01/30/android-performance-tools-systrace-1.html" title="下一篇: Android性能优化之Systrace工具介绍(一)">
+    <i class="fa fa-angle-right"></i>
+    </a>
+    </div>
+  
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2015 Gracker
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+        </div>
+    </div>
+    <div class="visit">
+      <span id="busuanzi_container_site_pv" style='display:none'>
+        <span id="site-visit" >本站到访数: 
+        <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </span>
+      <span id="busuanzi_container_page_pv" style='display:none'>
+        <span id="page-visit">, 本页阅读量: 
+        <span id="busuanzi_value_page_pv"></span>
+        </span>
+      </span>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+<script>
+  var backgroundnum = 5;
+  var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+
+  $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+</script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50993302-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android Service：开发自己的通知中心(2):辅助性服务实战 | Performance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.辅助性服务实战介绍上一篇文章介绍了什么是Accessibility以及简单的使用，这一篇文章就来讲讲如何使用Accessibility服务来创建一个简单的Android通知中心。Android中通知中心是一个系统层面的服务，负责显示应用和系统发来的通知（Notification，比如USB插入、选择输入法、未接来电、截图、天气信息、新闻推送等等）。在android4.3之前，一般的第三方应用是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Service：开发自己的通知中心(2):辅助性服务实战">
+<meta property="og:url" content="http://androidperformance.com/2014/04/01/android-service-build-your-own-notification-servers-app.html">
+<meta property="og:site_name" content="Performance">
+<meta property="og:description" content="1.辅助性服务实战介绍上一篇文章介绍了什么是Accessibility以及简单的使用，这一篇文章就来讲讲如何使用Accessibility服务来创建一个简单的Android通知中心。Android中通知中心是一个系统层面的服务，负责显示应用和系统发来的通知（Notification，比如USB插入、选择输入法、未接来电、截图、天气信息、新闻推送等等）。在android4.3之前，一般的第三方应用是">
+<meta property="og:updated_time" content="2015-03-27T05:27:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Service：开发自己的通知中心(2):辅助性服务实战">
+<meta name="twitter:description" content="1.辅助性服务实战介绍上一篇文章介绍了什么是Accessibility以及简单的使用，这一篇文章就来讲讲如何使用Accessibility服务来创建一个简单的Android通知中心。Android中通知中心是一个系统层面的服务，负责显示应用和系统发来的通知（Notification，比如USB插入、选择输入法、未接来电、截图、天气信息、新闻推送等等）。在android4.3之前，一般的第三方应用是">
+  
+    <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/favicon.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Gracker</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">专注 Android 性能优化</p>
+		
+				
+
+
+		
+			<div id="switch-btn" class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div id="switch-area" class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+							<li><a href="/tags">标签云</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/MAT/" style="font-size: 15px;">MAT</a> <a href="/tags/Menory/" style="font-size: 17.5px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 15px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 10px;">启动优化</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gracker</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img lazy-src="/img/favicon.png" class="js-avatar">
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">Gracker</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">专注 Android 性能优化</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+					<li><a href="/tags">标签云</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-android-service-build-your-own-notification-servers-app" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/04/01/android-service-build-your-own-notification-servers-app.html" class="article-date">
+  	<time datetime="2014-03-31T16:05:47.000Z" itemprop="datePublished">2014-04-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android Service：开发自己的通知中心(2):辅助性服务实战
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-辅助性服务实战介绍">1.辅助性服务实战介绍</h2><p>上一篇文章介绍了什么是Accessibility以及简单的使用，这一篇文章就来讲讲如何使用Accessibility服务来创建一个简单的Android通知中心。Android中通知中心是一个系统层面的服务，负责显示应用和系统发来的通知（Notification，比如USB插入、选择输入法、未接来电、截图、天气信息、新闻推送等等）。在android4.3之前，一般的第三方应用是无法获取Notification list的（在Android4.3之后，有了一个新的接口,NotificationListenerService.getActiveNotifications(),可以获取当前的Notification）。但是利用Accessibility服务可以监听到各种事件的特性，可以开发一个第三方的通知中心，实现与系统通知栏类似的功能。</p>
+<a id="more"></a>
+<p>下面就来介绍如何开发自己的通知中心。</p>
+<h2 id="2-开发第三方通知中心">2.开发第三方通知中心</h2><h3 id="2-1继承AccessibilitySerivce">2.1继承AccessibilitySerivce</h3><p>按照上一篇辅助性服务的介绍，一个辅助性服务可以被捆绑到一个标准的应用程序上，或者以一个单独的安卓工程被创建，我们这里建立一个服务，继承AccessibilitySerivce</p>
+<pre class="\"lang:java" decode:true\"="" title="\"继承AccessibilityService\"">import android.accessibilityservice.AccessibilityService;
+import android.accessibilityservice.AccessibilityServiceInfo;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Parcelable;
+import android.util.Log;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityRecord;
+import android.widget.Toast;
+
+public class NotificationFetcherService extends AccessibilityService {
+
+    private static final String TAG = \"NotificationFetcherService: \";
+
+    public void onAccessibilityEvent(AccessibilityEvent event) {
+        if (!(event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED) ){
+            return;
+        }
+
+        Notification localNotification = (Notification)event.getParcelableData();
+
+        if (localNotification != null) {
+            Intent intent=new Intent();
+            intent.putExtra(\"NotifyData\", localNotification);
+            intent.setAction(\".NotificationFetcherService\");
+            sendBroadcast(intent);
+        }
+
+    }
+
+    @Override
+    protected void onServiceConnected() {
+
+        // Define it in both xml file and here,  for compatibility with pre-ICS devices
+        AccessibilityServiceInfo info = new AccessibilityServiceInfo();
+        info.eventTypes = AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED |
+                AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED | 
+                AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED;
+
+        info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
+        setServiceInfo(info);
+    }
+
+    @Override
+    public void onInterrupt() {
+        System.out.println(\"onInterrupt\");
+    }
+
+}</pre>
+
+<p>继承AccessibilitySerivce必须要重写几个重要的方法：</p>
+<p>onServiceConnected方法负责在服务和Activity绑定的时候，进行初始化数据，这里新建了一个AccessibilityServiceInfo对象，并将TYPE_NOTIFICATION_STATE_CHANGED、TYPE_WINDOW_STATE_CHANGED、TYPE_WINDOW_CONTENT_CHANGED纳入监听范围，TYPE_NOTIFICATION_STATE_CHANGED表示这个服务可以监听Notification的变化，我们正是使用这个特性来实现第三方的通知中心功能。</p>
+<p>onInterrupt是服务断开时调用的函数</p>
+<p>onAccessibilityEvent是最重要的，它负责监听所注册的eventTypes（在onServiceConnected中注册的）的事件。从上面的代码中我们可以得到一个Notification对象：</p>
+<pre class="\"lang:java" decode:true\"="" title="\"得到Notification对象\"">Notification localNotification = (Notification)event.getParcelableData();</pre>
+
+<p>得到Notification对象之后，就可以进行自己的操作，我这里是通过广播的形式，将收到的Notification发送给Activity进行处理。</p>
+<p>这里也会碰到一个小问题：当一个Notification对象太大时（比如截图、未接来电等，Notification.contentView就很大，通过广播传播会出现data过大无法传输的问题），这时可以把Notification.contentView对象暂时保存在Application中，然后再置为null，Activity中接收到数据后，再进行赋值。</p>
+<h3 id="2-2在Manifest中注册service">2.2在Manifest中注册service</h3><pre class="\"lang:java" decode:true\"="">&lt;service
+            android:name=\".NotificationFetcherService\"
+            android:permission=\"android.permission.BIND_ACCESSIBILITY_SERVICE\" &gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name=\"android.accessibilityservice.AccessibilityService\" /&gt;
+            &lt;/intent-filter&gt;
+
+            &lt;meta-data
+                android:name=\"android.accessibilityservice\"
+                android:resource=\"@xml/accessibilityserviceconfig /&gt;
+&lt;/service&gt;</pre>
+
+<p>这里就是普通的service注册，注意 &lt;mate-data&gt;标签中的xml文件：从Android 4.0版本开始，有另外一种方法：使用XML文件来配置这类服务。如果你以XML的形式来定义你的服务，某些像canRetrieveWindowContent可配置的选项就可用了。和service一样的配置，使用XML来定义。如果你要使用XML路径，要在你的mainfest文件中指定它，在你的服务声明中添加&lt;meta-data&gt;标签,并指向这个XML资源文件。比如上面的代码，我们在res/xml/中建立accessibilityaseviceconfig.xml，内容如下：</p>
+<pre class="\"lang:java" decode:true\"="">&lt;?xml version=\"1.0\" encoding=\"utf-8\"?&gt;
+&lt;accessibility-service xmlns:android=\"http://schemas.android.com/apk/res/android\"
+    android:accessibilityEventTypes=\"typeWindowStateChanged|typeNotificationStateChanged|typeWindowContentChanged\"
+    android:accessibilityFeedbackType=\"feedbackGeneric\"
+/&gt;</pre>
+
+<p>服务这里就配置好了。</p>
+<h3 id="2-3_接受并处理Notification">2.3 接受并处理Notification</h3><p>下面的Activity中就可以接受这个数据，然后怎么处理就看自己了，这里只是简单地显示出来。</p>
+<pre class="\"lang:java" decode:true\"="">import android.app.Activity;
+import android.app.Application;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.app.PendingIntent.CanceledException;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Parcelable;
+import android.os.Process;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RemoteViews;
+import android.widget.TextView;
+
+public class NotificaitonActivity extends Activity {
+    private static final int NOTIFY_DATA_FLAG = 1;
+    private static final String NOTIFY_DATA_ID_STR= \"NotifyData\";
+
+    private NotifyDataReceiver  receiver;
+    private TextView textView;
+    private LinearLayout rootLayout;
+    private Button button;
+
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+        textView = (TextView) findViewById(R.id.notify_test_textview);
+        textView.setMovementMethod(ScrollingMovementMethod.getInstance());
+        rootLayout = (LinearLayout) findViewById(R.id.root_layout);
+
+        registerBroadcast();
+
+        button = (Button) findViewById(R.id.test_button);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Button b = new Button(NotificaitonActivity.this);
+                b.setText(\"Tthis\");
+                rootLayout.addView(b);
+            }
+        });
+    }
+
+    private void registerBroadcast() {
+        receiver = new NotifyDataReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(\".NotificationFetcherService\");
+        this.registerReceiver(receiver, filter);
+        Log.e(\"Dx:\", \"Broadcast registered.........\");
+    }
+
+    private void addToUi(RemoteViews remoteView) {
+        rootLayout.addView(remoteView);
+    }
+
+    private void showNotify(String notiString) {
+        textView.setText(textView.getText() + \"n\" + notiString);
+    }
+
+    private class NotifyDataReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.e(\"Dx:\", \"Receiver got msg in onReceive()...\");
+
+            Parcelable notifyParcelable = intent.getParcelableExtra(\"NotifyData\");
+
+            if (notifyParcelable != null) {
+
+                Notification notification = (Notification) notifyParcelable;
+                showNotify(\"tickerText: \" + notification.tickerText);
+                showNotify(\"toString: \" + (String)(notification.toString()));
+
+                RemoteViews remoteV = notification.contentView;
+                if (remoteV==null) {
+                    showNotify(\"remoteView is: null\" );
+                } else {
+                    showNotify(\"remoteView is: not null\" );
+
+                    addToUi(remoteV);
+                }
+
+                PendingIntent pendIntent = notification.contentIntent;
+                if (pendIntent==null) {
+                    showNotify(\"pendIntent is: null\" );
+                } else {
+                showNotify(\"pendIntent is: not null\" );
+                }
+
+                showNotify(\"**************************\" );
+                showNotify(\"                    \" );
+
+            }
+
+        }
+    }
+
+}</pre>
+
+<p><span style="\"color:" #ff0000;\"="">注：这里有很重要的一点，由于AccessibilityService的特殊性，用户必须手动到设置-辅助功能中，打开对应的服务，我们才可以通过AccessibilityService获得对应的数据，这一点非常重要。</span></p>
+<p>上面的Activity只是简单地显示Notification，关于更多Notification的操作，可以参考Notification这个类，其中重要的属性有：contentView，flags。要模拟真正的通知中心，还是要费一番功夫的。这里由于公司项目的保密，暂不提供对应的实现代码（其实得到Notification就已经成功了一半了），有兴趣的同学可以私下和我交流。</p>
+<h2 id="3-总结和问题">3.总结和问题</h2><p>AccessibilityService的实战就讲到这里，这一篇博文也是拖了一段时间才写完的，也算是为前一段时间的项目做个了结。</p>
+<p>项目中目前还存在的问题：</p>
+<ol>
+<li>无法获取安装这个应用之前的系统的Notification</li>
+<li>得到的Notification对象没法保存在本地，所以这个服务被杀掉之后，所有的数据都会丢失。（试过用db4o这种对象数据库来进行存储，发现行不通）</li>
+<li>对Android系统的Notification对象的行为模仿不够（有些系统的事件监听不到，比如usb的插拔、usb调试的开关等）</li>
+</ol>
+<p>上面的问题，如果你有好的想法，我们私下交流。</p>
+<blockquote>
+<p><span style="\"color:" #ff0000;\"="">作者：<a href="\" title="\">Gracker</a></span><br><span style="\"color:" #ff0000;\"="">出处：<a href="\" title="\">androidperformance.com</a></span><br><span style="\"color:" #ff0000;\"="">本文版权归作者所有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面明显位置给出原文连接，否则保留追究法律责任的权利。</span><br><span style="\"color:" #ff0000;\"="">打赏一下： <a href="\">微博打赏</a></span></p>
+</blockquote>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+<div class="copyright">
+  <p><span>本文标题:</span><a href="/2014/04/01/android-service-build-your-own-notification-servers-app.html">Android Service：开发自己的通知中心(2):辅助性服务实战</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
+  <p><span>发布时间:</span>2014年04月01日 - 00时05分</p>
+  <p><span>最后更新:</span>2015年03月27日 - 13时27分</p>
+  <p>
+    <span>原始链接:</span><a href="/2014/04/01/android-service-build-your-own-notification-servers-app.html" title="Android Service：开发自己的通知中心(2):辅助性服务实战">http://androidperformance.com/2014/04/01/android-service-build-your-own-notification-servers-app.html</a>
+    <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2014/04/01/android-service-build-your-own-notification-servers-app.html　　作者: Gracker" title="点击复制文章链接">
+        <i class="fa fa-clipboard"></i>
+    </span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。</p>
+  <script src="/js/clipboard.min.js"></script>
+  <script> var clipboard = new Clipboard('.btn'); </script>
+</div>
+<style type="text/css">
+  .copyright p .btn {
+    margin-left: 1em;
+  }
+  .copyright:hover p .btn::after {
+    content: "复制"
+  }
+  .copyright p .btn:hover {
+      color: gray;
+      cursor: pointer;
+    };
+</style>
+
+
+
+<nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2014/05/02/android_log_to_file.html">
+        Android开发:Log2File工具类
+      </a>
+    </div>
+  
+  
+    <div id="article-nav-older" class="article-nav-title">
+      <a href="/2014/03/25/ubuntu-adb-can-not-find-devices.html">
+        Android:Ubuntu下执行Adb命令找不到设备
+      </a>
+    </div>
+  
+</nav>
+
+  
+</article>
+
+<!-- 默认显示文章目录，在文章---前输入toc: false关闭目录 -->
+<!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
+<div id="toc" class="toc-article">
+<strong class="toc-title">文章目录</strong>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-辅助性服务实战介绍"><span class="toc-number">1.</span> <span class="toc-text">1.辅助性服务实战介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-开发第三方通知中心"><span class="toc-number">2.</span> <span class="toc-text">2.开发第三方通知中心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1继承AccessibilitySerivce"><span class="toc-number">2.1.</span> <span class="toc-text">2.1继承AccessibilitySerivce</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2在Manifest中注册service"><span class="toc-number">2.2.</span> <span class="toc-text">2.2在Manifest中注册service</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3_接受并处理Notification"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 接受并处理Notification</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-总结和问题"><span class="toc-number">3.</span> <span class="toc-text">3.总结和问题</span></a></li></ol>
+</div>
+<style type="text/css">
+  .left-col .switch-btn {
+    display: none;
+  }
+  .left-col .switch-area {
+    display: none;
+  }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script type="text/javascript">
+  var toc_button= document.getElementById("tocButton");
+  var toc_div= document.getElementById("toc");
+  /* Show or hide toc when click on tocButton.
+  通过点击设置的按钮显示或者隐藏文章目录.*/
+  toc_button.onclick=function(){
+  if(toc_div.style.display=="none"){
+  toc_div.style.display="block";
+  toc_button.value="隐藏目录";
+  document.getElementById("switch-btn").style.display="none";
+  document.getElementById("switch-area").style.display="none";
+  }
+  else{
+  toc_div.style.display="none";
+  toc_button.value="显示目录";
+  document.getElementById("switch-btn").style.display="block";
+  document.getElementById("switch-area").style.display="block";
+  }
+  }
+</script>
+
+
+<div class="share">
+	<div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+	</div>
+	<script>
+	window._bd_share_config={
+		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2014/04/01/android-service-build-your-own-notification-servers-app.html" data-title="Android Service：开发自己的通知中心(2):辅助性服务实战" data-url="http://androidperformance.com/2014/04/01/android-service-build-your-own-notification-servers-app.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"grackertalk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    </div>
+
+
+  
+  
+    
+    <div  class="post-nav-button">
+    <a href="/2014/05/02/android_log_to_file.html" title="上一篇: Android开发:Log2File工具类">
+    <i class="fa fa-angle-left"></i>
+    </a>
+    <a href="/2014/03/25/ubuntu-adb-can-not-find-devices.html" title="下一篇: Android:Ubuntu下执行Adb命令找不到设备">
+    <i class="fa fa-angle-right"></i>
+    </a>
+    </div>
+  
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2015 Gracker
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+        </div>
+    </div>
+    <div class="visit">
+      <span id="busuanzi_container_site_pv" style='display:none'>
+        <span id="site-visit" >本站到访数: 
+        <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </span>
+      <span id="busuanzi_container_page_pv" style='display:none'>
+        <span id="page-visit">, 本页阅读量: 
+        <span id="busuanzi_value_page_pv"></span>
+        </span>
+      </span>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+<script>
+  var backgroundnum = 5;
+  var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+
+  $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+</script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50993302-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
