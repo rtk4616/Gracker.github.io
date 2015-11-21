@@ -105,19 +105,6 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://androidperformance.com/2015/11/09/Performance%20ListView.html"/>
-    <id>http://androidperformance.com/2015/11/09/Performance ListView.html</id>
-    <published>2015-11-09T02:12:32.000Z</published>
-    <updated>2015-11-09T02:12:32.000Z</updated>
-    <content type="html"></content>
-    <summary type="html">
-    
-    </summary>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Android5.0中 hwui 中 RenderThread 工作流程]]></title>
     <link href="http://androidperformance.com/2015/08/12/AndroidL-hwui-RenderThread-workflow.html"/>
     <id>http://androidperformance.com/2015/08/12/AndroidL-hwui-RenderThread-workflow.html</id>
