@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://androidperformance.com/images/app-lunch/5.png">
 <meta property="og:image" content="http://androidperformance.com/images/app-lunch/6.png">
 <meta property="og:image" content="http://androidperformance.com/images/app-lunch/7.png">
-<meta property="og:updated_time" content="2015-11-30T02:20:34.000Z">
+<meta property="og:updated_time" content="2015-12-16T06:57:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android应用启动优化:一种DelayLoad的实现和原理">
 <meta name="twitter:description" content="0. 应用启动优化概述在 Android 开发中,应用启动速度是一个非常重要的点,应用启动优化也是一个非常重要的过程.对于应用启动优化,其实核心思想就是在启动过程中少做事情,具体实践的时候无非就是下面几种:
@@ -325,6 +325,7 @@
 <li>是否有 Delay Load 的效果?<br>从 Trace 图上看, 是有 Delay Load的效果的, 而且可以在应用第一帧显示后马上进行数据 Load , 不用考虑 Delay时间的长短.</li>
 </ol>
 <h1 id="3-_一些思考">3. 一些思考</h1><p>关于优化的 Delay Load 的实现,从代码层面来看其实是非常简单的.其带来的效果也是很赞的.<br>但是实现之后我们还需要思考一下,为何这么做就可以实现这种功能呢?很显然要回答这个问题,我们需要知道更底层的一些东西.这个还涉及到 Handler/Message/MessageQueue/Looper/VSYNC/ViewRootImpl等知识. 往大里说应该还涉及到AMS/WMS等.由于涉及到的东西比较多,我就不在这一篇里面阐述了, 下一篇文章将会从从原理上讲解一下为何优化的 Delay Load 会起作用.</p>
+<h1 id="4-_代码">4. 代码</h1><p>本文章所所涉及到的代码我放到了Github上：<br><a href="https://github.com/Gracker/DelayLoadSample" target="_blank" rel="external">https://github.com/Gracker/DelayLoadSample</a></p>
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Gracker -->
@@ -347,7 +348,7 @@ data-ad-format="auto"></ins>
   <p><span>本文标题:</span><a href="/2015/11/18/Android-app-lunch-optimize-delay-load.html">Android应用启动优化:一种DelayLoad的实现和原理</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
   <p><span>发布时间:</span>2015年11月18日 - 20时23分</p>
-  <p><span>最后更新:</span>2015年11月30日 - 10时20分</p>
+  <p><span>最后更新:</span>2015年12月16日 - 14时57分</p>
   <p>
     <span>原始链接:</span><a href="/2015/11/18/Android-app-lunch-optimize-delay-load.html" title="Android应用启动优化:一种DelayLoad的实现和原理">http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html</a>
     <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html　　作者: Gracker" title="点击复制文章链接">
@@ -391,7 +392,7 @@ data-ad-format="auto"></ins>
 <!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
 <div id="toc" class="toc-article">
 <strong class="toc-title">文章目录</strong>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-_应用启动优化概述"><span class="toc-number">1.</span> <span class="toc-text">0. 应用启动优化概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_优化后的DelayLoad的实现"><span class="toc-number">2.</span> <span class="toc-text">1. 优化后的DelayLoad的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_三种写法的差异对比"><span class="toc-number">3.</span> <span class="toc-text">2. 三种写法的差异对比</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_第一种写法"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 第一种写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_第二种写法"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 第二种写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3_第三种写法"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 第三种写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-_一些思考"><span class="toc-number">4.</span> <span class="toc-text">3. 一些思考</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-_应用启动优化概述"><span class="toc-number">1.</span> <span class="toc-text">0. 应用启动优化概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_优化后的DelayLoad的实现"><span class="toc-number">2.</span> <span class="toc-text">1. 优化后的DelayLoad的实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_三种写法的差异对比"><span class="toc-number">3.</span> <span class="toc-text">2. 三种写法的差异对比</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_第一种写法"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 第一种写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_第二种写法"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 第二种写法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3_第三种写法"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 第三种写法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-_一些思考"><span class="toc-number">4.</span> <span class="toc-text">3. 一些思考</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-_代码"><span class="toc-number">5.</span> <span class="toc-text">4. 代码</span></a></li></ol>
 </div>
 <style type="text/css">
   .left-col .switch-btn {

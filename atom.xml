@@ -4,7 +4,7 @@
   <subtitle><![CDATA[True mastery of any skill takes a lifetime]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://androidperformance.com/"/>
-  <updated>2015-11-30T02:20:34.000Z</updated>
+  <updated>2015-12-16T06:57:49.000Z</updated>
   <id>http://androidperformance.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html"/>
     <id>http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html</id>
     <published>2015-11-18T12:23:14.000Z</published>
-    <updated>2015-11-30T02:20:34.000Z</updated>
+    <updated>2015-12-16T06:57:49.000Z</updated>
     <content type="html"><![CDATA[<h1 id="0-_应用启动优化概述">0. 应用启动优化概述</h1><p>在 Android 开发中,应用启动速度是一个非常重要的点,应用启动优化也是一个非常重要的过程.对于应用启动优化,其实核心思想就是在启动过程中少做事情,具体实践的时候无非就是下面几种:</p>
 <ol>
 <li>异步加载</li>
@@ -82,6 +82,7 @@
 <li>是否有 Delay Load 的效果?<br>从 Trace 图上看, 是有 Delay Load的效果的, 而且可以在应用第一帧显示后马上进行数据 Load , 不用考虑 Delay时间的长短.</li>
 </ol>
 <h1 id="3-_一些思考">3. 一些思考</h1><p>关于优化的 Delay Load 的实现,从代码层面来看其实是非常简单的.其带来的效果也是很赞的.<br>但是实现之后我们还需要思考一下,为何这么做就可以实现这种功能呢?很显然要回答这个问题,我们需要知道更底层的一些东西.这个还涉及到 Handler/Message/MessageQueue/Looper/VSYNC/ViewRootImpl等知识. 往大里说应该还涉及到AMS/WMS等.由于涉及到的东西比较多,我就不在这一篇里面阐述了, 下一篇文章将会从从原理上讲解一下为何优化的 Delay Load 会起作用.</p>
+<h1 id="4-_代码">4. 代码</h1><p>本文章所所涉及到的代码我放到了Github上：<br><a href="https://github.com/Gracker/DelayLoadSample" target="_blank" rel="external">https://github.com/Gracker/DelayLoadSample</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h1 id="0-_应用启动优化概述">0. 应用启动优化概述</h1><p>在 Android 开发中,应用启动速度是一个非常重要的点,应用启动优化也是一个非常重要的过程.对于应用启动优化,其实核心思想就是在启动过程中少做事情,具体实践的时候无非就是下面几种:</p>
