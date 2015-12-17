@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2.html</loc>
+    <lastmod>2015-12-17T07:35:33.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2015/04/19/Android-Performance-Patterns-2.html</loc>
+    <lastmod>2015-12-17T07:34:37.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/2015/08/05/HashMap.html</loc>
     <lastmod>2015-12-17T07:32:30.000Z</lastmod>
   </url>
@@ -122,11 +132,6 @@
   </url>
   
   <url>
-    <loc>http://androidperformance.com/2015/04/19/Android-Performance-Patterns-2.html</loc>
-    <lastmod>2015-04-19T07:44:19.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://androidperformance.com/2015/04/19/Android-Performance-Patterns-1.html</loc>
     <lastmod>2015-04-19T07:38:36.000Z</lastmod>
   </url>
@@ -139,11 +144,6 @@
   <url>
     <loc>http://androidperformance.com/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html</loc>
     <lastmod>2015-04-11T10:38:30.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2.html</loc>
-    <lastmod>2015-04-02T08:06:15.000Z</lastmod>
   </url>
   
   <url>
