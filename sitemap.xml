@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/2015/08/05/HashMap.html</loc>
+    <lastmod>2015-12-17T07:32:30.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html</loc>
     <lastmod>2015-12-16T06:57:49.000Z</lastmod>
   </url>
@@ -14,11 +19,6 @@
   <url>
     <loc>http://androidperformance.com/about/index.html</loc>
     <lastmod>2015-08-12T05:11:22.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/08/05/HashMap.html</loc>
-    <lastmod>2015-08-05T13:09:29.000Z</lastmod>
   </url>
   
   <url>
