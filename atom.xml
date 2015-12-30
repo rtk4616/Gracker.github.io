@@ -4,7 +4,7 @@
   <subtitle><![CDATA[True mastery of any skill takes a lifetime]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://androidperformance.com/"/>
-  <updated>2015-12-30T03:36:41.000Z</updated>
+  <updated>2015-12-30T06:20:14.000Z</updated>
   <id>http://androidperformance.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://androidperformance.com/2015/12/29/Android%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96-%E4%B8%80%E7%A7%8DDelayLoad%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%92%8C%E5%8E%9F%E7%90%86-%E4%B8%8B%E7%AF%87.html"/>
     <id>http://androidperformance.com/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html</id>
     <published>2015-12-29T08:34:06.000Z</published>
-    <updated>2015-12-30T03:36:41.000Z</updated>
+    <updated>2015-12-30T06:20:14.000Z</updated>
     <content type="html"><![CDATA[<p><a href="http://www.androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html" target="_blank" rel="external">上一篇文章</a>我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。<br>其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。<br>其实这个其中的原理比较简单，不过要弄清楚其实现的过程，还是一件蛮好玩的事情，其中会用到一些工具，自己加调试代码等，一步一步下来，自己对 Activity 的启动的理解又深了一层，希望大家读完之后也会对大家有一定的帮助。</p>
 <a id="more"></a>
 <p>上一篇中我们最终使用的 DelayLoad 的核心方法是在 Activity 的 onCreate 函数中加入下面的方法 ：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getWindow().getDecorView().post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        myHandler.post(mLoadingRunnable);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
@@ -39,7 +39,7 @@
 <p>就是这里的 mWindow.getDecorView() ，对 DecorView 进行了实例化：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> View <span class="title">getDecorView</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (mDecor == <span class="keyword">null</span>) &#123;</span><br><span class="line">        installDecor();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> mDecor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>第一次调用 getDecorView 的时候，会进入 installDecor 方法，这个方法对 DecorView 进行了一系列的初始化 ，其中比较重要的几个方法有：generateDecor / generateLayout 等，generateLayout 会从当前的 Activity 的 Theme 提取相关的属性，设置给 Window，同时还会初始化一个 startingView，添加到 DecorView上，也就是我们所说的 startingWindow。</p>
 <h3 id="总结">总结</h3><ul>
-<li>Decor 有装饰的意思，DecorView 官方注释为 “This is the top-level view of the window, containing the window decor” , 我们可以理解为 DecorView 是我们当前 Activity 的最下面的布局。所以我们打开 DDMS 查看 Tree Overview 的时候，可以发现最根部的那个 View 就是 DecorView：<br>  <img src="http://upload-images.jianshu.io/upload_images/20166-d2447a8e415506bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DelayLoad1.png"></li>
+<li>Decor 有装饰的意思，DecorView 官方注释为 “This is the top-level view of the window, containing the window decor” , 我们可以理解为 DecorView 是我们当前 Activity 的最下面的布局。所以我们打开 DDMS 查看 Tree Overview 的时候，可以发现最根部的那个 View 就是 DecorView：<br>  <img src="/images/applunch2/1.png" alt="DelayLoad"></li>
 <li>应用从桌面启动的时候，在主 Activity 还没有显示的时候，如果主题没有设置窗口的背景，那么我们就会看到白色（这个和手机的Rom也有关系），如果应用启动很慢，那么用户得看好一会白色。如果要避免这个，则可以在 Application 或者 Activity 的 Theme 中设置 WindowBackground , 这样就可以避免白色（当然现在各种大厂都是SplashActivity+广告我也是可以理解的）</li>
 </ul>
 <h2 id="3-_Post">3. Post</h2><p>当我们调用 DecorView 的 Post 的时候，其实最终会调用 View 的 Post ，因为 DecorView 最终是继承 View 的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">post</span><span class="params">(Runnable action)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> AttachInfo attachInfo = mAttachInfo;</span><br><span class="line">    <span class="keyword">if</span> (attachInfo != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> attachInfo.mHandler.post(action);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Assume that post will succeed later</span></span><br><span class="line">    ViewRootImpl.getRunQueue().post(action);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -67,9 +67,9 @@
 <p>第五步：UpdateText</p>
 </blockquote>
 <h2 id="6-_总结">6. 总结</h2><p>其实一路跟下来发现其实原理很简单，其实 DelayLoad 其实只是一个很小的点，关键是教大家如何去跟踪一个自己不认识的知识点或者优化，这里面主要用到了两个工具：Systrace 和 Method Trace， 以及源码编译和调试。<br>关于 Systrace 和 Method Trace 的使用，之后会有详细的文章去介绍，这两个工具非常有助于理解源码和一些技术的实现。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/20166-ab2043b05ec1352d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Systrace"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/20166-871df75843fed69e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Method Trace"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/20166-0d791e6ab44f70c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="源码编译与调试"></p>
+<p><img src="/images/applunch2/2.png" alt="Systrace"></p>
+<p><img src="/images/applunch2/3.png" alt="Method Trace"></p>
+<p><img src="/images/applunch2/4.png" alt="源码编译与调试"></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p><a href="http://www.androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html">上一篇文章</a>我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。<br>其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。<br>其实这个其中的原理比较简单，不过要弄清楚其实现的过程，还是一件蛮好玩的事情，其中会用到一些工具，自己加调试代码等，一步一步下来，自己对 Activity 的启动的理解又深了一层，希望大家读完之后也会对大家有一定的帮助。</p>]]>
