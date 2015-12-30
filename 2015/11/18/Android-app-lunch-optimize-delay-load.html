@@ -4,7 +4,7 @@
   <meta name="google-site-verification" content="tgaIB70XzZ5Ys1pLv8kQ2bOD5mieUyYsF-rIgZoeICM" />
   <meta charset="utf-8">
   
-  <title>Android应用启动优化:一种DelayLoad的实现和原理 | Performance</title>
+  <title>Android应用启动优化:一种DelayLoad的实现和原理(上篇) | Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="0. 应用启动优化概述在 Android 开发中,应用启动速度是一个非常重要的点,应用启动优化也是一个非常重要的过程.对于应用启动优化,其实核心思想就是在启动过程中少做事情,具体实践的时候无非就是下面几种:
 
@@ -14,7 +14,7 @@
 
 不用一一去解释,做过启动优化的估计都使用过,本篇文章将详细讲解一下一种延时加载的实现以及其原理.其实这种加载的实现是非常简单的,但是其中的原理可能比较复杂,还涉">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android应用启动优化:一种DelayLoad的实现和原理">
+<meta property="og:title" content="Android应用启动优化:一种DelayLoad的实现和原理(上篇)">
 <meta property="og:url" content="http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html">
 <meta property="og:site_name" content="Performance">
 <meta property="og:description" content="0. 应用启动优化概述在 Android 开发中,应用启动速度是一个非常重要的点,应用启动优化也是一个非常重要的过程.对于应用启动优化,其实核心思想就是在启动过程中少做事情,具体实践的时候无非就是下面几种:
@@ -31,9 +31,9 @@
 <meta property="og:image" content="http://androidperformance.com/images/app-lunch/5.png">
 <meta property="og:image" content="http://androidperformance.com/images/app-lunch/6.png">
 <meta property="og:image" content="http://androidperformance.com/images/app-lunch/7.png">
-<meta property="og:updated_time" content="2015-12-26T08:31:40.000Z">
+<meta property="og:updated_time" content="2015-12-29T08:34:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android应用启动优化:一种DelayLoad的实现和原理">
+<meta name="twitter:title" content="Android应用启动优化:一种DelayLoad的实现和原理(上篇)">
 <meta name="twitter:description" content="0. 应用启动优化概述在 Android 开发中,应用启动速度是一个非常重要的点,应用启动优化也是一个非常重要的过程.对于应用启动优化,其实核心思想就是在启动过程中少做事情,具体实践的时候无非就是下面几种:
 
 异步加载
@@ -146,7 +146,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/MAT/" style="font-size: 15px;">MAT</a> <a href="/tags/Menory/" style="font-size: 17.5px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 15px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 10px;">启动优化</a>
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/DelayLoad/" style="font-size: 12.5px;">DelayLoad</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/MAT/" style="font-size: 15px;">MAT</a> <a href="/tags/Menory/" style="font-size: 17.5px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 15px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 12.5px;">启动优化</a>
 					</div>
 				</section>
 				
@@ -239,7 +239,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android应用启动优化:一种DelayLoad的实现和原理
+      Android应用启动优化:一种DelayLoad的实现和原理(上篇)
     </h1>
   
 
@@ -254,7 +254,7 @@
 
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/启动优化/">启动优化</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DelayLoad/">DelayLoad</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/启动优化/">启动优化</a></li></ul>
 	</div>
 
         <div class="clearfix"></div>
@@ -345,12 +345,12 @@ data-ad-format="auto"></ins>
   
     
 <div class="copyright">
-  <p><span>本文标题:</span><a href="/2015/11/18/Android-app-lunch-optimize-delay-load.html">Android应用启动优化:一种DelayLoad的实现和原理</a></p>
+  <p><span>本文标题:</span><a href="/2015/11/18/Android-app-lunch-optimize-delay-load.html">Android应用启动优化:一种DelayLoad的实现和原理(上篇)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
   <p><span>发布时间:</span>2015年11月18日 - 20时23分</p>
-  <p><span>最后更新:</span>2015年12月26日 - 16时31分</p>
+  <p><span>最后更新:</span>2015年12月29日 - 16时34分</p>
   <p>
-    <span>原始链接:</span><a href="/2015/11/18/Android-app-lunch-optimize-delay-load.html" title="Android应用启动优化:一种DelayLoad的实现和原理">http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html</a>
+    <span>原始链接:</span><a href="/2015/11/18/Android-app-lunch-optimize-delay-load.html" title="Android应用启动优化:一种DelayLoad的实现和原理(上篇)">http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html</a>
     <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html　　作者: Gracker" title="点击复制文章链接">
         <i class="fa fa-clipboard"></i>
     </span>
@@ -375,6 +375,12 @@ data-ad-format="auto"></ins>
 
 
 <nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html">
+        Android应用启动优化:一种DelayLoad的实现和原理(下篇)
+      </a>
+    </div>
   
   
     <div id="article-nav-older" class="article-nav-title">
@@ -445,7 +451,7 @@ data-ad-format="auto"></ins>
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="2015/11/18/Android-app-lunch-optimize-delay-load.html" data-title="Android应用启动优化:一种DelayLoad的实现和原理" data-url="http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html"></div>
+	<div class="ds-thread" data-thread-key="2015/11/18/Android-app-lunch-optimize-delay-load.html" data-title="Android应用启动优化:一种DelayLoad的实现和原理(上篇)" data-url="http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -481,14 +487,16 @@ data-ad-format="auto"></ins>
 
   
   
+    
     <div  class="post-nav-button">
-    <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+    <a href="/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html" title="上一篇: Android应用启动优化:一种DelayLoad的实现和原理(下篇)">
+    <i class="fa fa-angle-left"></i>
+    </a>
     <a href="/2015/08/12/AndroidL-hwui-RenderThread-workflow.html" title="下一篇: Android5.0中 hwui 中 RenderThread 工作流程">
     <i class="fa fa-angle-right"></i>
     </a>
     </div>
   
-    
 
 
 
