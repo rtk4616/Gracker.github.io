@@ -4,7 +4,7 @@
   <subtitle><![CDATA[True mastery of any skill takes a lifetime]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://androidperformance.com/"/>
-  <updated>2015-12-30T06:20:14.000Z</updated>
+  <updated>2015-12-30T06:21:58.000Z</updated>
   <id>http://androidperformance.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://androidperformance.com/2015/12/29/Android%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E4%BC%98%E5%8C%96-%E4%B8%80%E7%A7%8DDelayLoad%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%92%8C%E5%8E%9F%E7%90%86-%E4%B8%8B%E7%AF%87.html"/>
     <id>http://androidperformance.com/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html</id>
     <published>2015-12-29T08:34:06.000Z</published>
-    <updated>2015-12-30T06:20:14.000Z</updated>
+    <updated>2015-12-30T06:21:58.000Z</updated>
     <content type="html"><![CDATA[<p><a href="http://www.androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html" target="_blank" rel="external">上一篇文章</a>我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。<br>其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。<br>其实这个其中的原理比较简单，不过要弄清楚其实现的过程，还是一件蛮好玩的事情，其中会用到一些工具，自己加调试代码等，一步一步下来，自己对 Activity 的启动的理解又深了一层，希望大家读完之后也会对大家有一定的帮助。</p>
 <a id="more"></a>
 <p>上一篇中我们最终使用的 DelayLoad 的核心方法是在 Activity 的 onCreate 函数中加入下面的方法 ：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getWindow().getDecorView().post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        myHandler.post(mLoadingRunnable);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
@@ -67,9 +67,9 @@
 <p>第五步：UpdateText</p>
 </blockquote>
 <h2 id="6-_总结">6. 总结</h2><p>其实一路跟下来发现其实原理很简单，其实 DelayLoad 其实只是一个很小的点，关键是教大家如何去跟踪一个自己不认识的知识点或者优化，这里面主要用到了两个工具：Systrace 和 Method Trace， 以及源码编译和调试。<br>关于 Systrace 和 Method Trace 的使用，之后会有详细的文章去介绍，这两个工具非常有助于理解源码和一些技术的实现。</p>
-<p><img src="/images/applunch2/2.png" alt="Systrace"></p>
-<p><img src="/images/applunch2/3.png" alt="Method Trace"></p>
-<p><img src="/images/applunch2/4.png" alt="源码编译与调试"></p>
+<h3 id="Systrace">Systrace</h3><p><img src="/images/applunch2/2.png" alt="Systrace"></p>
+<h3 id="Method_Trace">Method Trace</h3><p><img src="/images/applunch2/3.png" alt="Method Trace"></p>
+<h3 id="源码编译与调试">源码编译与调试</h3><p><img src="/images/applunch2/4.png" alt="源码编译与调试"></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p><a href="http://www.androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html">上一篇文章</a>我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。<br>其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。<br>其实这个其中的原理比较简单，不过要弄清楚其实现的过程，还是一件蛮好玩的事情，其中会用到一些工具，自己加调试代码等，一步一步下来，自己对 Activity 的启动的理解又深了一层，希望大家读完之后也会对大家有一定的帮助。</p>]]>

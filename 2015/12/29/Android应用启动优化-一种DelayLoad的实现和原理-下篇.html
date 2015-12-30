@@ -16,7 +16,7 @@
 <meta property="og:image" content="http://androidperformance.com/images/applunch2/2.png">
 <meta property="og:image" content="http://androidperformance.com/images/applunch2/3.png">
 <meta property="og:image" content="http://androidperformance.com/images/applunch2/4.png">
-<meta property="og:updated_time" content="2015-12-30T06:20:14.000Z">
+<meta property="og:updated_time" content="2015-12-30T06:21:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android应用启动优化:一种DelayLoad的实现和原理(下篇)">
 <meta name="twitter:description" content="上一篇文章我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。其实这个其中的原理比较简单，不过要弄清楚其实现的过程，还是一件蛮好玩的事情，其中会用到一些工具，自己加调试代码等，一步一步下来，自己对 Activity">
@@ -289,9 +289,9 @@
 <p>第五步：UpdateText</p>
 </blockquote>
 <h2 id="6-_总结">6. 总结</h2><p>其实一路跟下来发现其实原理很简单，其实 DelayLoad 其实只是一个很小的点，关键是教大家如何去跟踪一个自己不认识的知识点或者优化，这里面主要用到了两个工具：Systrace 和 Method Trace， 以及源码编译和调试。<br>关于 Systrace 和 Method Trace 的使用，之后会有详细的文章去介绍，这两个工具非常有助于理解源码和一些技术的实现。</p>
-<p><img src="/images/applunch2/2.png" alt="Systrace"></p>
-<p><img src="/images/applunch2/3.png" alt="Method Trace"></p>
-<p><img src="/images/applunch2/4.png" alt="源码编译与调试"></p>
+<h3 id="Systrace">Systrace</h3><p><img src="/images/applunch2/2.png" alt="Systrace"></p>
+<h3 id="Method_Trace">Method Trace</h3><p><img src="/images/applunch2/3.png" alt="Method Trace"></p>
+<h3 id="源码编译与调试">源码编译与调试</h3><p><img src="/images/applunch2/4.png" alt="源码编译与调试"></p>
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Gracker -->
@@ -314,7 +314,7 @@ data-ad-format="auto"></ins>
   <p><span>本文标题:</span><a href="/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html">Android应用启动优化:一种DelayLoad的实现和原理(下篇)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
   <p><span>发布时间:</span>2015年12月29日 - 16时34分</p>
-  <p><span>最后更新:</span>2015年12月30日 - 14时20分</p>
+  <p><span>最后更新:</span>2015年12月30日 - 14时21分</p>
   <p>
     <span>原始链接:</span><a href="/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html" title="Android应用启动优化:一种DelayLoad的实现和原理(下篇)">http://androidperformance.com/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html</a>
     <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html　　作者: Gracker" title="点击复制文章链接">
@@ -358,7 +358,7 @@ data-ad-format="auto"></ins>
 <!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
 <div id="toc" class="toc-article">
 <strong class="toc-title">文章目录</strong>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_Activity-getWindow_及_PhoneWindow_的初始化时机"><span class="toc-number">1.</span> <span class="toc-text">1. Activity.getWindow 及 PhoneWindow 的初始化时机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结："><span class="toc-number">1.1.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-_PhoneWindow-getDecorView_及_DecorView_的初始化时机"><span class="toc-number">2.</span> <span class="toc-text">2. PhoneWindow.getDecorView 及 DecorView 的初始化时机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">2.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_Post"><span class="toc-number">3.</span> <span class="toc-text">3. Post</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-_PerformTraversals"><span class="toc-number">4.</span> <span class="toc-text">4. PerformTraversals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-_UpdateText"><span class="toc-number">5.</span> <span class="toc-text">5. UpdateText</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-_总结"><span class="toc-number">6.</span> <span class="toc-text">6. 总结</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_Activity-getWindow_及_PhoneWindow_的初始化时机"><span class="toc-number">1.</span> <span class="toc-text">1. Activity.getWindow 及 PhoneWindow 的初始化时机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结："><span class="toc-number">1.1.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-_PhoneWindow-getDecorView_及_DecorView_的初始化时机"><span class="toc-number">2.</span> <span class="toc-text">2. PhoneWindow.getDecorView 及 DecorView 的初始化时机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">2.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_Post"><span class="toc-number">3.</span> <span class="toc-text">3. Post</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-_PerformTraversals"><span class="toc-number">4.</span> <span class="toc-text">4. PerformTraversals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-_UpdateText"><span class="toc-number">5.</span> <span class="toc-text">5. UpdateText</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-_总结"><span class="toc-number">6.</span> <span class="toc-text">6. 总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Systrace"><span class="toc-number">6.1.</span> <span class="toc-text">Systrace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method_Trace"><span class="toc-number">6.2.</span> <span class="toc-text">Method Trace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码编译与调试"><span class="toc-number">6.3.</span> <span class="toc-text">源码编译与调试</span></a></li></ol></li></ol>
 </div>
 <style type="text/css">
   .left-col .switch-btn {
