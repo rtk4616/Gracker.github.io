@@ -6,23 +6,20 @@
   
   <title>Android应用启动优化:一种DelayLoad的实现和原理(下篇) | Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="上一篇文章我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。
-上一篇中我们最终使用的 DelayLoad 的核心方法是在 Activity 的 onCreate 函数中加入下面的方法 ：123456getWind">
+  <meta name="description" content="上一篇文章我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。其实这个其中的原理比较简单，不过要弄清楚其实现的过程，还是一件蛮好玩的事情，其中会用到一些工具，自己加调试代码等，一步一步下来，自己对 Activity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android应用启动优化:一种DelayLoad的实现和原理(下篇)">
 <meta property="og:url" content="http://androidperformance.com/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html">
 <meta property="og:site_name" content="Performance">
-<meta property="og:description" content="上一篇文章我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。
-上一篇中我们最终使用的 DelayLoad 的核心方法是在 Activity 的 onCreate 函数中加入下面的方法 ：123456getWind">
+<meta property="og:description" content="上一篇文章我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。其实这个其中的原理比较简单，不过要弄清楚其实现的过程，还是一件蛮好玩的事情，其中会用到一些工具，自己加调试代码等，一步一步下来，自己对 Activity">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/20166-d2447a8e415506bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/20166-ab2043b05ec1352d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/20166-871df75843fed69e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/20166-0d791e6ab44f70c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2015-12-30T03:30:34.000Z">
+<meta property="og:updated_time" content="2015-12-30T03:36:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android应用启动优化:一种DelayLoad的实现和原理(下篇)">
-<meta name="twitter:description" content="上一篇文章我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。
-上一篇中我们最终使用的 DelayLoad 的核心方法是在 Activity 的 onCreate 函数中加入下面的方法 ：123456getWind">
+<meta name="twitter:description" content="上一篇文章我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。其实这个其中的原理比较简单，不过要弄清楚其实现的过程，还是一件蛮好玩的事情，其中会用到一些工具，自己加调试代码等，一步一步下来，自己对 Activity">
   
     <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
   
@@ -245,7 +242,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://www.androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html" target="_blank" rel="external">上一篇文章</a>我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。<br>其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。</p>
+        <p><a href="http://www.androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html" target="_blank" rel="external">上一篇文章</a>我们使用第三种方法来实现延迟加载。不过上一篇写的比较简单，只是讲解了如何去实现，这一篇就来讲一下为何要这么做，以及这么做后面的原理。<br>其中会涉及到一些 Android 中的比较重要的类，以及 Activity 生命周期中比较重要的几个函数。<br>其实这个其中的原理比较简单，不过要弄清楚其实现的过程，还是一件蛮好玩的事情，其中会用到一些工具，自己加调试代码等，一步一步下来，自己对 Activity 的启动的理解又深了一层，希望大家读完之后也会对大家有一定的帮助。</p>
+<a id="more"></a>
 <p>上一篇中我们最终使用的 DelayLoad 的核心方法是在 Activity 的 onCreate 函数中加入下面的方法 ：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getWindow().getDecorView().post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        myHandler.post(mLoadingRunnable);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>我们一一来看涉及到的类和方法</p>
 <h2 id="1-_Activity-getWindow_及_PhoneWindow_的初始化时机">1. Activity.getWindow 及 PhoneWindow 的初始化时机</h2><p>Activity 的 getWindow 方法获取到的是一个 PhoneWindow 对象：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Window <span class="title">getWindow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mWindow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -316,7 +314,7 @@ data-ad-format="auto"></ins>
   <p><span>本文标题:</span><a href="/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html">Android应用启动优化:一种DelayLoad的实现和原理(下篇)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
   <p><span>发布时间:</span>2015年12月29日 - 16时34分</p>
-  <p><span>最后更新:</span>2015年12月30日 - 11时30分</p>
+  <p><span>最后更新:</span>2015年12月30日 - 11时36分</p>
   <p>
     <span>原始链接:</span><a href="/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html" title="Android应用启动优化:一种DelayLoad的实现和原理(下篇)">http://androidperformance.com/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html</a>
     <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2015/12/29/Android应用启动优化-一种DelayLoad的实现和原理-下篇.html　　作者: Gracker" title="点击复制文章链接">
