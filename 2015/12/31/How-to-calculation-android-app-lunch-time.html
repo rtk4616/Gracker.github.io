@@ -19,8 +19,7 @@
 <meta property="og:image" content="http://androidperformance.com/images/applunch3/1.png">
 <meta property="og:image" content="http://androidperformance.com/images/applunch3/2.png">
 <meta property="og:image" content="http://androidperformance.com/images/applunch3/3.png">
-<meta property="og:image" content="http://androidperformance.com/images/applunch3/4.png">
-<meta property="og:updated_time" content="2015-12-31T06:42:06.000Z">
+<meta property="og:updated_time" content="2015-12-31T06:46:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 中如何计算 App 的启动时间？">
 <meta name="twitter:description" content="之前有人在知乎提问：“怎么计算apk的启动时间？” :
@@ -278,7 +277,7 @@
 <li>mLaunchStartTime表示一连串启动Activity中第一个Activity的启动时间点. </li>
 </ul>
 <p>正常情况下点击桌面图标只启动一个有界面的 Activity，此时 displayStartTime 与mLaunchStartTime 便指向同一时间点，此时 ThisTime=TotalTime。另一种情况是点击桌面图标应用会先启动一个无界面的 Activity 做逻辑处理，接着又启动一个有界面的Activity，在这种启动一连串 Activity 的情况下（知乎的启动就是属于这种情况），displayStartTime 便指向最后一个 Activity 的开始启动时间点，mLaunchStartTime 指向第一个无界面Activity的开始启动时间点，此时 ThisTime！=TotalTime。这两种情况如下图：</p>
-<p><img src="/images/applunch3/3.png" alt="curTime/displayStartTime/mLaunchStartTime"><br><img src="/images/applunch3/4.png" alt="curTime/displayStartTime/mLaunchStartTime"></p>
+<p><img src="/images/applunch3/3.png" alt="curTime/displayStartTime/mLaunchStartTime"></p>
 <p>在上面的图中，我用①②③分别标注了三个时间段，在这三个时间段内分别干了什么事呢？           </p>
 <ul>
 <li>在第①个时间段内，AMS 创建 ActivityRecord 记录块和选择合理的 Task、将当前Resume 的 Activity 进行 pause</li>
@@ -328,7 +327,7 @@ data-ad-format="auto"></ins>
   <p><span>本文标题:</span><a href="/2015/12/31/How-to-calculation-android-app-lunch-time.html">Android 中如何计算 App 的启动时间？</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
   <p><span>发布时间:</span>2015年12月31日 - 13时52分</p>
-  <p><span>最后更新:</span>2015年12月31日 - 14时42分</p>
+  <p><span>最后更新:</span>2015年12月31日 - 14时46分</p>
   <p>
     <span>原始链接:</span><a href="/2015/12/31/How-to-calculation-android-app-lunch-time.html" title="Android 中如何计算 App 的启动时间？">http://androidperformance.com/2015/12/31/How-to-calculation-android-app-lunch-time.html</a>
     <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2015/12/31/How-to-calculation-android-app-lunch-time.html　　作者: Gracker" title="点击复制文章链接">
