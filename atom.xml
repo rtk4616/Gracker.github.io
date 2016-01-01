@@ -4,7 +4,7 @@
   <subtitle><![CDATA[True mastery of any skill takes a lifetime]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://androidperformance.com/"/>
-  <updated>2015-12-31T06:46:50.000Z</updated>
+  <updated>2016-01-01T07:28:26.000Z</updated>
   <id>http://androidperformance.com/</id>
   
   <author>
@@ -19,12 +19,12 @@
     <link href="http://androidperformance.com/2015/12/31/How-to-calculation-android-app-lunch-time.html"/>
     <id>http://androidperformance.com/2015/12/31/How-to-calculation-android-app-lunch-time.html</id>
     <published>2015-12-31T05:52:30.000Z</published>
-    <updated>2015-12-31T06:46:50.000Z</updated>
+    <updated>2016-01-01T07:28:26.000Z</updated>
     <content type="html"><![CDATA[<p>之前有人在知乎提问：<a href="https://www.zhihu.com/question/35487841/answer/63011462" target="_blank" rel="external">“怎么计算apk的启动时间？”</a> :</p>
 <blockquote>
 <p>利用python或者直接用adb命令怎么计算apk的启动时间呢？就是计算从点击图标到apk完全启动所花费的时间。比如，对游戏来说就是点击游戏图标到进入到登录界面的这段时间。<br>已知的两种方法貌似可以获取，但是感觉结果不准确：一种是，adb shell am start -w packagename/activity,这个可以得到两个值，ThisTime和TotalTime，不知道两个有什么区别，而且与实际启动时间不匹配，两者相加都可能比实际启动时间小（测试游戏的时候差别更大）；另外一种是通过adb logcat的方式，感觉获取的结果也与实际有差别。</p>
 </blockquote>
-<p>我和另外一个同事<a href="https://www.zhihu.com/people/guo-qi-fa" target="_blank" rel="external">启发</a> 针对两个方面进行了回答，不过毕竟知乎上看的人会比较少，所以我在征得他的同意之后，将这两个答案整理了一下，记录到博客中，一来算是一个小的总结，之后自己看得时候比较方便，二来给需要的同学一个更加方便的途径。</p>
+<p>我和另外一个同事<a href="https://www.zhihu.com/people/guo-qi-fa" target="_blank" rel="external">郭启发</a> 针对两个方面进行了回答，不过毕竟知乎上看的人会比较少，所以我在征得他的同意之后，将这两个答案整理了一下，记录到博客中，一来算是一个小的总结，之后自己看得时候比较方便，二来给需要的同学一个更加方便的途径。</p>
 <a id="more"></a>
 <h1 id="1_应用启动场景">1 应用启动场景</h1><p>事实上 Android 中一个 App 的启动时间可以准确计算的.但是要分场景.也就是说要分开游戏和应用. 大家都知道,在Android中,游戏开发和应用开发是两码事.所以我们需要分开来说.</p>
 <h2 id="1-1_应用启动">1.1 应用启动</h2><p>我们平时在写应用的时候,一般会指定一个 mainActivity ,用户在桌面上点击这个 Activity 的时候,系统会直接起这个 Activity. 我们知道 Activity 在启动的时候会走 onCreate/onStart/onResume .这几个回调函数.</p>
@@ -57,7 +57,13 @@
 <li>在第②个时间段内，启动进程、调用无界面 Activity 的 onCreate() 等、 pause/finish 无界面的 Activity</li>
 <li>在第③个时间段内，调用有界面 Activity 的 onCreate、onResume</li>
 </ul>
-<p>看到这里应该清楚 ThisTime、TotalTime、WaitTime 三个时间的关系了吧。WaitTime 就是总的耗时，包括前一个应用 Activity pause 的时间和新应用启动的时间；ThisTime 表示一连串启动 Activity 的最后一个 Activity 的启动耗时；TotalTime 表示新应用启动的耗时，包括新进程的启动和 Activity 的启动，但不包括前一个应用 Activity pause 的耗时。也就是说，开发者一般只要关心 TotalTime 即可，这个时间才是自己应用真正启动的耗时。    </p>
+<p>看到这里应该清楚 ThisTime、TotalTime、WaitTime 三个时间的关系了吧：</p>
+<ul>
+<li>WaitTime 就是总的耗时，包括前一个应用 Activity pause 的时间和新应用启动的时间；</li>
+<li>ThisTime 表示一连串启动 Activity 的最后一个 Activity 的启动耗时；</li>
+<li>TotalTime 表示新应用启动的耗时，包括新进程的启动和 Activity 的启动，但不包括前</li>
+</ul>
+<p>一个应用 Activity pause 的耗时。也就是说，开发者一般只要关心 TotalTime 即可，这个时间才是自己应用真正启动的耗时。    </p>
 <p>Event log中 TAG=am_activity_launch_time 中的两个值分表表示 ThisTime、TotalTime，跟通过 “adb shell am start -W ” 得到的值是一致的。    </p>
 <p>最后再说下系统根据什么来判断应用启动结束。我们知道应用启动包括进程启动、走 Activity生命周期 onCreate/onResume 等。在第一次 onResume 时添加窗口到WMS中，然后measure/layout/draw，窗口绘制完成后通知 WMS，WMS 在合适的时机控制界面开始显示(夹杂了界面切换动画逻辑)。记住是窗口界面显示出来后，WMS 才调用reportLaunchTimeLocked() 通知 AMS Activity 启动完成。    </p>
 <p><strong><em>最后总结一下，如果只关心某个应用自身启动耗时，参考TotalTime；如果关心系统启动应用耗时，参考WaitTime；如果关心应用有界面Activity启动耗时，参考ThisTime。</em></strong></p>
@@ -68,7 +74,7 @@
 <p>对于游戏的启动时间，我们更倾向于计算从<strong>点击桌面图标</strong>到<strong>用户可以与游戏进行交互</strong>这个时间段作为一个游戏的启动时间。</p>
 <h1 id="3_总结">3 总结</h1><p>计算机最让人着迷的一点就是其准确性，1+1永远等于2，启动耗时多久就是多久，每一次可能不一样，但每一次的时间都是这一次的准确时间。</p>
 <p>不过每个公司由于对应用的定位不同，所以对应用启动的要求也不一样。比如有的做 ROM 的公司，其内置应用的启动时间一定是要非常快的，这样给用户的第一感觉就是快、流畅；互联网公司的 App 则不是很关心启动速度，大部分互联网公司的应用都有一个启动页，用来展示广告或者功能介绍之类的，然后才会进入到主界面。需求不一样，这么做也无可厚非，不过从消费者的角度来看，越早见到主界面当然越好。</p>
-<p>所以在做一个 Android App 的时候，一定要记得将应用的启动时间作为一个性能指标，毕竟</p>
+<p>所以在做一个 Android App 的时候，一定要记得将应用的启动时间作为一个性能指标，毕竟：</p>
 <blockquote>
 <p>天下武功，唯快不破！</p>
 </blockquote>
@@ -84,7 +90,7 @@
 <blockquote>
 <p>利用python或者直接用adb命令怎么计算apk的启动时间呢？就是计算从点击图标到apk完全启动所花费的时间。比如，对游戏来说就是点击游戏图标到进入到登录界面的这段时间。<br>已知的两种方法貌似可以获取，但是感觉结果不准确：一种是，adb shell am start -w packagename/activity,这个可以得到两个值，ThisTime和TotalTime，不知道两个有什么区别，而且与实际启动时间不匹配，两者相加都可能比实际启动时间小（测试游戏的时候差别更大）；另外一种是通过adb logcat的方式，感觉获取的结果也与实际有差别。</p>
 </blockquote>
-<p>我和另外一个同事<a href="https://www.zhihu.com/people/guo-qi-fa">启发</a> 针对两个方面进行了回答，不过毕竟知乎上看的人会比较少，所以我在征得他的同意之后，将这两个答案整理了一下，记录到博客中，一来算是一个小的总结，之后自己看得时候比较方便，二来给需要的同学一个更加方便的途径。</p>]]>
+<p>我和另外一个同事<a href="https://www.zhihu.com/people/guo-qi-fa">郭启发</a> 针对两个方面进行了回答，不过毕竟知乎上看的人会比较少，所以我在征得他的同意之后，将这两个答案整理了一下，记录到博客中，一来算是一个小的总结，之后自己看得时候比较方便，二来给需要的同学一个更加方便的途径。</p>]]>
     
     </summary>
     
