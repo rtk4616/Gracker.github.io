@@ -1330,7 +1330,7 @@
     <link href="http://androidperformance.com/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html"/>
     <id>http://androidperformance.com/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html</id>
     <published>2015-04-11T10:26:36.000Z</published>
-    <updated>2015-04-11T10:38:30.000Z</updated>
+    <updated>2016-02-23T08:49:45.000Z</updated>
     <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>第一篇文章<a href="http://androidperformance.com/2015/04/11/AndroidMemory-Usage-Of-MAT/">《Android内存优化之一：MAT使用入门》</a>介绍了MAT的基本使用方法，包括下载、安装、打开HPROF文件，和一些基本的视图。这篇文章介绍一下一些最新的工具使用方法，和第一篇中没有提到的一些其他的用法。</p>
 <h2 id="Java的内存泄露的特点">Java的内存泄露的特点</h2><ul>
 <li>Java中的内存泄露主要特征：可达，无用</li>
@@ -1388,7 +1388,7 @@
 </ul>
 <h3 id="Debug_Bitmap">Debug Bitmap</h3><p>如果经常使用MAT分析内存，就会发现Bitmap所占用的内存是非常大的，这个和其实际显示面积是有关系的。在2K屏幕上，一张Bitmap能达到20MB的大小。</p>
 <p>所以要是MAT提供了一种方法，可以将存储Bitmap的byte数组导出来，使用第三方工具打开。这个大大提高了我们分析内存泄露的效率。</p>
-<p>关于这个方法的操作流程，可以参考这篇文章<a href="">还原MAT中的Bitmap图像</a>.</p>
+<p>关于这个方法的操作流程，可以参考这篇文章<a href="http://www.androidperformance.com/2015/04/11/AndroidMemory-Open-Bitmap-Object-In-MAT.html" target="_blank" rel="external">还原MAT中的Bitmap图像</a>.</p>
 <h3 id="Debug_ArrayList">Debug ArrayList</h3><p>ArrayList是使用非常常用的一个数据结构，在MAT中，如果想知道ArrayList中有哪些数据，需要右键-&gt; List Objects -&gt; With outgoing references,然后可以看到下面的图：</p>
 <p><img src="/images/MAT_Pro/MAT_14.png" alt="Outgoing"></p>
 <p>从上图可以看到，这个ArrayList的内容在一个array数组中，即暴漏了ArrayList的内部结构，查看的时候有点不方便，所以MAT提供了另外一种查看ArrayList内数据的方式：</p>
