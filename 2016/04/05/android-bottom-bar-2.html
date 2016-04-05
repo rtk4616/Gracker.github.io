@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://androidperformance.com/images/bottombar2/22.png">
 <meta property="og:image" content="http://androidperformance.com/images/bottombar2/23.png">
 <meta property="og:image" content="http://androidperformance.com/images/bottombar2/24.png">
-<meta property="og:updated_time" content="2016-04-05T15:22:07.000Z">
+<meta property="og:updated_time" content="2016-04-05T15:28:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Bottom navigation 规范二：样式、行为与规格">
 <meta name="twitter:description" content="1. 样式-Style1.1 图标和文字-Icons and textBecause bottom navigation actions are presented as icons, they should be used for content that can be suitably communicated with icons.由于底部导航操作显示为图标，它应该使用与其内容相符合的图标。">
@@ -267,7 +267,7 @@
 <li>当 bottom navigation 只有三个 Item 的时候，他们的图标和文字都应该被显示。</li>
 <li>当 bottom navigation 有四个或者五个 Item 的时候，在非激活状态的时候只显示他们的图标即可。</li>
 </ul>
-<p>##1.2颜色<br>Tint the current bottom navigation action (including the icon and any text label present) with the app’s primary color<br>用应用的主色调给底部导航操作（包括图标与当前标签文字）上色。<br><img src="/images/bottombar2/1.png" alt="Do. 
+<h2 id="1-2颜色">1.2颜色</h2><p>Tint the current bottom navigation action (including the icon and any text label present) with the app’s primary color<br>用应用的主色调给底部导航操作（包括图标与当前标签文字）上色。<br><img src="/images/bottombar2/1.png" alt="Do. 
 Use the app’s primary color to indicate the view in focus."></p>
 <a id="more"></a>
 <p><img src="/images/bottombar2/2.png" alt="Don&#39;t.
@@ -276,7 +276,7 @@ Avoid using different colored  icons and text labels."><br>如果底部导航条
 Use black or white iconography if the bottom navigation bar is colored."></p>
 <p><img src="/images/bottombar2/4.png" alt="Don&#39;t.
 Avoid pairing colored icons with a colored bottom navigation bar."></p>
-<p>##1.3文本标签<br>文本标签为导航图标提供简明的定义。应避免使用较长的文本而造成文本被裁截或遮挡。<br><img src="/images/bottombar2/5.png" alt="Do.
+<h2 id="1-3文本标签">1.3文本标签</h2><p>文本标签为导航图标提供简明的定义。应避免使用较长的文本而造成文本被裁截或遮挡。<br><img src="/images/bottombar2/5.png" alt="Do.
 Use short labels"></p>
 <p><img src="/images/bottombar2/6.png" alt="Don&#39;t.
 Avoid labels with wrapping text"></p>
@@ -284,7 +284,7 @@ Avoid labels with wrapping text"></p>
 Avoid truncating text labels as doing so may prevent comprehension."></p>
 <p><img src="/images/bottombar2/8.png" alt="Don&#39;t.
 Avoid shrinking text labels to fit on a single line."></p>
-<p>#2.操作<br>点击底部导航图标将直接跳转至相关的界面或刷新当前的界面。</p>
+<h1 id="2-操作">2.操作</h1><p>点击底部导航图标将直接跳转至相关的界面或刷新当前的界面。</p>
 <p>每一个底部导航图标都必须指向一个目的，不应打开主菜单或跳转至其他窗口。</p>
 <p>每一个底部导航图标都会随着界面的滚动而动态的显示或隐藏。</p>
 <ul>
@@ -292,8 +292,7 @@ Avoid shrinking text labels to fit on a single line."></p>
 <li>界面向上滚动时显示底部导航栏</li>
 </ul>
 <p>在内容区域使用滑动手势不能进行界面的跳转。<br>在当前界面与未激活界面的跳转过程中使用淡入淡出的动画效果。</p>
-<p>#3.空间</p>
-<p>##3.1确定底部导航栏<br>用底部导航栏的总长度除以图标的个数，计算出每个图标的宽度。也就是说，要使得每个底部导航图标占有最充足的空间。<br><img src="/images/bottombar2/9.png" alt="Fixed bottom navigation bar on mobile"><br>宽度的最大及最小值（这些数据包含边距）：</p>
+<h1 id="3-空间">3.空间</h1><h2 id="3-1确定底部导航栏">3.1确定底部导航栏</h2><p>用底部导航栏的总长度除以图标的个数，计算出每个图标的宽度。也就是说，要使得每个底部导航图标占有最充足的空间。<br><img src="/images/bottombar2/9.png" alt="Fixed bottom navigation bar on mobile"><br>宽度的最大及最小值（这些数据包含边距）：</p>
 <ul>
 <li>最大值：168dp</li>
 <li>最小值：较大界面为 120dp，较小界面为 104dp</li>
@@ -317,7 +316,7 @@ Avoid shrinking text labels to fit on a single line."></p>
 <p><img src="/images/bottombar2/13.png" alt="12dp left and right of text"></p>
 <p><img src="/images/bottombar2/14.png" alt="Fixed bottom navigation bar on landscape mobile"></p>
 <p><img src="/images/bottombar2/15.png" alt="Fixed bottom navigation bar on tablet"></p>
-<p>##3.2切换底部导航栏<br>用底部导航栏的总长度除以图标的个数，计算出每个图标的宽度。</p>
+<h2 id="3-2切换底部导航栏">3.2切换底部导航栏</h2><p>用底部导航栏的总长度除以图标的个数，计算出每个图标的宽度。</p>
 <p><img src="/images/bottombar2/16.png" alt="Shifting bottom navigation bar on mobile"></p>
 <p>宽度的最大及最小值（这些数据包含边距）：<br>当前界面</p>
 <ul>
@@ -343,7 +342,7 @@ Avoid shrinking text labels to fit on a single line."></p>
 <p>文本标签：<br>常规 Roboto 字体： 14sp（当前界面）</p>
 <p><img src="/images/bottombar2/21.png" alt="Shifting bottom navigation bar on landscape mobile"></p>
 <p><img src="/images/bottombar2/22.png" alt="Shifting bottom navigation bar on tablet"></p>
-<p>#4. 层级<br>由于 snackbars  的层级高度(elevation) 为6dp，而 navigation bar 的层级高度为 8dp，所以 snackbars 显示在 navigation bar 的后面。而 Bottom sheets, navigation drawers 和 keyboards 都显示在 navigation bar 的前面，完全覆盖 navigation bar 。</p>
+<h1 id="4-_层级">4. 层级</h1><p>由于 snackbars  的层级高度(elevation) 为6dp，而 navigation bar 的层级高度为 8dp，所以 snackbars 显示在 navigation bar 的后面。而 Bottom sheets, navigation drawers 和 keyboards 都显示在 navigation bar 的前面，完全覆盖 navigation bar 。</p>
 <p><img src="/images/bottombar2/23.png" alt="Snackbars appear behind the bottom navigation bar."></p>
 <p><img src="/images/bottombar2/24.png" alt="Orthographic view of app structure"></p>
 
@@ -368,7 +367,7 @@ data-ad-format="auto"></ins>
   <p><span>本文标题:</span><a href="/2016/04/05/android-bottom-bar-2.html">Android Bottom navigation 规范二：样式、行为与规格</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
   <p><span>发布时间:</span>2016年04月05日 - 23时10分</p>
-  <p><span>最后更新:</span>2016年04月05日 - 23时22分</p>
+  <p><span>最后更新:</span>2016年04月05日 - 23时28分</p>
   <p>
     <span>原始链接:</span><a href="/2016/04/05/android-bottom-bar-2.html" title="Android Bottom navigation 规范二：样式、行为与规格">http://androidperformance.com/2016/04/05/android-bottom-bar-2.html</a>
     <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2016/04/05/android-bottom-bar-2.html　　作者: Gracker" title="点击复制文章链接">
@@ -412,7 +411,7 @@ data-ad-format="auto"></ins>
 <!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
 <div id="toc" class="toc-article">
 <strong class="toc-title">文章目录</strong>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_样式-Style"><span class="toc-number">1.</span> <span class="toc-text">1. 样式-Style</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_图标和文字-Icons_and_text"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 图标和文字-Icons and text</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_样式-Style"><span class="toc-number">1.</span> <span class="toc-text">1. 样式-Style</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_图标和文字-Icons_and_text"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 图标和文字-Icons and text</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2颜色"><span class="toc-number">1.2.</span> <span class="toc-text">1.2颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3文本标签"><span class="toc-number">1.3.</span> <span class="toc-text">1.3文本标签</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-操作"><span class="toc-number">2.</span> <span class="toc-text">2.操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-空间"><span class="toc-number">3.</span> <span class="toc-text">3.空间</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1确定底部导航栏"><span class="toc-number">3.1.</span> <span class="toc-text">3.1确定底部导航栏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2切换底部导航栏"><span class="toc-number">3.2.</span> <span class="toc-text">3.2切换底部导航栏</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-_层级"><span class="toc-number">4.</span> <span class="toc-text">4. 层级</span></a></li></ol>
 </div>
 <style type="text/css">
   .left-col .switch-btn {
