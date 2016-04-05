@@ -120,7 +120,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/DelayLoad/" style="font-size: 12px;">DelayLoad</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/MAT/" style="font-size: 16px;">MAT</a> <a href="/tags/Menory/" style="font-size: 18px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 16px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 14px;">启动优化</a> <a href="/tags/设计规范/" style="font-size: 10px;">设计规范</a>
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/DelayLoad/" style="font-size: 12px;">DelayLoad</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/MAT/" style="font-size: 16px;">MAT</a> <a href="/tags/Menory/" style="font-size: 18px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 16px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 14px;">启动优化</a> <a href="/tags/设计规范/" style="font-size: 12px;">设计规范</a>
 					</div>
 				</section>
 				
@@ -197,6 +197,92 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-AndroidMemory-Usage-Of-MAT" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html" class="article-date">
+  	<time datetime="2015-04-11T10:10:29.000Z" itemprop="datePublished">2015-04-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html">Android内存优化之一：MAT使用入门</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MAT简介">MAT简介</h2><h3 id="MAT介绍">MAT介绍</h3><p>MAT(Memory Analyzer Tool)，一个基于Eclipse的内存分析工具，是一个快速、功能丰富的JAVA heap分析工具，它可以帮助我们查找内存泄漏和减少内存消耗。使用内存分析工具从众多的对象中进行分析，快速的计算出在内存中对象的占用大小，看看是谁阻止了垃圾收集器的回收工作，并可以通过报表直观的查看到可能造成这种结果的对象。  </p>
+<p><img src="/images/MAT/MAT_Intro.png" alt="image"></p>
+<p>当然MAT也有独立的不依赖Eclipse的版本，只不过这个版本在调试Android内存的时候，需要将DDMS生成的文件进行转换，才可以在独立版本的MAT上打开。不过Android SDK中已经提供了这个Tools，所以使用起来也是很方便的。</p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
   
     <article id="post-android-performance-case-study-follow-up" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -903,95 +989,6 @@
         <p class="article-more-link">
           <a  href="/2014/10/20/android-performance-optimization-overdraw-1.html#more">more >></a>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
-  
-    <article id="post-android-edittext-do-not-auto-get-focus" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2014/06/03/android-edittext-do-not-auto-get-focus.html" class="article-date">
-  	<time datetime="2014-06-02T16:31:49.000Z" itemprop="datePublished">2014-06-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/06/03/android-edittext-do-not-auto-get-focus.html">[Android小技巧]:如何让EditText不自动获取焦点</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Android中,使用EditText作为输入框很方便,但是有时候EditText会自动获取焦点,其行为:点击进入这个页面后,EditText自动获取焦点,导致软键盘直接跳出.有时候这么做很方便,但是大部分时候我们还是希望在点击EditText的时候,软键盘才弹出来.</p>
-<p>这里有个很简单也很实用的技巧,即在EditText的父Layout中,加入下面的两个属性即可:</p>
-<p><pre class="lang:java decode:true ">android:focusable=”true”<br>android:focusableInTouchMode=”true”</pre><br>这样做的原理是让用户进入到这个页面之后,EditText的父控件 获取焦点,这样的话EditText就获取不到焦点,软键盘也不会自动弹起.只有在点击EditText的时候,软键盘才会弹起.</p>
-
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Gracker -->
-<ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-1951577487702931"
-data-ad-slot="8203642608"
-data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
-
-
-      
       
       <div class="clearfix"></div>
     </div>
