@@ -4,7 +4,7 @@
   <subtitle><![CDATA[True mastery of any skill takes a lifetime]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://androidperformance.com/"/>
-  <updated>2016-04-05T14:59:30.000Z</updated>
+  <updated>2016-04-05T15:01:43.000Z</updated>
   <id>http://androidperformance.com/</id>
   
   <author>
@@ -15,13 +15,14 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[android bottom bar 1]]></title>
+    <title><![CDATA[Android Bottom navigation 规范一：使用方法]]></title>
     <link href="http://androidperformance.com/2016/04/05/android-bottom-bar-1.html"/>
     <id>http://androidperformance.com/2016/04/05/android-bottom-bar-1.html</id>
     <published>2016-04-05T14:57:58.000Z</published>
-    <updated>2016-04-05T14:59:30.000Z</updated>
+    <updated>2016-04-05T15:01:43.000Z</updated>
     <content type="html"><![CDATA[<h1 id="1-_Bottom_navigation_简述">1. Bottom navigation 简述</h1><p>Android 官方在三月的某一天更新了一个新的设计规范，所谓设计规范就是告诉开发者和设计师要如何去设计和使用某一个组件。不过这次 Bottom navigation 的发布，让许多人大跌眼镜，毕竟 Bottom navigation 这样的组件，在之前的 MD 设计语言中可是只字未提，Android 开发者与 iOS 开发中最大的不同也是由于 Bottom navigation 是 iOS 应用的必备，而遵循 MD 设计规范的 Android 应用，则对 Bottom navigation 敬而远之。</p>
 <h3 id="1-1_Android_之前的关于底栏的设计规范">1.1 Android 之前的关于底栏的设计规范</h3><p><img src="../images/bottombar1/14598674457055.jpg" alt="Google 之前对于底栏的设计规范"></p>
+<a id="more"></a>
 <h3 id="1-2_微信的改版">1.2 微信的改版</h3><p>上上一次 Bottom navigation 在 Android 圈引起轩然大波还是微信的改版（5.2版本），在试错之后迅速换回了 Bottom navigation 。</p>
 <p><img src="../images/bottombar1/14598674884766.jpg" alt="测试改版的微信"></p>
 <p><img src="../images/bottombar1/14598675383016.jpg" alt="改版后的微信"></p>
@@ -45,7 +46,9 @@
 <h1 id="3-_Bottom_navigation_与_tabs">3. Bottom navigation 与 tabs</h1><p>当 Bottom navigation 与 tabs 混合使用的时候，可能会造成使用上的混乱。 举个栗子，点击 tab 和点击 Bottom navigation 可以显示不同的内容组合，这些功能的组合会给用户带来使用上的混乱。<br>另外 Tabs 在体验上和 Bottom navigation 也有很大的不同，Tabs 更依赖手势操作带来的便利，而 Bottom navigation 则由于位置比较靠近手指，使得点击更加方便。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="1-_Bottom_navigation_简述">1. Bottom navigation 简述</h1><p>Android 官方在三月的某一天更新了一个新的设计规范，所谓设计规范就是告诉开发者和设计师要如何去设计和使用某一个组件。不过这次 Bottom nav]]>
+    <![CDATA[<h1 id="1-_Bottom_navigation_简述">1. Bottom navigation 简述</h1><p>Android 官方在三月的某一天更新了一个新的设计规范，所谓设计规范就是告诉开发者和设计师要如何去设计和使用某一个组件。不过这次 Bottom navigation 的发布，让许多人大跌眼镜，毕竟 Bottom navigation 这样的组件，在之前的 MD 设计语言中可是只字未提，Android 开发者与 iOS 开发中最大的不同也是由于 Bottom navigation 是 iOS 应用的必备，而遵循 MD 设计规范的 Android 应用，则对 Bottom navigation 敬而远之。</p>
+<h3 id="1-1_Android_之前的关于底栏的设计规范">1.1 Android 之前的关于底栏的设计规范</h3><p><img src="../images/bottombar1/14598674457055.jpg" alt="Google 之前对于底栏的设计规范"></p>]]>
+    
     </summary>
     
       <category term="Android" scheme="http://androidperformance.com/tags/Android/"/>
