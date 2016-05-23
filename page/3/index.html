@@ -198,97 +198,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-AndroidMemory-Usage-Of-MAT-Pro" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html" class="article-date">
-  	<time datetime="2015-04-11T10:26:36.000Z" itemprop="datePublished">2015-04-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html">Android内存优化之二：MAT使用进阶</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言">前言</h2><p>第一篇文章<a href="http://androidperformance.com/2015/04/11/AndroidMemory-Usage-Of-MAT/">《Android内存优化之一：MAT使用入门》</a>介绍了MAT的基本使用方法，包括下载、安装、打开HPROF文件，和一些基本的视图。这篇文章介绍一下一些最新的工具使用方法，和第一篇中没有提到的一些其他的用法。</p>
-<h2 id="Java的内存泄露的特点">Java的内存泄露的特点</h2><ul>
-<li>Java中的内存泄露主要特征：可达，无用</li>
-<li>无用指的是创建了但是不再使用之后没有释放</li>
-<li>能重用但是却创建了新的对象进行处理</li>
-</ul>
-<h2 id="MAT使用技巧进阶">MAT使用技巧进阶</h2><h3 id="使用Android_Studio_Dump内存文件">使用Android Studio Dump内存文件</h3><p>Android Studio的最新版本可以直接获取hprof文件：</p>
-<p><img src="/images/MAT_Pro/MAT_1.png" alt="Android-Studio"></p>
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a>
-	</div>
-
-
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
-	</div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
-  
     <article id="post-AndroidMemory-Usage-Of-MAT" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1034,9 +943,91 @@
         
 
   
+    <article id="post-android-performance-optimization-overdraw-1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/10/20/android-performance-optimization-overdraw-1.html" class="article-date">
+  	<time datetime="2014-10-20T15:19:23.000Z" itemprop="datePublished">2014-10-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/10/20/android-performance-optimization-overdraw-1.html">Android性能优化之过渡绘制(一)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>博客有一段时间没有更新了，到了新公司后，一直比较忙，博客也更新地不那么频繁了，倒是利用这个VPS搭建的VPN每天都在用，速度也蛮不错的。最近一直在看Android上和性能相关的部分，也就是所谓的Android性能优化，才发现Android性能这一块，自己懂得还是太少了，所以从上层开始看，也算是一点一点入门吧。这个系列将讲解学习过程中总结的和性能相关的内容。</p>
+<p>首先将讲解一下GPU过渡绘制，也是开发者最直接接触的部分吧，这个内容将分为两个部分来将讲，第一部分初步讲解一下gpu过渡绘制的原理，和一些优化建议，第二部分将用实际例子来讲解优化GPU过渡绘制的一般步骤。</p>
+<h2 id="过渡绘制概念">过渡绘制概念</h2><p>GPU过渡绘制的概念：GPU过度绘制指的是在屏幕一个像素上绘制多次(超过一次),比如一个TextView后有背景，那么显示文本的像素至少绘了两次，一次是背景，一次是文本。GPU过度绘制或多或少对性能有些影响,设备的内存带宽是有限的，当过度绘制导致应用需要更多的带宽(超过了可用带宽)的时候性能就会降低。带宽的限制每个设备都可能是不一样的。</p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a  href="/2014/10/20/android-performance-optimization-overdraw-1.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </div>

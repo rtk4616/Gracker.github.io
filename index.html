@@ -198,113 +198,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-Avoiding-cold-starts-on-Android" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/04/19/Avoiding-cold-starts-on-Android.html" class="article-date">
-  	<time datetime="2016-04-19T13:14:10.000Z" itemprop="datePublished">2016-04-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/19/Avoiding-cold-starts-on-Android.html">Avoiding cold starts on Android</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>During the last weeks, has been seen in the Android developer community some movement regarding the cold starts, splash screens or launch screens on Android. In this post, I’d like to make clear my opinion of whether they are necessary or not, how to use them and how to go beyond in order to offer the best user experience of onboarding to our users.</p>
-<p>The code and the examples shown in this article are available at this Github repository</p>
-<p>Splash screens, launch screens &amp; cold starts.<br>With this post, Colt McAnlis, (developer advocate at Google) again opened the discussion regarding the usage of Splash/Launch screens on Android sharing a keynote by Cyril Mottier which, among other things, talks about why we should avoid using Splash Screens on Android, arguing that they hurt the user experience, increase the size of the application, etc.</p>
-<p>In my opinion, users should have the content available as soon as possible, but inevitably, when a user launches an application, Android creates a new process that, during it charge, shows a black/white screen which is built with the application theme, or the theme of the activity that is the entry point.</p>
-<p>This load can be increased if our application is complex and overwrites the application object, which is normally used to initialize the analytics, error reporters, etc.</p>
-<p>Airbnb shows a white screen in its initialization </p>
-<p>Therefore, a black screen is not the best choice for our user. If our application load time is slow, we could use a placeholder to simply fill it by real content, or on the other hand, if our workload is complex, we could show the logo of our application to reinforce the branding.</p>
-<p>AliExpress shows its logo in its initialization </p>
-<p>Your new friend, windowBackground<br>As we talked about before, the window displayed by the window manager when the process is in the loading state is set up with the application theme. Specifically with the value inside android:windowBackground. As concerns this post by Ian Lake, if we play with this attribute setting a <layer-list> with the color of the background of the main activity over a small bitmap in the center we can achieve the following effect:</layer-list></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">layer-list</span> </span><br><span class="line">    <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attribute">android:opacity</span>=<span class="value">"opaque"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:drawable</span>=<span class="value">"@color/grey"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">bitmap</span></span><br><span class="line">            <span class="attribute">android:gravity</span>=<span class="value">"center"</span></span><br><span class="line">            <span class="attribute">android:src</span>=<span class="value">"@drawable/img_pizza"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">layer-list</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>We must keep in mind that to avoid problems, the <layer-list> has to be opaque, android:opacity=”opaque”. And the background of the parent of your activity should be filled with a color in your layout, if not, the <layer-list> shown at the start will remain in your activity.</layer-list></layer-list></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">LinearLayout</span></span><br><span class="line">    <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></span><br><span class="line">    <span class="attribute">android:layout_height</span>=<span class="value">"match_parent"</span></span><br><span class="line">    <span class="attribute">android:orientation</span>=<span class="value">"vertical"</span></span><br><span class="line">    <span class="attribute">android:background</span>=<span class="value">"@color/grey"</span></span><br><span class="line">    &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">android.support.v7.widget.Toolbar</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">"match_parent"</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">"?attr/actionBarSize"</span></span><br><span class="line">        <span class="attribute">android:background</span>=<span class="value">"?colorPrimary"</span></span><br><span class="line">        <span class="attribute">android:elevation</span>=<span class="value">"4dp"</span></span><br><span class="line">        /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Styling the onboarding of your app<br>Taking advantage of the windowBackground we can enrich the experience of our users. If our application is complex, and will show a unique activity like a login or a choice selector, we could take the same anchor point of the bitmap and animate it to achieve a nice effect.</p>
-<p>For example: </p>
-<p>This animation, translates an ImageView that contains the same resource of the <layer-list>.</layer-list></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">ViewCompat</span><span class="class">.animate</span>(<span class="tag">logoImageView</span>)</span><br><span class="line">    <span class="class">.translationY</span>(<span class="tag">-250</span>)</span><br><span class="line">    <span class="class">.setStartDelay</span>(<span class="tag">STARTUP_DELAY</span>)</span><br><span class="line">    <span class="class">.setDuration</span>(<span class="tag">ANIM_ITEM_DURATION</span>)<span class="class">.setInterpolator</span>(</span><br><span class="line">         <span class="tag">new</span> <span class="tag">DecelerateInterpolator</span>(1<span class="class">.2f</span>))<span class="class">.start</span>();</span><br></pre></td></tr></table></figure>
-<p>This ImageView is slightly above of the center of the screen, this could be influenced by system bars, I’ve put a margin top of 12dp which just coincides with the half of the height of the status bar.</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;ImageView</span><br><span class="line">    android:<span class="property">id</span>=<span class="string">"@+id/img_logo"</span></span><br><span class="line">    android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">    android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">    android:layout_gravity=<span class="string">"center"</span></span><br><span class="line">    android:layout_marginTop=<span class="string">"12dp"</span></span><br><span class="line">    android:src=<span class="string">"@drawable/img_face"</span></span><br><span class="line">    tools:visibility=<span class="string">"gone"</span></span><br><span class="line">    /&gt;</span><br></pre></td></tr></table></figure>
-<p>Styling with a placeholder<br>With the <layer-list> we can also create a placeholder of theu ui which will take the real content of the main activity, for example, we could emulate a Toolbar by playing with the <layer-list>.</layer-list></layer-list></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">layer-list</span></span><br><span class="line">    <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    <span class="attribute">android:opacity</span>=<span class="value">"opaque"</span></span><br><span class="line">    &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">shape</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">solid</span> <span class="attribute">android:color</span>=<span class="value">"@color/grey"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">shape</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">item</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">item</span></span><br><span class="line">        <span class="attribute">android:height</span>=<span class="value">"180dp"</span></span><br><span class="line">        <span class="attribute">android:gravity</span>=<span class="value">"top"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">shape</span> <span class="attribute">android:shape</span>=<span class="value">"rectangle"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">solid</span> <span class="attribute">android:color</span>=<span class="value">"?colorPrimary"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">shape</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">layer-list</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>In this case, the second <item> emulates the Toolbar that is displayed in the actual content, even, we could put the same height (less the width of the status bar) and apply some nice animation on the toolbar to provide a better experience to the user.</item></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">collapseToolbar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> toolBarHeight;</span><br><span class="line">    TypedValue tv = <span class="keyword">new</span> TypedValue();</span><br><span class="line">    getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, <span class="literal">true</span>);</span><br><span class="line">    toolBarHeight = TypedValue.complexToDimensionPixelSize(</span><br><span class="line">        tv.data, getResources().getDisplayMetrics());</span><br><span class="line"></span><br><span class="line">    ValueAnimator valueHeightAnimator = ValueAnimator</span><br><span class="line">        .ofInt(mContentViewHeight, toolBarHeight);</span><br><span class="line"></span><br><span class="line">    valueHeightAnimator.addUpdateListener(</span><br><span class="line">        <span class="keyword">new</span> ValueAnimator.AnimatorUpdateListener() &#123;</span><br><span class="line"></span><br><span class="line">        @<span class="function">Override</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationUpdate</span><span class="params">(ValueAnimator animation)</span> </span>&#123;</span><br><span class="line">            ViewGroup.LayoutParams lp = mToolbar.getLayoutParams();</span><br><span class="line">            lp.height = (Integer) animation.getAnimatedValue();</span><br><span class="line">            mToolbar.setLayoutParams(lp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    valueHeightAnimator.start();</span><br><span class="line">    valueHeightAnimator.addListener(</span><br><span class="line">        <span class="keyword">new</span> AnimatorListenerAdapter() &#123;</span><br><span class="line"></span><br><span class="line">        @<span class="function">Override</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationEnd</span><span class="params">(Animator animation)</span> </span>&#123;</span><br><span class="line">            super.onAnimationEnd(animation);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Fire recycler animator</span></span><br><span class="line">            mAdapter.addAll(ModelItem.getFakeItems());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Animate fab</span></span><br><span class="line">            ViewCompat.animate(mFab).setStartDelay(<span class="number">600</span>)</span><br><span class="line">                .setDuration(<span class="number">400</span>).scaleY(<span class="number">1</span>).scaleX(<span class="number">1</span>).start();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Resources">Resources</h1><blockquote>
-<p>onboarding-examples - Github<br>Uber onboarding<br>Use cold start time effectively with a branded launch theme - Ian Lake<br>Splash Screens Are Evil, Don’t Use Them! - Cyril Mottier<br>Launch screens - Material Design Spec<br>Launch screens - MaterialDoc, Gonzalo Toledano</p>
-</blockquote>
-
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Gracker -->
-<ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-1951577487702931"
-data-ad-slot="8203642608"
-data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
-  
     <article id="post-android-bottom-bar-2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1082,9 +975,94 @@ Use the app’s primary color to indicate the view in focus."></p>
         
 
   
+    <article id="post-Android-Performance-Memory-Google" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/20/Android-Performance-Memory-Google.html" class="article-date">
+  	<time datetime="2015-07-20T03:29:32.000Z" itemprop="datePublished">2015-07-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/20/Android-Performance-Memory-Google.html">Android代码内存优化建议-Android官方篇</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了使垃圾回收器可以正常释放程序所占用的内存，在编写代码的时候就一定要注意尽量避免出现内存泄漏的情况（通常都是由于全局成员变量持有对象引用所导致的），并且在适当的时候去释放对象引用。对于大多数的应用程序而言，后面其它的事情就可以都交给垃圾回收器去完成了，如果一个对象的引用不再被其它对象所持有，那么系统就会将这个对象所分配的内存进行回收。</p>
+<p>我们在开发软件的时候应当自始至终都把内存的问题充分考虑进去，这样的话才能开发出更加高性能的软件。而内存问题也并不是无规律可行的，Android系统给我们提出了很多内存优化的建议技巧，只要按照这些技巧来编写程序，就可以让我们的程序在内存性能发面表现得相当不错。</p>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a><a class="article-category-link" href="/categories/Android/Menory/Performance/">Performance</a>
+	</div>
+
+
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+	</div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/07/20/Android-Performance-Memory-Google.html#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+
+  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
