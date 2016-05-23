@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="google-site-verification" content="tgaIB70XzZ5Ys1pLv8kQ2bOD5mieUyYsF-rIgZoeICM" />
+  <meta charset="utf-8">
+  
+  <title>How PNG Works | Performance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文地址：https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34原文作者：Colt McAnlis
+How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App development over the past few deca">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How PNG Works">
+<meta property="og:url" content="http://androidperformance.com/2016/04/07/how-png-works.html">
+<meta property="og:site_name" content="Performance">
+<meta property="og:description" content="原文地址：https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34原文作者：Colt McAnlis
+How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App development over the past few deca">
+<meta property="og:image" content="http://androidperformance.com/images/media/14600331177923.jpg">
+<meta property="og:image" content="http://androidperformance.com/images/media/14600331929796.jpg">
+<meta property="og:image" content="http://androidperformance.com/images/media/14600332058049.jpg">
+<meta property="og:image" content="http://androidperformance.com/images/media/14600333696105.jpg">
+<meta property="og:image" content="http://androidperformance.com/images/media/14600334859301.jpg">
+<meta property="og:image" content="http://androidperformance.com/images/media/14600335437808.jpg">
+<meta property="og:image" content="http://androidperformance.com/images/media/14600330550488.jpg">
+<meta property="og:updated_time" content="2016-05-23T01:54:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How PNG Works">
+<meta name="twitter:description" content="原文地址：https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34原文作者：Colt McAnlis
+How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App development over the past few deca">
+  
+    <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/favicon.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Gracker</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">True mastery of any skill takes a lifetime</p>
+		
+				
+
+
+		
+			<div id="switch-btn" class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div id="switch-area" class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+							<li><a href="/tags">标签云</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/DelayLoad/" style="font-size: 12px;">DelayLoad</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/MAT/" style="font-size: 16px;">MAT</a> <a href="/tags/Menory/" style="font-size: 18px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 16px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 14px;">启动优化</a> <a href="/tags/设计规范/" style="font-size: 12px;">设计规范</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gracker</a></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<a href="/" class="profilepic">
+				<img lazy-src="/img/favicon.png" class="js-avatar">
+			</a>
+			<hgroup>
+			  <h1 class="header-author"><a href="/" title="回到主页">Gracker</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">True mastery of any skill takes a lifetime</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+					<li><a href="/tags">标签云</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+						<ul class="social">
+							
+								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
+					        
+								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
+					        
+								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
+					        
+								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
+					        
+								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+					        
+						</ul>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-how-png-works" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/07/how-png-works.html" class="article-date">
+  	<time datetime="2016-04-07T12:36:34.000Z" itemprop="datePublished">2016-04-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      How PNG Works
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/images/media/14600331177923.jpg" alt=""></p>
+<p>原文地址：<a href="https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34" target="_blank" rel="external">https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34</a><br>原文作者：<a href="https://medium.com/@duhroach" target="_blank" rel="external">Colt McAnlis</a></p>
+<h1 id="How_PNG_Works">How PNG Works</h1><p>The Portable Network Graphics (PNG) has become a staple for App development over the past few decades. It’s creeped up everywhere from game development, to web development, and Android development, which means that it’s widely adopted, but also has the opportunity to be widely abused.</p>
+<p>And as I’ve discussed before, PNG provides a nice, high resolution image format, but that means that there’s lots of room for improvement for data compression. But before we can start talking about how to compress PNG files further, we have to first talk about how the format works.</p>
+<h1 id="Understanding_the_Compression">Understanding the Compression</h1><p>PNG’s compression process is entirely lossless; meaning that the compressed file can reconstruct the source image exactly. Done in two stages: Prediction (aka filtering) and then Compression.</p>
+<a id="more"></a>
+<h2 id="1_Filtering_(prediction)">1 Filtering (prediction)</h2><p>Delta encoding is one of the most powerful numeric compression methods out there. The basic idea is that you can represent any value as a difference from the previous value. So,</p>
+<p>[2,3,4,5,6,7,8] can become [2,1,1,1,1,1,1], where<br>[2, 3–2=1, 4–3=1, 5–4=1, 6–5=1, 7–6=1, 8–7=1]</p>
+<p>The reason this is so powerful, is that if the data is linearly correlated (that is, value has some low-difference from the previous value) then you end up transforming values of your dataset into lots of duplicate, low values, which are more compressible.</p>
+<p>The PNG format makes use of delta encoding in a format that it calls “filtering”. Basically, for each scan-line of pixels, a current pixel is encoded in some relation to the pixel to the left, the pixel above, and the pixel above-left.</p>
+<p><img src="/images/media/14600331929796.jpg" alt=""></p>
+<p>For example if we encoded a given pixel by listing its difference between the average of A and B (X-((A+B)/2)then we’d get:</p>
+<p><img src="/images/media/14600332058049.jpg" alt=""></p>
+<p>The filtering takes ABC, and uses that to predict what the value of x is. The value that we replace x with, is the difference between the prediction, and the actual value.</p>
+<p>Now, it’s worth noting that each line may be a little different, which is why PNG allows 1 of 5 different modes to be chosen, per line:</p>
+<ul>
+<li>No filtering</li>
+<li>Difference between X and A</li>
+<li>Difference between X and B</li>
+<li>Difference between X and (A + B)/2 (aka average)</li>
+<li>Paeth predictor (linear function of A,B,C)</li>
+</ul>
+<p>The intention here, is that each line can choose the best filtering method, for itself, such that it can produce the lowest number of unique symbols. Here’s our original example with each mode:</p>
+<p><img src="/images/media/14600333696105.jpg" alt="An example of applying filtering to two rows of pixel values. The impacted pixels are highlighted in blue."></p>
+<p>An example of applying filtering to two rows of pixel values. The impacted pixels are highlighted in blue.<br>And, it’s important to note that these filters are done, per channel not per-pixel. Meaning that the filter is applied to all the red values of a pixel for a scanline, and then separately for all the blue values for a scanline (although all the colors in a row will use the same filter).</p>
+<p>And the PNG format has some nifty ways to pick which filter to use on a channel; While brute force is the most direct, it’s simply right out. Instead, the developers experimented on different image types and came up with some rules of thumb, that are close to optimal; like use None filters for palette images, and sub-8 bit grayscale images. And for the other images, choose the filter that minimizes the sum of absolute differences; Rather than using modulo-256, instead to standard signed math, then take the abs value, and add them all together for a given row, and compare the sums for the other filter types. Choose the filter that gives the smallest sum.</p>
+<h2 id="2_Compression_(DEFLATE)">2 Compression (DEFLATE)</h2><p>Once filtering has occurred on a scan-line, it’s passed off to a descendant of the LZ77 algorithm, known as DEFLATE; This algorithm combines LZ77 coding alongside a Huffman coder. Which is almost identical to compressors like PKWARE, PKZIP, GZip etc. The implementation is out-of-the-box standard, but has some interesting caveats when it comes to image data.</p>
+<ol>
+<li>Deflate limits match lengths between 3 and 258 symbols; which puts the maximum conceivable compression ratio around 1032:1.</li>
+<li>If the match is less than 3 symbols, then you incur some overhead to represent the symbol</li>
+</ol>
+<p>The result of these two, means that the size of your image can have an impact in if matches are found in a scanline.</p>
+<p>Consider this image below, The 270x90 version is only 20k, however the 270x92 version is 2x larger.</p>
+<p><img src="/images/media/14600334859301.jpg" alt=""></p>
+<p>Logically this seems wrong. Adding 540 pixels to an image shouldn’t cause a 2x bloat in compression. However when we look a little closer, we can see why this is occurring; The following heat map of the images represents how compressed a given pixel is. Deep blue = very compressed, yellow/red = not very compressed</p>
+<p><img src="/images/media/14600335437808.jpg" alt=""></p>
+<p>What’s occurring here, is that in the smaller image, there’s more matches in the scanlines, and thus there’s better compression. However, adjusting the size, slightly, changes the type of matching that can occur; some potential candidates for matching are now outside of our LZ window, and thus aren’t matched, resulting in a larger file.</p>
+<p>If you’re looking to see how well your own images compressed with PNG, check out PNGThermal.</p>
+<h1 id="Understanding_the_format">Understanding the format</h1><p>Now, it’s worth noting that PNG is more than just the filtering &amp; compression stages. It’s a pretty extensible container format, that can support all sorts of image types and added data.</p>
+<p>Let’s first start with the fact that the PNG file format can support a series of chunks inside of it which can include various types of data. For example, you’ve got the PNG Header chunk which contains simple information about the image like width, height, bit depth &amp; color-type.</p>
+<p>The Image data chunk contains the actual image information itself (oh, and note, this information can exist in multiple chunks). Then for color paletted images, there’s a separate chunk for that.</p>
+<p>And finally an end-of-file chunk. And those are the main chunks, but there’s also a whole slew of other chunks like:</p>
+<ul>
+<li>Default background color</li>
+<li>Chroma coordinates on how to display white-points</li>
+<li>Gamma spec</li>
+<li>Histogram info</li>
+<li>Text data, with language or Metadata info</li>
+<li>Color space information</li>
+<li>Stereo-image data</li>
+<li>A chunk which notes the last time the file was changed</li>
+<li>And Transparency data.</li>
+</ul>
+<p>Now, these chunks are where you need to watch out, because lots of junk gets put in there by your photo editing app. For example, saving a PNG file from Photoshop results in a chunk that says “this image was made in photoshop.” That chunk has nothing to do with the visible pixel data, but yet it’s included in the file itself. As such, REMOVING useless chunks is critical to ensuring small file sizes. The image below shows you a 16x16 pixel image, saved from Photoshop as a regular PNG, and the other-one, using the “export to web” option of photoshop, which removes all the gobbledygook.</p>
+<p><img src="/images/media/14600330550488.jpg" alt="The left image was saved regularly through Photoshop, the right image was saved via “export to web.” the difference in sizes comes from removal of meta data from the file."></p>
+<h1 id="Pixel_format">Pixel format</h1><p>The PNG format can ALSO support various types of pixel formats so you can create an optimal</p>
+<p>Indexed = 1 channel, can be 1,2,4,8 bpc</p>
+<p>Grayscale = 1 channel, can be 1,2,4,8,16 bpc</p>
+<p>Gray+Alpha = 2 channel, can be 8 or 16 bpc</p>
+<p>Truecolor(RGB) = 3 channel, can be 8 or 16 bpc</p>
+<p>RGBA = 4 channel, can be 8 or 16 bpc</p>
+<p>Pixel formats are selected by the author of the image file. So it’s not too interesting to discuss, other than making sure you’ve chosen the right pixel format; Storing a greyscale image as a truecolor w/ alpha, is a bad idea.</p>
+<h1 id="Story_:_GIF_and_the_birth_of_PNG">Story : GIF and the birth of PNG</h1><p>When it comes to the relentless bulk of web content, images are by far the largest load bearer today (although there’s an argument to be made that videos have become king as of late).</p>
+<p>But what’s truly interesting is that as much as compression information can help solve some of the congestion, there’s a massive amount of human problems that keep compression from making its way into everyone’s hands.</p>
+<p>Let’s take a trip back to 1985, when Unisys filed a patent for the LZW compression algorithm, nothing too interesting at the time. A few years later, when CompuServe invented the 89a format (which later became the GIF format), they used LZW as its backbone, not realizing that it was a patented. Unisys didn’t care about this until 1993, when the Netscape browser added support for the IMG HTML tag, alongside with support for the 89a format. Within a year, animated images became all the craze on the internet, and Unisys started enforcing its patent. CompuServe and Unisys eventually reached a court agreement in December of 1994, announcing that Unisys would start collecting royalties from all software that used the 89a graphics format. In the months following this decision, a group of engineers developed an entirely new, patent-free format known as the Portable Network Graphics or PNG format.</p>
+<p>In 2004, the patent on LZW finally expired, but for a whole decade, the GIF/PNG image format debate was a hot one among internet folks.</p>
+<h1 id="In_closing">In closing</h1><p>PNG is a very flexible and powerful image format type that’s become popular on the web due to it’s ability to support transparency. But it’s not right for <em>every</em> situation; Basically, make sure you’re using the best tool for the job. If your image is photographic and absolute losslessness is not required, then JPG or an equivalent lossy method would be more efficient than any lossless approach. On the other hand If you need a smaller bit-format, or need transparency, than PNG would be a dominant win over JPG.</p>
+<p>And if you’re interested in seeing the most bare-bones implementation of a PNG coder, check out this awesome gist, which packs the whole thing into ~40 lines of code.</p>
+<p>Of course, then there’s WebP, which will give you both.. But that’s another video ;)<br>CompressionAndroidPerformance<br>69</p>
+
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Gracker -->
+<ins class="adsbygoogle"
+style="display:block"
+data-ad-client="ca-pub-1951577487702931"
+data-ad-slot="8203642608"
+data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+      
+      
+    </div>
+    
+  </div>
+  
+    
+<div class="copyright">
+  <p><span>本文标题:</span><a href="/2016/04/07/how-png-works.html">How PNG Works</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Gracker 的个人博客">Gracker</a></p>
+  <p><span>发布时间:</span>2016年04月07日 - 20时36分</p>
+  <p><span>最后更新:</span>2016年05月23日 - 09时54分</p>
+  <p>
+    <span>原始链接:</span><a href="/2016/04/07/how-png-works.html" title="How PNG Works">http://androidperformance.com/2016/04/07/how-png-works.html</a>
+    <span class="btn" data-clipboard-text="原文: http://androidperformance.com/2016/04/07/how-png-works.html　　作者: Gracker" title="点击复制文章链接">
+        <i class="fa fa-clipboard"></i>
+    </span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。</p>
+  <script src="/js/clipboard.min.js"></script>
+  <script> var clipboard = new Clipboard('.btn'); </script>
+</div>
+<style type="text/css">
+  .copyright p .btn {
+    margin-left: 1em;
+  }
+  .copyright:hover p .btn::after {
+    content: "复制"
+  }
+  .copyright p .btn:hover {
+      color: gray;
+      cursor: pointer;
+    };
+</style>
+
+
+
+<nav id="article-nav">
+  
+    <div id="article-nav-newer" class="article-nav-title">
+      <a href="/2016/04/19/Avoiding-cold-starts-on-Android.html">
+        Avoiding cold starts on Android
+      </a>
+    </div>
+  
+  
+    <div id="article-nav-older" class="article-nav-title">
+      <a href="/2016/04/05/android-bottom-bar-2.html">
+        Android Bottom navigation 规范二：样式、行为与规格
+      </a>
+    </div>
+  
+</nav>
+
+  
+</article>
+
+<!-- 默认显示文章目录，在文章---前输入toc: false关闭目录 -->
+<!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
+<div id="toc" class="toc-article">
+<strong class="toc-title">文章目录</strong>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How_PNG_Works"><span class="toc-number">1.</span> <span class="toc-text">How PNG Works</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Understanding_the_Compression"><span class="toc-number">2.</span> <span class="toc-text">Understanding the Compression</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1_Filtering_(prediction)"><span class="toc-number">2.1.</span> <span class="toc-text">1 Filtering (prediction)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2_Compression_(DEFLATE)"><span class="toc-number">2.2.</span> <span class="toc-text">2 Compression (DEFLATE)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Understanding_the_format"><span class="toc-number">3.</span> <span class="toc-text">Understanding the format</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pixel_format"><span class="toc-number">4.</span> <span class="toc-text">Pixel format</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Story_:_GIF_and_the_birth_of_PNG"><span class="toc-number">5.</span> <span class="toc-text">Story : GIF and the birth of PNG</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#In_closing"><span class="toc-number">6.</span> <span class="toc-text">In closing</span></a></li></ol>
+</div>
+<style type="text/css">
+  .left-col .switch-btn {
+    display: none;
+  }
+  .left-col .switch-area {
+    display: none;
+  }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script type="text/javascript">
+  var toc_button= document.getElementById("tocButton");
+  var toc_div= document.getElementById("toc");
+  /* Show or hide toc when click on tocButton.
+  通过点击设置的按钮显示或者隐藏文章目录.*/
+  toc_button.onclick=function(){
+  if(toc_div.style.display=="none"){
+  toc_div.style.display="block";
+  toc_button.value="隐藏目录";
+  document.getElementById("switch-btn").style.display="none";
+  document.getElementById("switch-area").style.display="none";
+  }
+  else{
+  toc_div.style.display="none";
+  toc_button.value="显示目录";
+  document.getElementById("switch-btn").style.display="block";
+  document.getElementById("switch-area").style.display="block";
+  }
+  }
+</script>
+
+
+<div class="share">
+	<div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+	<a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+	<a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+	</div>
+	<script>
+	window._bd_share_config={
+		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2016/04/07/how-png-works.html" data-title="How PNG Works" data-url="http://androidperformance.com/2016/04/07/how-png-works.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"grackertalk"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+    <style type="text/css">
+    #scroll {
+      display: none;
+    }
+    </style>
+    <div class="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#ds-thread" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    </div>
+
+
+  
+  
+    
+    <div  class="post-nav-button">
+    <a href="/2016/04/19/Avoiding-cold-starts-on-Android.html" title="上一篇: Avoiding cold starts on Android">
+    <i class="fa fa-angle-left"></i>
+    </a>
+    <a href="/2016/04/05/android-bottom-bar-2.html" title="下一篇: Android Bottom navigation 规范二：样式、行为与规格">
+    <i class="fa fa-angle-right"></i>
+    </a>
+    </div>
+  
+
+
+
+    
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <script>
+        var yiliaConfig = {
+        fancybox: true,
+        mathjax: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false
+        }
+        </script>
+        
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2016 Gracker
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+        </div>
+    </div>
+    <div class="visit">
+      <span id="busuanzi_container_site_pv" style='display:none'>
+        <span id="site-visit" >本站到访数: 
+        <span id="busuanzi_value_site_uv"></span>
+        </span>
+      </span>
+      <span id="busuanzi_container_page_pv" style='display:none'>
+        <span id="page-visit">, 本页阅读量: 
+        <span id="busuanzi_value_page_pv"></span>
+        </span>
+      </span>
+      <script>
+        (function(){
+            var bp = document.createElement('script');
+            bp.src = '//push.zhanzhang.baidu.com/push.js';
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+      </script>           
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+  <style>
+    body {
+      background: lightgray;
+    }
+    #container .left-col {
+      background: white;
+    }
+    .article-inner {
+      background: white;
+    }
+    .post-nav-button {
+      background: #ececec;
+    }
+    #header .header-nav .social #GitHub {
+      background-color: #bfd3ec;
+    }
+  </style>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50993302-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
