@@ -34,7 +34,7 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
@@ -246,15 +246,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-问题概述">1.问题概述</h2><p><span style="color: #000000;">最近开发Nokia项目，遇到的问题如下：</span></p>
+        <h2 id="1-问题概述"><a href="#1-问题概述" class="headerlink" title="1.问题概述"></a>1.问题概述</h2><p><span style="color: #000000;">最近开发Nokia项目，遇到的问题如下：</span></p>
 <p><span style="color: #000000;">插入Nokia x后，电脑没有反应，即不识别，同事的windows也不识别，最后在谷歌上搜索了良久，才找到了解决方案，但是没有记录，后来又要给别人配置的时候，发现忘记怎么配置了。想想这也是一个具有通性的问题，还是记录下来，分享给大家。</span></p>
-<h2 id="2-问题解决方案">2.问题解决方案</h2><p><span style="color: #000000;">首先问题是：执行adb命令提示找不到设备，在做其他操作之前，请先确认已经做了如下操作：</span></p>
+<h2 id="2-问题解决方案"><a href="#2-问题解决方案" class="headerlink" title="2.问题解决方案"></a>2.问题解决方案</h2><p><span style="color: #000000;">首先问题是：执行adb命令提示找不到设备，在做其他操作之前，请先确认已经做了如下操作：</span></p>
 <ol>
 <li><span style="color: #000000;">确定已经打开了USB调试选项（设置-开发者选项-USB调试），有的机器没有开发者选项，需要到关于里面点击版本号若干下，或者去百度谷歌。</span></li>
 <li><span style="color: #000000;">确定使用sudo命令adb kill-server 和adb start-server后仍然没有用。</span><br><span style="color: #000000;">如果上述操作都确认了，还是找不到设备，那么继续往下看：</span></li>
 </ol>
 <a id="more"></a>
-<h3 id="2-1-运行lsusb"><span style="color: #000000;">2.1.运行lsusb</span></h3><pre class="lang:java decode:true">~ » lsusb                                                                  
+<h3 id="2-1-运行lsusb"><a href="#2-1-运行lsusb" class="headerlink" title="2.1.运行lsusb"></a><span style="color: #000000;">2.1.运行lsusb</span></h3><pre class="lang:java decode:true">~ » lsusb                                                                  
 Bus 002 Device 002: ID 8087:0024 Intel Corp. Integrated Rate Matching Hub
 Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 Bus 001 Device 002: ID 8087:0024 Intel Corp. Integrated Rate Matching Hub
@@ -265,7 +265,7 @@ Bus 003 Device 003: ID 05d5:624c Super Gate Technology Co., Ltd
 Bus 003 Device 033: ID 0421:06e8 Nokia Mobile Phones 
 Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hu</pre>
 
-<h3 id="2-2-注册到udve的rules文件"><span style="color: #000000;">2.2.注册到udve的rules文件</span></h3><pre class="lang:java decode:true">vim  /etc/udev/rules.d/51-android.rules    
+<h3 id="2-2-注册到udve的rules文件"><a href="#2-2-注册到udve的rules文件" class="headerlink" title="2.2.注册到udve的rules文件"></a><span style="color: #000000;">2.2.注册到udve的rules文件</span></h3><pre class="lang:java decode:true">vim  /etc/udev/rules.d/51-android.rules    
 添加这个ID：1ebf，如下：    
 SUBSYSTEM=="usb", SYSFS{"Nokia Mobile Phones"}=="0421", MODE="06e8"   
 保存文件并运行：    
@@ -280,9 +280,9 @@ e.g. stop udev ; start udev. The restart(8) utility is also available.
 udev stop/waiting    
 udev start/running, process 14636</pre>
 
-<h3 id="2-3-使用sudo_关闭和启动adb"><span style="color: #000000;"> 2.3.使用sudo 关闭和启动adb</span></h3><p><pre class="lang:java decode:true">cd ~/tools/android-sdk-linux_x86/platform-tools<br>sudo ./adb kill-server<br>sudo ./adb start-server</pre><br><span style="color: #000000;"><span style="color: #ff0000;"> 注：一般情况下，上面的操作就可以。特殊情况下，usb设备还是不能被识别，比如我手上这台Nokia X</span>。那么继续：</span></p>
-<h3 id="2-4-打开_～/-android/adb_usb-ini，加入之前的lsusb得到的信息"><span style="color: #000000;">2.4.打开 ～/.android/adb_usb.ini，加入之前的lsusb得到的信息</span></h3><p><pre class="lang:java decode:true"># ANDROID 4RD PARTY USB VENDOR ID LIST – DO NOT EDIT.</pre></p>
-<h1 id="USE_‘android_update_adb’_TO_GENERATE-">USE ‘android update adb’ TO GENERATE.</h1><h1 id="1_USB_VENDOR_ID_PER_LINE">1 USB VENDOR ID PER LINE</h1><p>#for nokia x<br>0x0421<br><span style="color: #000000;"> 保存关闭后，就可以识别了。windows下也是如此，不多叙述了。</span></p>
+<h3 id="2-3-使用sudo-关闭和启动adb"><a href="#2-3-使用sudo-关闭和启动adb" class="headerlink" title=" 2.3.使用sudo 关闭和启动adb"></a><span style="color: #000000;"> 2.3.使用sudo 关闭和启动adb</span></h3><p><pre class="lang:java decode:true">cd ~/tools/android-sdk-linux_x86/platform-tools<br>sudo ./adb kill-server<br>sudo ./adb start-server</pre><br><span style="color: #000000;"><span style="color: #ff0000;"> 注：一般情况下，上面的操作就可以。特殊情况下，usb设备还是不能被识别，比如我手上这台Nokia X</span>。那么继续：</span></p>
+<h3 id="2-4-打开-～-android-adb-usb-ini，加入之前的lsusb得到的信息"><a href="#2-4-打开-～-android-adb-usb-ini，加入之前的lsusb得到的信息" class="headerlink" title="2.4.打开 ～/.android/adb_usb.ini，加入之前的lsusb得到的信息"></a><span style="color: #000000;">2.4.打开 ～/.android/adb_usb.ini，加入之前的lsusb得到的信息</span></h3><p><pre class="lang:java decode:true"># ANDROID 4RD PARTY USB VENDOR ID LIST – DO NOT EDIT.</pre></p>
+<h1 id="USE-‘android-update-adb’-TO-GENERATE"><a href="#USE-‘android-update-adb’-TO-GENERATE" class="headerlink" title="USE ‘android update adb’ TO GENERATE."></a>USE ‘android update adb’ TO GENERATE.</h1><h1 id="1-USB-VENDOR-ID-PER-LINE"><a href="#1-USB-VENDOR-ID-PER-LINE" class="headerlink" title="1 USB VENDOR ID PER LINE"></a>1 USB VENDOR ID PER LINE</h1><p>#for nokia x<br>0x0421<br><span style="color: #000000;"> 保存关闭后，就可以识别了。windows下也是如此，不多叙述了。</span></p>
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Gracker -->
@@ -355,7 +355,7 @@ data-ad-format="auto"></ins>
 <!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
 <div id="toc" class="toc-article">
 <strong class="toc-title">文章目录</strong>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-问题概述"><span class="toc-number">1.</span> <span class="toc-text">1.问题概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-问题解决方案"><span class="toc-number">2.</span> <span class="toc-text">2.问题解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-运行lsusb"><span class="toc-number">2.1.</span> <span class="toc-text">2.1.运行lsusb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-注册到udve的rules文件"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.注册到udve的rules文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-使用sudo_关闭和启动adb"><span class="toc-number">2.3.</span> <span class="toc-text"> 2.3.使用sudo 关闭和启动adb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-打开_～/-android/adb_usb-ini，加入之前的lsusb得到的信息"><span class="toc-number">2.4.</span> <span class="toc-text">2.4.打开 ～/.android/adb_usb.ini，加入之前的lsusb得到的信息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#USE_‘android_update_adb’_TO_GENERATE-"><span class="toc-number"></span> <span class="toc-text">USE ‘android update adb’ TO GENERATE.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1_USB_VENDOR_ID_PER_LINE"><span class="toc-number"></span> <span class="toc-text">1 USB VENDOR ID PER LINE</span></a>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-问题概述"><span class="toc-number">1.</span> <span class="toc-text">1.问题概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-问题解决方案"><span class="toc-number">2.</span> <span class="toc-text">2.问题解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-运行lsusb"><span class="toc-number">2.1.</span> <span class="toc-text">2.1.运行lsusb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-注册到udve的rules文件"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.注册到udve的rules文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-使用sudo-关闭和启动adb"><span class="toc-number">2.3.</span> <span class="toc-text"> 2.3.使用sudo 关闭和启动adb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-打开-～-android-adb-usb-ini，加入之前的lsusb得到的信息"><span class="toc-number">2.4.</span> <span class="toc-text">2.4.打开 ～/.android/adb_usb.ini，加入之前的lsusb得到的信息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#USE-‘android-update-adb’-TO-GENERATE"><span class="toc-number"></span> <span class="toc-text">USE ‘android update adb’ TO GENERATE.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-USB-VENDOR-ID-PER-LINE"><span class="toc-number"></span> <span class="toc-text">1 USB VENDOR ID PER LINE</span></a>
 </div>
 <style type="text/css">
   .left-col .switch-btn {
@@ -458,7 +458,7 @@ data-ad-format="auto"></ins>
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -509,8 +509,8 @@ data-ad-format="auto"></ins>
     </div>
     
 
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
   <style>
     body {

@@ -7,13 +7,13 @@
   <title>Android性能优化典范之Understanding Overdraw | Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="One of the most problematic performance problems on Android is the easiest to create; thankfully, it’s also easy to fix.
-OVERDRAW is a term used to describe how many times a pixel has been re-drawn in">
+OVERDRAW is a term used to describe how many times a pixel has been re-drawn i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android性能优化典范之Understanding Overdraw">
 <meta property="og:url" content="http://androidperformance.com/2015/04/19/Android-Performance-Patterns-2.html">
 <meta property="og:site_name" content="Performance">
 <meta property="og:description" content="One of the most problematic performance problems on Android is the easiest to create; thankfully, it’s also easy to fix.
-OVERDRAW is a term used to describe how many times a pixel has been re-drawn in">
+OVERDRAW is a term used to describe how many times a pixel has been re-drawn i">
 <meta property="og:image" content="http://androidperformance.com/images/performance-2/1.png">
 <meta property="og:image" content="http://androidperformance.com/images/performance-2/2.png">
 <meta property="og:image" content="http://androidperformance.com/images/performance-2/3.png">
@@ -25,14 +25,15 @@ OVERDRAW is a term used to describe how many times a pixel has been re-drawn in"
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android性能优化典范之Understanding Overdraw">
 <meta name="twitter:description" content="One of the most problematic performance problems on Android is the easiest to create; thankfully, it’s also easy to fix.
-OVERDRAW is a term used to describe how many times a pixel has been re-drawn in">
+OVERDRAW is a term used to describe how many times a pixel has been re-drawn i">
+<meta name="twitter:image" content="http://androidperformance.com/images/performance-2/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
@@ -253,13 +254,13 @@ OVERDRAW is a term used to describe how many times a pixel has been re-drawn in"
 <p><strong>OVERDRAW</strong> is a term used to describe how many times a pixel has been re-drawn in a single frame of rendering. It’s a troublesome issue, because in most cases, pixels that are overdrawn do not end up contributing to the final rendered image. As such, it amounts to wasted work for your GPU and CPU. </p>
 <p>Fixing overdraw has everything to do with using the available on-device tools, like Show GPU Overdraw, and then adjusting your view hierarchy in order to reduce areas where it may be occurring.</p>
 </blockquote>
-<h2 id="OverDraw概念">OverDraw概念</h2><p>视频开头作者举了一个例子，说如果你是一个粉刷匠，你应该会知道，给墙壁粉刷是一件工作量非常大的工作，而且如果你需要重新粉刷一遍的话(比如对颜色不满意),那么第一次的粉刷就白干了. 同样的道理,如果你的应用程序中出现了过度绘制问题,那么你之前所做的事情也就白费了.如果你想兼顾高性能和完美的设计,那么你的程序可能会出现一个性能问题:<strong>OverDraw</strong>!</p>
+<h2 id="OverDraw概念"><a href="#OverDraw概念" class="headerlink" title="OverDraw概念"></a>OverDraw概念</h2><p>视频开头作者举了一个例子，说如果你是一个粉刷匠，你应该会知道，给墙壁粉刷是一件工作量非常大的工作，而且如果你需要重新粉刷一遍的话(比如对颜色不满意),那么第一次的粉刷就白干了. 同样的道理,如果你的应用程序中出现了过度绘制问题,那么你之前所做的事情也就白费了.如果你想兼顾高性能和完美的设计,那么你的程序可能会出现一个性能问题:<strong>OverDraw</strong>!</p>
 <p><strong>OverDraw</strong>是一个术语, 它表示某些组件在屏幕上的一个像素点的绘制超过1次.如下面的图所示,我们有一堆重叠的卡片,被用户激活的卡片在最上面,而那些没有激活的卡片在下面,这意味着我们画大力气绘制的那些卡片,基本都是不可见的.问题就在于次,我们像素渲染的并不全是用户最后能看打的部分, 这是在浪费GPU的时间!</p>
 <a id="more"></a>
 <p><img src="/images/performance-2/1.png" alt="OverDraw"></p>
 <p>目前流行的一些布局是一把双刃剑,带给我们漂亮的画面的同时,也带来了很大的麻烦.为了最大限度地提高应用程序的性能,你得减少<strong>OverDraw!</strong></p>
 <p><img src="/images/performance-2/2.png" alt="性能和界面"></p>
-<h2 id="追踪OverDraw">追踪OverDraw</h2><p>Android手机中提供了查看OverDraw情况的工具,在设置-开发者选项中,找到打开”Show GPU OverDraw”按钮即可:</p>
+<h2 id="追踪OverDraw"><a href="#追踪OverDraw" class="headerlink" title="追踪OverDraw"></a>追踪OverDraw</h2><p>Android手机中提供了查看OverDraw情况的工具,在设置-开发者选项中,找到打开”Show GPU OverDraw”按钮即可:</p>
 <p><img src="/images/performance-2/3.png" alt="Show GPU OverDraw"></p>
 <p>Android会使用不同深浅的颜色来表示OverDraw的程序,没有OverDraw的时候, 你看到的是它本来的颜色,其他颜色表示不同的过度绘制程序:</p>
 <ul>
@@ -271,15 +272,15 @@ OVERDRAW is a term used to describe how many times a pixel has been re-drawn in"
 <p><img src="/images/performance-2/4.png" alt="OverDraw"></p>
 <p>你的应用程序的目标应该是尽可能地减少过度绘制,即更多的蓝色色块而不是红色色块:</p>
 <p><img src="/images/performance-2/5.png" alt="Good and Bad"></p>
-<h2 id="OverDraw的根源">OverDraw的根源</h2><p>虽然OverDraw很大程序上来自于你的视图互相重叠的问题,但是各位开发者更需要注意的是不必要的背景重叠.</p>
+<h2 id="OverDraw的根源"><a href="#OverDraw的根源" class="headerlink" title="OverDraw的根源"></a>OverDraw的根源</h2><p>虽然OverDraw很大程序上来自于你的视图互相重叠的问题,但是各位开发者更需要注意的是不必要的背景重叠.</p>
 <p><img src="/images/performance-2/6.png" alt="Bad"></p>
 <p>比如在一个应用程序中,你的所有的View都有背景的话,就会看起来像第一张图中那样,而在去除这些不必要的背景之后(指的是Window的默认背景,Layout的背景,文字以及图片的可能存在的背景),效果就像第二张图那样,基本没有过度绘制的情况.</p>
 <p><img src="/images/performance-2/7.png" alt="去掉不必要的背景"></p>
-<p>比如去除Window的默认背景:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">this</span><span class="class">.getWindow</span>()<span class="class">.setBackgroundDrawableResource</span>(<span class="tag">android</span><span class="class">.R</span><span class="class">.color</span><span class="class">.transparent</span>);</span><br></pre></td></tr></table></figure></p>
-<h2 id="Perf_Matters">Perf Matters</h2><blockquote>
+<p>比如去除Window的默认背景:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">this</span><span class="selector-class">.getWindow</span>()<span class="selector-class">.setBackgroundDrawableResource</span>(<span class="selector-tag">android</span><span class="selector-class">.R</span><span class="selector-class">.color</span><span class="selector-class">.transparent</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="Perf-Matters"><a href="#Perf-Matters" class="headerlink" title="Perf Matters"></a>Perf Matters</h2><blockquote>
 <p>keep calm, profile your code, and always remember, Perf Matters</p>
 </blockquote>
-<h2 id="附录">附录</h2><p>关于过度绘制及其优化,我博客有两篇文章专门介绍:</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>关于过度绘制及其优化,我博客有两篇文章专门介绍:</p>
 <ul>
 <li><a href="http://androidperformance.com/2014/10/20/android-performance-optimization-overdraw-1.html">Android过度绘制优化-基础篇</a></li>
 <li><a href="http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2.html">Android过度绘制优化-实战篇</a></li>
@@ -356,7 +357,7 @@ data-ad-format="auto"></ins>
 <!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
 <div id="toc" class="toc-article">
 <strong class="toc-title">文章目录</strong>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OverDraw概念"><span class="toc-number">1.</span> <span class="toc-text">OverDraw概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追踪OverDraw"><span class="toc-number">2.</span> <span class="toc-text">追踪OverDraw</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OverDraw的根源"><span class="toc-number">3.</span> <span class="toc-text">OverDraw的根源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Perf_Matters"><span class="toc-number">4.</span> <span class="toc-text">Perf Matters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录"><span class="toc-number">5.</span> <span class="toc-text">附录</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OverDraw概念"><span class="toc-number">1.</span> <span class="toc-text">OverDraw概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#追踪OverDraw"><span class="toc-number">2.</span> <span class="toc-text">追踪OverDraw</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OverDraw的根源"><span class="toc-number">3.</span> <span class="toc-text">OverDraw的根源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Perf-Matters"><span class="toc-number">4.</span> <span class="toc-text">Perf Matters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附录"><span class="toc-number">5.</span> <span class="toc-text">附录</span></a></li></ol>
 </div>
 <style type="text/css">
   .left-col .switch-btn {
@@ -459,7 +460,7 @@ data-ad-format="auto"></ins>
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -510,8 +511,8 @@ data-ad-format="auto"></ins>
     </div>
     
 
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
   <style>
     body {

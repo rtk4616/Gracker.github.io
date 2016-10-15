@@ -22,7 +22,7 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
@@ -236,7 +236,7 @@
       
         <p>本文是一篇译文,这篇是这个系列的第二篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
 <a id="more"></a>
-<h2 id="正文">正文</h2><p><a href="http://developer.android.com/reference/android/text/format/DateUtils.html#formatDateTime%28android.content.Context,%20long,%20int%29" target="_blank" rel="external">DateUtils.formatDateTime()</a> 用来进行区域格式化工作,输出格式化和本地化的时间或者日期.</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p><a href="http://developer.android.com/reference/android/text/format/DateUtils.html#formatDateTime%28android.content.Context,%20long,%20int%29" target="_blank" rel="external">DateUtils.formatDateTime()</a> 用来进行区域格式化工作,输出格式化和本地化的时间或者日期.</p>
 <p><a href="http://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent" target="_blank" rel="external">AlarmManager.setInexactRepeating</a>) 通过闹铃分组的方式省电,即使你只调用了一个闹钟,这也是一个好的选择,（可以确保在使用完毕时自动调用 AlarmManager.cancel ()。原文说的比较抽象,这里详细说一下:setInexactRepeating指的是设置非准确闹钟,使用方法:alarmManager.setInexactRepeating(AlarmManager.RTC, startTime,intervalL, pendingIntent),非准确闹钟只能保证大致的时间间隔，但是不一定准确，可能出现设置间隔为30分钟，但是实际上一次间隔20分钟，另一次间隔40分钟。它的最大的好处是可以合并闹钟事件，比如间隔设置每30分钟一次，不唤醒休眠，在休眠8小时后已经积累了16个闹钟事件，而在手机被唤醒的时候，非准时闹钟可以把16个事件合并为一个, 所以这么看来,非准时闹钟一般来说比较节约能源.</p>
 <p><a href="http://developer.android.com/reference/android/text/format/Formatter.html#formatFileSize(android.content.Context, long" target="_blank" rel="external">Formatter.formatFileSize()</a>) 一个区域化的文件大小格式化工具。通俗来说就是把大小转换为MB,G,KB之类的字符串.</p>
 <p><a href="http://developer.android.com/reference/android/app/ActionBar.html#hide(" target="_blank" rel="external">ActionBar.hide()</a>)/<a href="http://developer.android.com/reference/android/app/ActionBar.html#show(" target="_blank" rel="external">.show()</a>) 顾名思义,隐藏和显示ActionBar,可以优雅地在全屏和带Actionbar之间转换.</p>
@@ -250,7 +250,7 @@
 <p><a href="http://developer.android.com/reference/android/os/SystemClock.html#sleep(long" target="_blank" rel="external">SystemClock.sleep()</a>) 这个方法在保证一定时间的 sleep 时很方便，通常我用来进行 debug 和模拟网络延时。</p>
 <p><a href="http://developer.android.com/reference/android/util/DisplayMetrics.html#density" target="_blank" rel="external">DisplayMetrics.density</a> 这个方法你可以获取设备像素密度,大部分时候最好让系统来自动进行缩放资源之类的操作,但是有时候控制的效果会更好一些.(尤其是在自定义View的时候).</p>
 <p><a href="http://developer.android.com/reference/android/util/Pair.html#create(A, B" target="_blank" rel="external">Pair.create()</a>) 方便构建类和构造器的方法。</p>
-<h2 id="备忘">备忘</h2><p>More: <a href="http://www.androidperformance.com/android-tips-round-up.html" target="_blank" rel="external">Part1</a> , <a href="http://www.androidperformance.com/android-tips-round-up-2.html" target="_blank" rel="external">Part2</a> , <a href="http://www.androidperformance.com/android-tips-round-up-3.html" target="_blank" rel="external">Part3</a> , <a href="http://www.androidperformance.com/android-tips-round-up-4.html" target="_blank" rel="external">Part4</a>, <a href="http://www.androidperformance.com/android-tips-round-up-5.html" target="_blank" rel="external">Part5</a><br>原文地址:<a href="http://blog.danlew.net/2014/04/14/android-tips-round-up-part-2/" target="_blank" rel="external">http://blog.danlew.net/2014/03/30/android-tips-round-up-part-2/</a><br>原文作者:<a href="http://blog.danlew.net/about/" target="_blank" rel="external">http://blog.danlew.net/about/</a><br>本文地址:<a href="http://www.androidperformance.com/android-tips-round-up-2.html" target="_blank" rel="external">http://www.androidperformance.com/android-tips-round-up-2.html</a> 转载请注明.</p>
+<h2 id="备忘"><a href="#备忘" class="headerlink" title="备忘"></a>备忘</h2><p>More: <a href="http://www.androidperformance.com/android-tips-round-up.html" target="_blank" rel="external">Part1</a> , <a href="http://www.androidperformance.com/android-tips-round-up-2.html" target="_blank" rel="external">Part2</a> , <a href="http://www.androidperformance.com/android-tips-round-up-3.html" target="_blank" rel="external">Part3</a> , <a href="http://www.androidperformance.com/android-tips-round-up-4.html" target="_blank" rel="external">Part4</a>, <a href="http://www.androidperformance.com/android-tips-round-up-5.html" target="_blank" rel="external">Part5</a><br>原文地址:<a href="http://blog.danlew.net/2014/04/14/android-tips-round-up-part-2/" target="_blank" rel="external">http://blog.danlew.net/2014/03/30/android-tips-round-up-part-2/</a><br>原文作者:<a href="http://blog.danlew.net/about/" target="_blank" rel="external">http://blog.danlew.net/about/</a><br>本文地址:<a href="http://www.androidperformance.com/android-tips-round-up-2.html" target="_blank" rel="external">http://www.androidperformance.com/android-tips-round-up-2.html</a> 转载请注明.</p>
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Gracker -->
@@ -426,7 +426,7 @@ data-ad-format="auto"></ins>
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -477,8 +477,8 @@ data-ad-format="auto"></ins>
     </div>
     
 
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
   <style>
     body {

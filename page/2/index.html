@@ -21,7 +21,7 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
@@ -265,7 +265,7 @@
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -350,7 +350,7 @@
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -435,7 +435,7 @@
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -519,7 +519,7 @@
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -603,7 +603,7 @@
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -650,7 +650,7 @@
 <p>“If you can measure it, you can optimize it” is a common term in the computing world, and for Android’s rendering system, the same thing holds true. In order to optimize your pipeline to be more efficient for rendering, you need a tool to give you feedback on where the current perf problems lie.</p>
 <p>And in this video, +Colt McAnlis walks you through an on-device tool that’s built for this exact reason. “Profile GPU Rendering” will help you understand the stages of the rendering pipeline, and also get a chance to see what portions of it might be taking too long, and what you can do about it for your application.</p>
 </blockquote>
-<h2 id="GPU_Profile工具">GPU Profile工具</h2><p>渲染性能问题往往是偷取你宝贵帧数的罪魁祸首,这种问题很容易产生,很容易出现,而且在一个非常方便的工具的帮助下,也非常容易去追踪. 使用Peofile GPU Rendering tool,你可以在手机上就可以看到究竟是什么导致你的应用程序出现卡顿,变慢的情况.</p>
+<h2 id="GPU-Profile工具"><a href="#GPU-Profile工具" class="headerlink" title="GPU Profile工具"></a>GPU Profile工具</h2><p>渲染性能问题往往是偷取你宝贵帧数的罪魁祸首,这种问题很容易产生,很容易出现,而且在一个非常方便的工具的帮助下,也非常容易去追踪. 使用Peofile GPU Rendering tool,你可以在手机上就可以看到究竟是什么导致你的应用程序出现卡顿,变慢的情况.</p>
       
       
     </div>
@@ -691,7 +691,7 @@
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -739,7 +739,7 @@
 <p>You may have heard the term VSYNC - VSYNC stands for vertical synchronization and it’s an event that happens every time your screen starts to refresh the content it wants to show you.</p>
 <p>Effectively, VSYNC is the product of two components Refresh Rate (how fast the hardware can refresh the screen), and Frames Per Second (how fast the GPU can draw images), and in this video +Colt McAnlis walks through each of these topics, and discusses where VSYNC (and the 16ms rendering barrier) comes from, and why it’s critical to understand if you want a silky smooth application.</p>
 </blockquote>
-<h2 id="基本概念">基本概念</h2><p>想要开发一个高性能的应用程序,首先你得了解他的硬件工作原理,那么最好的办法就是去使用它,应用程序运行速度的快慢,很容易被人误解为硬件进程的控制问题,然而这最主要的根源在于渲染性能.如果你想要提高你应用程序的渲染性能,你就必须知道什么是<strong>VSYNC</strong>.</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>想要开发一个高性能的应用程序,首先你得了解他的硬件工作原理,那么最好的办法就是去使用它,应用程序运行速度的快慢,很容易被人误解为硬件进程的控制问题,然而这最主要的根源在于渲染性能.如果你想要提高你应用程序的渲染性能,你就必须知道什么是<strong>VSYNC</strong>.</p>
       
       
     </div>
@@ -780,7 +780,7 @@
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -828,7 +828,7 @@
 <p><strong>OVERDRAW</strong> is a term used to describe how many times a pixel has been re-drawn in a single frame of rendering. It’s a troublesome issue, because in most cases, pixels that are overdrawn do not end up contributing to the final rendered image. As such, it amounts to wasted work for your GPU and CPU. </p>
 <p>Fixing overdraw has everything to do with using the available on-device tools, like Show GPU Overdraw, and then adjusting your view hierarchy in order to reduce areas where it may be occurring.</p>
 </blockquote>
-<h2 id="OverDraw概念">OverDraw概念</h2><p>视频开头作者举了一个例子，说如果你是一个粉刷匠，你应该会知道，给墙壁粉刷是一件工作量非常大的工作，而且如果你需要重新粉刷一遍的话(比如对颜色不满意),那么第一次的粉刷就白干了. 同样的道理,如果你的应用程序中出现了过度绘制问题,那么你之前所做的事情也就白费了.如果你想兼顾高性能和完美的设计,那么你的程序可能会出现一个性能问题:<strong>OverDraw</strong>!</p>
+<h2 id="OverDraw概念"><a href="#OverDraw概念" class="headerlink" title="OverDraw概念"></a>OverDraw概念</h2><p>视频开头作者举了一个例子，说如果你是一个粉刷匠，你应该会知道，给墙壁粉刷是一件工作量非常大的工作，而且如果你需要重新粉刷一遍的话(比如对颜色不满意),那么第一次的粉刷就白干了. 同样的道理,如果你的应用程序中出现了过度绘制问题,那么你之前所做的事情也就白费了.如果你想兼顾高性能和完美的设计,那么你的程序可能会出现一个性能问题:<strong>OverDraw</strong>!</p>
 <p><strong>OverDraw</strong>是一个术语, 它表示某些组件在屏幕上的一个像素点的绘制超过1次.如下面的图所示,我们有一堆重叠的卡片,被用户激活的卡片在最上面,而那些没有激活的卡片在下面,这意味着我们画大力气绘制的那些卡片,基本都是不可见的.问题就在于次,我们像素渲染的并不全是用户最后能看打的部分, 这是在浪费GPU的时间!</p>
       
       
@@ -870,7 +870,7 @@
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -917,7 +917,7 @@
 <p>Rendering performance is all about how fast you can draw your activity, and get it updated on the screen. Success here means your users feeling like your application is smooth and responsive, which means that you’ve got to get all your logic completed, <em>and</em> all your rendering done in 16ms or less, each and every frame. But that might be a bit more difficult than you think.</p>
 <p>In this video, +Colt McAnlis takes a look at what “rendering performance” means to developers, alongside some of the most common pitfalls that are ran into; and let’s not forget the important stuff: the tools that help you track down, and fix these issues before they become large problems.</p>
 </blockquote>
-<h2 id="Android渲染知识">Android渲染知识</h2><p>当你觉得自己开发了一个改变世界的应用的时候，你的用户可能并不会这么认为，他们认为你的应用又慢又卡，达不到他们所期望的那种顺滑，更谈不上改变这该死的世界了，回收站走你！等等！明明我这个应用在我的Nexus5上非常顺滑啊？你咋能说又慢又卡呢？如果你对Android的碎片化有一定了解的话，你就应该知道，很多低配置的手机并不像Nexus5那样有强大的处理器和GPU，以及没有被怎么污染的原生系统。</p>
+<h2 id="Android渲染知识"><a href="#Android渲染知识" class="headerlink" title="Android渲染知识"></a>Android渲染知识</h2><p>当你觉得自己开发了一个改变世界的应用的时候，你的用户可能并不会这么认为，他们认为你的应用又慢又卡，达不到他们所期望的那种顺滑，更谈不上改变这该死的世界了，回收站走你！等等！明明我这个应用在我的Nexus5上非常顺滑啊？你咋能说又慢又卡呢？如果你对Android的碎片化有一定了解的话，你就应该知道，很多低配置的手机并不像Nexus5那样有强大的处理器和GPU，以及没有被怎么污染的原生系统。</p>
 <p>如果有大量的用户投诉说你的应用又卡又慢的时候，不要总是抱怨用户的低端手机，有时候问题就出在你的应用本身，也就意味着你的Android存在比较严重的渲染性能问题。只有真正了解问题发生的根源，才能有效的解决问题。所以了解Android渲染相关的知识，是一个Android开发者必不可少的知识。</p>
       
       
@@ -959,7 +959,7 @@
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -1050,7 +1050,7 @@
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -1122,8 +1122,8 @@
 	</script>
 
 
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
   <style>
     body {

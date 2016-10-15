@@ -23,13 +23,14 @@
 <meta name="twitter:title" content="Android内存优化之三：打开MAT中的Bitmap原图">
 <meta name="twitter:description" content="在使用MAT查看应用程序内存使用情况的时候,我们经常会碰到Bitmap对象以及BitmapDrawable$BitmapState对象,而且在内存使用上,Bitmap所占用的内存占大多数.在这样的情况下, Bitmap所造成的内存泄露尤其严重, 需要及时发现并且及时处理.在这样的需求下, 当我们在MAT中发现和图片相关的内存泄露的时候, 如果能知道是那一张图片,对分析问题会有很大的帮助.
 本文就介">
+<meta name="twitter:image" content="http://androidperformance.com/images/MAT_OpenBitmap/Image_1.png">
   
     <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
@@ -250,18 +251,18 @@
 <a id="more"></a>
 <p>Bitmap对象如图:</p>
 <p><img src="/images/MAT_OpenBitmap/Image_1.png" alt="Bitmap对象"></p>
-<h2 id="导出Bitmap原始数据">导出Bitmap原始数据</h2><p>在MAT中打开Dominator Tree视图 , 选择一个Bitmap对象 , 查看此时右边的Inspector窗口,内容如下图: </p>
+<h2 id="导出Bitmap原始数据"><a href="#导出Bitmap原始数据" class="headerlink" title="导出Bitmap原始数据"></a>导出Bitmap原始数据</h2><p>在MAT中打开Dominator Tree视图 , 选择一个Bitmap对象 , 查看此时右边的Inspector窗口,内容如下图: </p>
 <p><img src="/images/MAT_OpenBitmap/Image_2.png" alt="image"></p>
 <p>这个视图中,可以看到这个Bitmap的一些基本的信息: mBuffer, mHeight, mWidth , mNativeBitmap等, 宽和高的值我们一会需要用的到 . </p>
 <p>mBuffer的定义在Bitmap.java中:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Backing buffer for the Bitmap.</span><br><span class="line"> * Made public for quick access from drawing methods -- do NOT modify</span><br><span class="line"> * from outside this class</span><br><span class="line"> *</span><br><span class="line"> * <span class="doctag">@hide</span></span><br><span class="line"> */</span></span><br><span class="line"><span class="annotation">@SuppressWarnings</span>(<span class="string">"UnusedDeclaration"</span>) <span class="comment">// native code only</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">byte</span>[] mBuffer;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Backing buffer for the Bitmap.</div><div class="line"> * Made public for quick access from drawing methods -- do NOT modify</div><div class="line"> * from outside this class</div><div class="line"> *</div><div class="line"> * <span class="doctag">@hide</span></div><div class="line"> */</div><div class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"UnusedDeclaration"</span>) <span class="comment">// native code only</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">byte</span>[] mBuffer;</div></pre></td></tr></table></figure>
 <p>其值是保存在byte数组中的, 我们需要的就是这个byte数组中的内容. 在Inspector窗口的mBuffer这一栏或者Dominator Tree视图的Bitmap这一栏点开下一级,都可以看到这个byte数组的内容. 鼠标右键选择Copy –&gt;Save Value To File. 弹出如下对话框:</p>
 <p><img src="/images/MAT_OpenBitmap/Image_3.png" alt="image"></p>
 <p>选择存储路径和文件名,这里需要注意的是,<strong>文件名一定要以 .data为后缀</strong>,否则无法正常使用,切记.</p>
-<h2 id="打开原始资源数据">打开原始资源数据</h2><h3 id="Linux">Linux</h3><p>这时需要借助Linux上强大的图片应用:GIMP,没安装的可以去安装一下. 安装好之后, 打开GIMP,选择文件-打开.选择我们上一步导出的.data文件(比如image.data),然后会出现如下图的属性框:</p>
+<h2 id="打开原始资源数据"><a href="#打开原始资源数据" class="headerlink" title="打开原始资源数据"></a>打开原始资源数据</h2><h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>这时需要借助Linux上强大的图片应用:GIMP,没安装的可以去安装一下. 安装好之后, 打开GIMP,选择文件-打开.选择我们上一步导出的.data文件(比如image.data),然后会出现如下图的属性框:</p>
 <p><img src="/images/MAT_OpenBitmap/Image_4.png" alt="image"></p>
 <p>图像类型这一栏选择RGB Alpha, 宽度和高度必填, 其值可以在MAT中查看到,第一步的时候有说到这个值的位置, 其他的选择默认即可,然后点击打开. GIMP就会把这个文件打开.</p>
-<h3 id="Mac_&amp;&amp;_Windows">Mac &amp;&amp; Windows</h3><p>Mac和Windows可以选择使用PhotoShop作为打开的工具, 和Linux唯一不同的地方在于. 保存的文件的格式需要以.raw结尾 (比如image.raw),选择深度为32位. 其余的和Linux相同.</p>
+<h3 id="Mac-amp-amp-Windows"><a href="#Mac-amp-amp-Windows" class="headerlink" title="Mac &amp;&amp; Windows"></a>Mac &amp;&amp; Windows</h3><p>Mac和Windows可以选择使用PhotoShop作为打开的工具, 和Linux唯一不同的地方在于. 保存的文件的格式需要以.raw结尾 (比如image.raw),选择深度为32位. 其余的和Linux相同.</p>
 <p>另外GIMP也有Mac、Windows版本，建议大家在各个平台都使用GIMP，这样学习成本比较低，而且GIMP为免费软件，使用起来功能也非常多。</p>
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -335,7 +336,7 @@ data-ad-format="auto"></ins>
 <!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
 <div id="toc" class="toc-article">
 <strong class="toc-title">文章目录</strong>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导出Bitmap原始数据"><span class="toc-number">1.</span> <span class="toc-text">导出Bitmap原始数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打开原始资源数据"><span class="toc-number">2.</span> <span class="toc-text">打开原始资源数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux"><span class="toc-number">2.1.</span> <span class="toc-text">Linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac_&&_Windows"><span class="toc-number">2.2.</span> <span class="toc-text">Mac && Windows</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导出Bitmap原始数据"><span class="toc-number">1.</span> <span class="toc-text">导出Bitmap原始数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打开原始资源数据"><span class="toc-number">2.</span> <span class="toc-text">打开原始资源数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux"><span class="toc-number">2.1.</span> <span class="toc-text">Linux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac-amp-amp-Windows"><span class="toc-number">2.2.</span> <span class="toc-text">Mac && Windows</span></a></li></ol></li></ol>
 </div>
 <style type="text/css">
   .left-col .switch-btn {
@@ -438,7 +439,7 @@ data-ad-format="auto"></ins>
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -489,8 +490,8 @@ data-ad-format="auto"></ins>
     </div>
     
 
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
   <style>
     body {

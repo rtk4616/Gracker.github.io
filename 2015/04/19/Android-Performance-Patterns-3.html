@@ -7,13 +7,13 @@
   <title>Android性能优化典范之Understanding VSYNC | Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Unbeknown to most developers, there’s a simple hardware design that defines everything about how fast your application can draw things to the screen.
-You may have heard the term VSYNC - VSYNC stands f">
+You may have heard the term VSYNC - VSYNC stands">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android性能优化典范之Understanding VSYNC">
 <meta property="og:url" content="http://androidperformance.com/2015/04/19/Android-Performance-Patterns-3.html">
 <meta property="og:site_name" content="Performance">
 <meta property="og:description" content="Unbeknown to most developers, there’s a simple hardware design that defines everything about how fast your application can draw things to the screen.
-You may have heard the term VSYNC - VSYNC stands f">
+You may have heard the term VSYNC - VSYNC stands">
 <meta property="og:image" content="http://androidperformance.com/images/performance-3/1.png">
 <meta property="og:image" content="http://androidperformance.com/images/performance-3/2.png">
 <meta property="og:image" content="http://androidperformance.com/images/performance-3/3.png">
@@ -27,14 +27,15 @@ You may have heard the term VSYNC - VSYNC stands f">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android性能优化典范之Understanding VSYNC">
 <meta name="twitter:description" content="Unbeknown to most developers, there’s a simple hardware design that defines everything about how fast your application can draw things to the screen.
-You may have heard the term VSYNC - VSYNC stands f">
+You may have heard the term VSYNC - VSYNC stands">
+<meta name="twitter:image" content="http://androidperformance.com/images/performance-3/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
@@ -255,14 +256,14 @@ You may have heard the term VSYNC - VSYNC stands f">
 <p>You may have heard the term VSYNC - VSYNC stands for vertical synchronization and it’s an event that happens every time your screen starts to refresh the content it wants to show you.</p>
 <p>Effectively, VSYNC is the product of two components Refresh Rate (how fast the hardware can refresh the screen), and Frames Per Second (how fast the GPU can draw images), and in this video +Colt McAnlis walks through each of these topics, and discusses where VSYNC (and the 16ms rendering barrier) comes from, and why it’s critical to understand if you want a silky smooth application.</p>
 </blockquote>
-<h2 id="基本概念">基本概念</h2><p>想要开发一个高性能的应用程序,首先你得了解他的硬件工作原理,那么最好的办法就是去使用它,应用程序运行速度的快慢,很容易被人误解为硬件进程的控制问题,然而这最主要的根源在于渲染性能.如果你想要提高你应用程序的渲染性能,你就必须知道什么是<strong>VSYNC</strong>.</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>想要开发一个高性能的应用程序,首先你得了解他的硬件工作原理,那么最好的办法就是去使用它,应用程序运行速度的快慢,很容易被人误解为硬件进程的控制问题,然而这最主要的根源在于渲染性能.如果你想要提高你应用程序的渲染性能,你就必须知道什么是<strong>VSYNC</strong>.</p>
 <a id="more"></a>
 <p>在了解<strong>VSYNC</strong>之前,我们需要了解两个概念:</p>
-<h3 id="刷新率">刷新率</h3><p>刷新率代表屏幕在一秒内刷新屏幕的次数,这个值用赫兹来表示,取决于硬件的固定参数. 这个值一般是60Hz,即每16.66ms刷新一次屏幕.</p>
+<h3 id="刷新率"><a href="#刷新率" class="headerlink" title="刷新率"></a>刷新率</h3><p>刷新率代表屏幕在一秒内刷新屏幕的次数,这个值用赫兹来表示,取决于硬件的固定参数. 这个值一般是60Hz,即每16.66ms刷新一次屏幕.</p>
 <p><img src="/images/performance-3/1.png" alt="刷新率"></p>
-<h3 id="帧速率">帧速率</h3><p>帧速率代表了GPU在一秒内绘制操作的帧数,比如30fps/60fps.在这种情况下,高点的帧速率总是好的.</p>
+<h3 id="帧速率"><a href="#帧速率" class="headerlink" title="帧速率"></a>帧速率</h3><p>帧速率代表了GPU在一秒内绘制操作的帧数,比如30fps/60fps.在这种情况下,高点的帧速率总是好的.</p>
 <p><img src="/images/performance-3/2.png" alt="帧速率"></p>
-<h2 id="工作原理">工作原理</h2><p>刷新率和帧速率需要协同工作,才能让你的应用程序的内容显示到屏幕上,GPU会获取图像数据进行绘制,然后硬件负责把内容呈现到屏幕上,这将在你的应用程序的生命周期中周而复始地发生.下面的图中每一个竖行代表了一帧的绘制和呈现工作.</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>刷新率和帧速率需要协同工作,才能让你的应用程序的内容显示到屏幕上,GPU会获取图像数据进行绘制,然后硬件负责把内容呈现到屏幕上,这将在你的应用程序的生命周期中周而复始地发生.下面的图中每一个竖行代表了一帧的绘制和呈现工作.</p>
 <p><img src="/images/performance-3/3.png" alt="协同工作"></p>
 <p>不幸的是,刷新率和帧速率并不是总能够保持相同的节奏:</p>
 <ul>
@@ -282,7 +283,7 @@ You may have heard the term VSYNC - VSYNC stands f">
 <p>你的应用程序应该避免这些帧率突降的情况.以确保GPU迅速获取数据,并在屏幕再次刷新之前写录内容.</p>
 </li>
 </ul>
-<h2 id="Perf_Matters">Perf Matters</h2><blockquote>
+<h2 id="Perf-Matters"><a href="#Perf-Matters" class="headerlink" title="Perf Matters"></a>Perf Matters</h2><blockquote>
 <p>keep calm, profile your code, and always remember, Perf Matters</p>
 </blockquote>
 
@@ -357,7 +358,7 @@ data-ad-format="auto"></ins>
 <!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
 <div id="toc" class="toc-article">
 <strong class="toc-title">文章目录</strong>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#刷新率"><span class="toc-number">1.1.</span> <span class="toc-text">刷新率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#帧速率"><span class="toc-number">1.2.</span> <span class="toc-text">帧速率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作原理"><span class="toc-number">2.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Perf_Matters"><span class="toc-number">3.</span> <span class="toc-text">Perf Matters</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#刷新率"><span class="toc-number">1.1.</span> <span class="toc-text">刷新率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#帧速率"><span class="toc-number">1.2.</span> <span class="toc-text">帧速率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作原理"><span class="toc-number">2.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Perf-Matters"><span class="toc-number">3.</span> <span class="toc-text">Perf Matters</span></a></li></ol>
 </div>
 <style type="text/css">
   .left-col .switch-btn {
@@ -460,7 +461,7 @@ data-ad-format="auto"></ins>
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -511,8 +512,8 @@ data-ad-format="auto"></ins>
     </div>
     
 
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
   <style>
     body {

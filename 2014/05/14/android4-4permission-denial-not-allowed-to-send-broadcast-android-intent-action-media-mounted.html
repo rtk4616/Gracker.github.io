@@ -31,7 +31,7 @@ sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
@@ -243,15 +243,15 @@ sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="摘要:_Android4-4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案-">摘要: Android4.4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案.</h4><p>&nbsp;</p>
-<h3 id="0-_问题背景">0. 问题背景</h3><p>在Android4.4之前，许多应用程序使用如下代码去通知更新文件数据库</p>
+        <h4 id="摘要-Android4-4修改了MEDIA-MOUNTED广播的权限-导致发送这个广播会出现权限问题-本文分析这个问题出现的原因-并给出解决方案"><a href="#摘要-Android4-4修改了MEDIA-MOUNTED广播的权限-导致发送这个广播会出现权限问题-本文分析这个问题出现的原因-并给出解决方案" class="headerlink" title="摘要: Android4.4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案."></a>摘要: Android4.4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案.</h4><p>&nbsp;</p>
+<h3 id="0-问题背景"><a href="#0-问题背景" class="headerlink" title="0. 问题背景"></a>0. 问题背景</h3><p>在Android4.4之前，许多应用程序使用如下代码去通知更新文件数据库</p>
 <pre class="\"lang:java" decode:true\"="" title="\"通知系统更新文件系统\"">sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, 
      Uri.parse(\"file://\" + Environment.getExternalStorageDirectory())));</pre>
 
 <p>这样做的坏处：每次发送这个广播，都会<span style="\"color:" #222222;\"="">让MediaScanner重新扫描一次系统文件，很影响设备的电池寿命。当然传入的路径可以</span> 是单个文件或者内容很少的文件夹，会减轻扫描系统文件的压力，但是还是会因为扫描频繁而浪费电。所以在Android4.4<span style="\"color:" #222222;\"="">开始，只允许系统应用发送这样的intent。</span> 所以在Android4.4系统的机器上会出现如下错误：</p>
 <pre class="\"lang:java" decode:true\"="" title="\"错误\""> Permission Denial: not allowed to send broadcast android.intent.action.MEDIA_MOUNTED</pre>
 
-<h3 id="1-_解决办法：">1. 解决办法：</h3><p>1 . 将Intent换为 <a href="\"><code>ACTION_MEDIA_SCANNER_SCAN_FILE</code></a><span style="\"color:" #000000;\"="">.</span></p>
+<h3 id="1-解决办法："><a href="#1-解决办法：" class="headerlink" title="1. 解决办法："></a>1. 解决办法：</h3><p>1 . 将Intent换为 <a href="\"><code>ACTION_MEDIA_SCANNER_SCAN_FILE</code></a><span style="\"color:" #000000;\"="">.</span></p>
 <pre class="\"lang:java" decode:true\"="" title="\"ACTION_MEDIA_SCANNER_SCAN_FILE\"">sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, 
      Uri.parse(\"file://\" + Environment.getExternalStorageDirectory())));</pre>
 
@@ -267,7 +267,7 @@ sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,
 
 <p>这样做就属于不发送广播,在4.4上可以正常工作.</p>
 <a id="more"></a>
-<h4 id="拓展">拓展</h4><p>代码跟踪,让我们看看scanFile做了什么事: 1.查看scanFile的源码:</p>
+<h4 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h4><p>代码跟踪,让我们看看scanFile做了什么事: 1.查看scanFile的源码:</p>
 <pre class="\"lang:java" decode:true\"="" title="\"scanFile\"">    public static void scanFile(Context context, String[] paths, String[] mimeTypes,
             OnScanCompletedListener callback) {
         ClientProxy client = new ClientProxy(paths, mimeTypes, callback);
@@ -446,7 +446,7 @@ data-ad-format="auto"></ins>
 <!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
 <div id="toc" class="toc-article">
 <strong class="toc-title">文章目录</strong>
-<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#摘要:_Android4-4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案-"><span class="toc-number">1.</span> <span class="toc-text">摘要: Android4.4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案.</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-_问题背景"><span class="toc-number"></span> <span class="toc-text">0. 问题背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_解决办法："><span class="toc-number"></span> <span class="toc-text">1. 解决办法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#拓展"><span class="toc-number">1.</span> <span class="toc-text">拓展</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#摘要-Android4-4修改了MEDIA-MOUNTED广播的权限-导致发送这个广播会出现权限问题-本文分析这个问题出现的原因-并给出解决方案"><span class="toc-number">1.</span> <span class="toc-text">摘要: Android4.4修改了MEDIA_MOUNTED广播的权限,导致发送这个广播会出现权限问题,本文分析这个问题出现的原因,并给出解决方案.</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0-问题背景"><span class="toc-number"></span> <span class="toc-text">0. 问题背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-解决办法："><span class="toc-number"></span> <span class="toc-text">1. 解决办法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#拓展"><span class="toc-number">1.</span> <span class="toc-text">拓展</span></a></li></ol>
 </div>
 <style type="text/css">
   .left-col .switch-btn {
@@ -549,7 +549,7 @@ data-ad-format="auto"></ins>
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -600,8 +600,8 @@ data-ad-format="auto"></ins>
     </div>
     
 
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
   <style>
     body {

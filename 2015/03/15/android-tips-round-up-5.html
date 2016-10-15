@@ -22,7 +22,7 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
@@ -236,7 +236,7 @@
       
         <p>本文是一篇译文,这篇是这个系列的第五篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
 <a id="more"></a>
-<h2 id="正文">正文</h2><p><a href="https://developer.android.com/reference/android/support/v4/widget/ViewDragHelper.html" target="_blank" rel="external">ViewDragHelper</a> ——视图拖动是一个比较复杂的问题。这个类可以帮助解决不少问题。如果你需要一个例子，<a href="https://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html" target="_blank" rel="external">DrawerLayout</a>就是利用它实现扫滑。Flavient Laurent 还写了一些关于这方面的<a href="http://flavienlaurent.com/blog/2013/08/28/each-navigation-drawer-hides-a-viewdraghelper/" target="_blank" rel="external">优秀文章</a>。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p><a href="https://developer.android.com/reference/android/support/v4/widget/ViewDragHelper.html" target="_blank" rel="external">ViewDragHelper</a> ——视图拖动是一个比较复杂的问题。这个类可以帮助解决不少问题。如果你需要一个例子，<a href="https://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html" target="_blank" rel="external">DrawerLayout</a>就是利用它实现扫滑。Flavient Laurent 还写了一些关于这方面的<a href="http://flavienlaurent.com/blog/2013/08/28/each-navigation-drawer-hides-a-viewdraghelper/" target="_blank" rel="external">优秀文章</a>。</p>
 <p><a href="https://developer.android.com/reference/android/widget/PopupWindow.html" target="_blank" rel="external">PopupWindow</a>——Android到处都在使用PopupWindow ，甚至你都没有意识到（标题导航条ActionBar，自动补全AutoComplete，编辑框错误提醒Edittext Errors）。这个类是创建浮层内容的主要方法。</p>
 <p><a href="https://developer.android.com/reference/android/app/ActionBar.htmlgetThemedContext%28%29" target="_blank" rel="external">Actionbar.getThemrContext()</a>——导航栏的主题化是很复杂的（不同于Activity其他部分的主题化）。你可以得到一个上下文（Context），用这个上下文创建的自定义组件可以得到正确的主题。</p>
 <p><a href="https://developer.android.com/reference/android/media/ThumbnailUtils.html" target="_blank" rel="external">ThumbnailUtils</a>——帮助创建缩略图。通常我都是用现有的图片加载库（比如，Picasso 或者 Volley），不过这个ThumbnaiUtils可以创建视频缩略图。<strong>译者注：</strong>该API从V8才开始支持。</p>
@@ -251,7 +251,7 @@
 <p><a href="http://developer.android.com/reference/android/app/ActivityOptions.html" target="_blank" rel="external">ActivityOptions</a> ——方便的定义两个Activity切换的动画。 使用<a href="http://developer.android.com/reference/android/support/v4/app/ActivityOptionsCompat.html" target="_blank" rel="external">ActivityOptionsCompat</a> 可以很好解决旧版本的兼容问题。</p>
 <p><a href="http://developer.android.com/reference/android/widget/AdapterViewFlipper.htmlfyiWillBeAdvancedByHostKThx%28%29" target="_blank" rel="external">AdapterViewFlipper.fyiWillBeAdvancedByHostKThx()</a>——仅仅因为很好玩，没有其他原因。在整个安卓开源项目中（AOSP the Android ——pen Source Project Android开放源代码项目）中还有其他很有意思的东西（比如<br><a href="http://developer.android.com/reference/android/hardware/SensorManager.htmlGRAVITY_DEATH_STAR_I" target="_blank" rel="external">GRAVITY_DEATH_STAR_I</a>）。不过，都不像这个这样，这个确实有用</p>
 <p><a href="http://developer.android.com/reference/android/view/ViewParent.htmlrequestDisallowInterceptTouchEvent%28boolean%29" target="_blank" rel="external">ViewParent.requestDisallowInterceptTouchEvent()</a> ——Android系统触摸事件机制大多时候能够默认处理，不过有时候你需要使用这个方法来剥夺父级控件的控制权（顺便说一下，如果你想对Android触摸机制了解更多，<a href="https://www.youtube.com/watch?v=EZAoJU-nUyI" target="_blank" rel="external">这个演讲</a>会令你惊叹不已。）</p>
-<h2 id="备忘">备忘</h2><p>More: <a href="http://www.androidperformance.com/android-tips-round-up.html" target="_blank" rel="external">Part1</a> , <a href="http://www.androidperformance.com/android-tips-round-up-2.html" target="_blank" rel="external">Part2</a> , <a href="http://www.androidperformance.com/android-tips-round-up-3.html" target="_blank" rel="external">Part3</a> , <a href="http://www.androidperformance.com/android-tips-round-up-4.html" target="_blank" rel="external">Part4</a>, <a href="http://www.androidperformance.com/android-tips-round-up-5.html" target="_blank" rel="external">Part5</a><br>原文地址:<a href="http://blog.danlew.net/2014/03/30/android-tips-round-up-part-5/" target="_blank" rel="external">http://blog.danlew.net/2014/03/30/android-tips-round-up-part-5/</a><br>原文作者:<a href="http://blog.danlew.net/about/" target="_blank" rel="external">http://blog.danlew.net/about/</a><br>本文地址:<a href="http://www.androidperformance.com/android-tips-round-up-5.html" target="_blank" rel="external">http://www.androidperformance.com/android-tips-round-up-5.html</a> 转载请注明.</p>
+<h2 id="备忘"><a href="#备忘" class="headerlink" title="备忘"></a>备忘</h2><p>More: <a href="http://www.androidperformance.com/android-tips-round-up.html" target="_blank" rel="external">Part1</a> , <a href="http://www.androidperformance.com/android-tips-round-up-2.html" target="_blank" rel="external">Part2</a> , <a href="http://www.androidperformance.com/android-tips-round-up-3.html" target="_blank" rel="external">Part3</a> , <a href="http://www.androidperformance.com/android-tips-round-up-4.html" target="_blank" rel="external">Part4</a>, <a href="http://www.androidperformance.com/android-tips-round-up-5.html" target="_blank" rel="external">Part5</a><br>原文地址:<a href="http://blog.danlew.net/2014/03/30/android-tips-round-up-part-5/" target="_blank" rel="external">http://blog.danlew.net/2014/03/30/android-tips-round-up-part-5/</a><br>原文作者:<a href="http://blog.danlew.net/about/" target="_blank" rel="external">http://blog.danlew.net/about/</a><br>本文地址:<a href="http://www.androidperformance.com/android-tips-round-up-5.html" target="_blank" rel="external">http://www.androidperformance.com/android-tips-round-up-5.html</a> 转载请注明.</p>
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Gracker -->
@@ -427,7 +427,7 @@ data-ad-format="auto"></ins>
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -478,8 +478,8 @@ data-ad-format="auto"></ins>
     </div>
     
 
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
   <style>
     body {

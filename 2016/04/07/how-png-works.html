@@ -7,13 +7,13 @@
   <title>How PNG Works | Performance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="原文地址：https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34原文作者：Colt McAnlis
-How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App development over the past few deca">
+How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App development over the past few dec">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How PNG Works">
 <meta property="og:url" content="http://androidperformance.com/2016/04/07/how-png-works.html">
 <meta property="og:site_name" content="Performance">
 <meta property="og:description" content="原文地址：https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34原文作者：Colt McAnlis
-How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App development over the past few deca">
+How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App development over the past few dec">
 <meta property="og:image" content="http://androidperformance.com/images/media/14600331177923.jpg">
 <meta property="og:image" content="http://androidperformance.com/images/media/14600331929796.jpg">
 <meta property="og:image" content="http://androidperformance.com/images/media/14600332058049.jpg">
@@ -25,14 +25,15 @@ How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App dev
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How PNG Works">
 <meta name="twitter:description" content="原文地址：https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34原文作者：Colt McAnlis
-How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App development over the past few deca">
+How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App development over the past few dec">
+<meta name="twitter:image" content="http://androidperformance.com/images/media/14600331177923.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
@@ -246,11 +247,11 @@ How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App dev
       
         <p><img src="/images/media/14600331177923.jpg" alt=""></p>
 <p>原文地址：<a href="https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34" target="_blank" rel="external">https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34</a><br>原文作者：<a href="https://medium.com/@duhroach" target="_blank" rel="external">Colt McAnlis</a></p>
-<h1 id="How_PNG_Works">How PNG Works</h1><p>The Portable Network Graphics (PNG) has become a staple for App development over the past few decades. It’s creeped up everywhere from game development, to web development, and Android development, which means that it’s widely adopted, but also has the opportunity to be widely abused.</p>
+<h1 id="How-PNG-Works"><a href="#How-PNG-Works" class="headerlink" title="How PNG Works"></a>How PNG Works</h1><p>The Portable Network Graphics (PNG) has become a staple for App development over the past few decades. It’s creeped up everywhere from game development, to web development, and Android development, which means that it’s widely adopted, but also has the opportunity to be widely abused.</p>
 <p>And as I’ve discussed before, PNG provides a nice, high resolution image format, but that means that there’s lots of room for improvement for data compression. But before we can start talking about how to compress PNG files further, we have to first talk about how the format works.</p>
-<h1 id="Understanding_the_Compression">Understanding the Compression</h1><p>PNG’s compression process is entirely lossless; meaning that the compressed file can reconstruct the source image exactly. Done in two stages: Prediction (aka filtering) and then Compression.</p>
+<h1 id="Understanding-the-Compression"><a href="#Understanding-the-Compression" class="headerlink" title="Understanding the Compression"></a>Understanding the Compression</h1><p>PNG’s compression process is entirely lossless; meaning that the compressed file can reconstruct the source image exactly. Done in two stages: Prediction (aka filtering) and then Compression.</p>
 <a id="more"></a>
-<h2 id="1_Filtering_(prediction)">1 Filtering (prediction)</h2><p>Delta encoding is one of the most powerful numeric compression methods out there. The basic idea is that you can represent any value as a difference from the previous value. So,</p>
+<h2 id="1-Filtering-prediction"><a href="#1-Filtering-prediction" class="headerlink" title="1 Filtering (prediction)"></a>1 Filtering (prediction)</h2><p>Delta encoding is one of the most powerful numeric compression methods out there. The basic idea is that you can represent any value as a difference from the previous value. So,</p>
 <p>[2,3,4,5,6,7,8] can become [2,1,1,1,1,1,1], where<br>[2, 3–2=1, 4–3=1, 5–4=1, 6–5=1, 7–6=1, 8–7=1]</p>
 <p>The reason this is so powerful, is that if the data is linearly correlated (that is, value has some low-difference from the previous value) then you end up transforming values of your dataset into lots of duplicate, low values, which are more compressible.</p>
 <p>The PNG format makes use of delta encoding in a format that it calls “filtering”. Basically, for each scan-line of pixels, a current pixel is encoded in some relation to the pixel to the left, the pixel above, and the pixel above-left.</p>
@@ -270,7 +271,7 @@ How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App dev
 <p><img src="/images/media/14600333696105.jpg" alt="An example of applying filtering to two rows of pixel values. The impacted pixels are highlighted in blue."></p>
 <p>An example of applying filtering to two rows of pixel values. The impacted pixels are highlighted in blue.<br>And, it’s important to note that these filters are done, per channel not per-pixel. Meaning that the filter is applied to all the red values of a pixel for a scanline, and then separately for all the blue values for a scanline (although all the colors in a row will use the same filter).</p>
 <p>And the PNG format has some nifty ways to pick which filter to use on a channel; While brute force is the most direct, it’s simply right out. Instead, the developers experimented on different image types and came up with some rules of thumb, that are close to optimal; like use None filters for palette images, and sub-8 bit grayscale images. And for the other images, choose the filter that minimizes the sum of absolute differences; Rather than using modulo-256, instead to standard signed math, then take the abs value, and add them all together for a given row, and compare the sums for the other filter types. Choose the filter that gives the smallest sum.</p>
-<h2 id="2_Compression_(DEFLATE)">2 Compression (DEFLATE)</h2><p>Once filtering has occurred on a scan-line, it’s passed off to a descendant of the LZ77 algorithm, known as DEFLATE; This algorithm combines LZ77 coding alongside a Huffman coder. Which is almost identical to compressors like PKWARE, PKZIP, GZip etc. The implementation is out-of-the-box standard, but has some interesting caveats when it comes to image data.</p>
+<h2 id="2-Compression-DEFLATE"><a href="#2-Compression-DEFLATE" class="headerlink" title="2 Compression (DEFLATE)"></a>2 Compression (DEFLATE)</h2><p>Once filtering has occurred on a scan-line, it’s passed off to a descendant of the LZ77 algorithm, known as DEFLATE; This algorithm combines LZ77 coding alongside a Huffman coder. Which is almost identical to compressors like PKWARE, PKZIP, GZip etc. The implementation is out-of-the-box standard, but has some interesting caveats when it comes to image data.</p>
 <ol>
 <li>Deflate limits match lengths between 3 and 258 symbols; which puts the maximum conceivable compression ratio around 1032:1.</li>
 <li>If the match is less than 3 symbols, then you incur some overhead to represent the symbol</li>
@@ -282,7 +283,7 @@ How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App dev
 <p><img src="/images/media/14600335437808.jpg" alt=""></p>
 <p>What’s occurring here, is that in the smaller image, there’s more matches in the scanlines, and thus there’s better compression. However, adjusting the size, slightly, changes the type of matching that can occur; some potential candidates for matching are now outside of our LZ window, and thus aren’t matched, resulting in a larger file.</p>
 <p>If you’re looking to see how well your own images compressed with PNG, check out PNGThermal.</p>
-<h1 id="Understanding_the_format">Understanding the format</h1><p>Now, it’s worth noting that PNG is more than just the filtering &amp; compression stages. It’s a pretty extensible container format, that can support all sorts of image types and added data.</p>
+<h1 id="Understanding-the-format"><a href="#Understanding-the-format" class="headerlink" title="Understanding the format"></a>Understanding the format</h1><p>Now, it’s worth noting that PNG is more than just the filtering &amp; compression stages. It’s a pretty extensible container format, that can support all sorts of image types and added data.</p>
 <p>Let’s first start with the fact that the PNG file format can support a series of chunks inside of it which can include various types of data. For example, you’ve got the PNG Header chunk which contains simple information about the image like width, height, bit depth &amp; color-type.</p>
 <p>The Image data chunk contains the actual image information itself (oh, and note, this information can exist in multiple chunks). Then for color paletted images, there’s a separate chunk for that.</p>
 <p>And finally an end-of-file chunk. And those are the main chunks, but there’s also a whole slew of other chunks like:</p>
@@ -299,18 +300,18 @@ How PNG WorksThe Portable Network Graphics (PNG) has become a staple for App dev
 </ul>
 <p>Now, these chunks are where you need to watch out, because lots of junk gets put in there by your photo editing app. For example, saving a PNG file from Photoshop results in a chunk that says “this image was made in photoshop.” That chunk has nothing to do with the visible pixel data, but yet it’s included in the file itself. As such, REMOVING useless chunks is critical to ensuring small file sizes. The image below shows you a 16x16 pixel image, saved from Photoshop as a regular PNG, and the other-one, using the “export to web” option of photoshop, which removes all the gobbledygook.</p>
 <p><img src="/images/media/14600330550488.jpg" alt="The left image was saved regularly through Photoshop, the right image was saved via “export to web.” the difference in sizes comes from removal of meta data from the file."></p>
-<h1 id="Pixel_format">Pixel format</h1><p>The PNG format can ALSO support various types of pixel formats so you can create an optimal</p>
+<h1 id="Pixel-format"><a href="#Pixel-format" class="headerlink" title="Pixel format"></a>Pixel format</h1><p>The PNG format can ALSO support various types of pixel formats so you can create an optimal</p>
 <p>Indexed = 1 channel, can be 1,2,4,8 bpc</p>
 <p>Grayscale = 1 channel, can be 1,2,4,8,16 bpc</p>
 <p>Gray+Alpha = 2 channel, can be 8 or 16 bpc</p>
 <p>Truecolor(RGB) = 3 channel, can be 8 or 16 bpc</p>
 <p>RGBA = 4 channel, can be 8 or 16 bpc</p>
 <p>Pixel formats are selected by the author of the image file. So it’s not too interesting to discuss, other than making sure you’ve chosen the right pixel format; Storing a greyscale image as a truecolor w/ alpha, is a bad idea.</p>
-<h1 id="Story_:_GIF_and_the_birth_of_PNG">Story : GIF and the birth of PNG</h1><p>When it comes to the relentless bulk of web content, images are by far the largest load bearer today (although there’s an argument to be made that videos have become king as of late).</p>
+<h1 id="Story-GIF-and-the-birth-of-PNG"><a href="#Story-GIF-and-the-birth-of-PNG" class="headerlink" title="Story : GIF and the birth of PNG"></a>Story : GIF and the birth of PNG</h1><p>When it comes to the relentless bulk of web content, images are by far the largest load bearer today (although there’s an argument to be made that videos have become king as of late).</p>
 <p>But what’s truly interesting is that as much as compression information can help solve some of the congestion, there’s a massive amount of human problems that keep compression from making its way into everyone’s hands.</p>
 <p>Let’s take a trip back to 1985, when Unisys filed a patent for the LZW compression algorithm, nothing too interesting at the time. A few years later, when CompuServe invented the 89a format (which later became the GIF format), they used LZW as its backbone, not realizing that it was a patented. Unisys didn’t care about this until 1993, when the Netscape browser added support for the IMG HTML tag, alongside with support for the 89a format. Within a year, animated images became all the craze on the internet, and Unisys started enforcing its patent. CompuServe and Unisys eventually reached a court agreement in December of 1994, announcing that Unisys would start collecting royalties from all software that used the 89a graphics format. In the months following this decision, a group of engineers developed an entirely new, patent-free format known as the Portable Network Graphics or PNG format.</p>
 <p>In 2004, the patent on LZW finally expired, but for a whole decade, the GIF/PNG image format debate was a hot one among internet folks.</p>
-<h1 id="In_closing">In closing</h1><p>PNG is a very flexible and powerful image format type that’s become popular on the web due to it’s ability to support transparency. But it’s not right for <em>every</em> situation; Basically, make sure you’re using the best tool for the job. If your image is photographic and absolute losslessness is not required, then JPG or an equivalent lossy method would be more efficient than any lossless approach. On the other hand If you need a smaller bit-format, or need transparency, than PNG would be a dominant win over JPG.</p>
+<h1 id="In-closing"><a href="#In-closing" class="headerlink" title="In closing"></a>In closing</h1><p>PNG is a very flexible and powerful image format type that’s become popular on the web due to it’s ability to support transparency. But it’s not right for <em>every</em> situation; Basically, make sure you’re using the best tool for the job. If your image is photographic and absolute losslessness is not required, then JPG or an equivalent lossy method would be more efficient than any lossless approach. On the other hand If you need a smaller bit-format, or need transparency, than PNG would be a dominant win over JPG.</p>
 <p>And if you’re interested in seeing the most bare-bones implementation of a PNG coder, check out this awesome gist, which packs the whole thing into ~40 lines of code.</p>
 <p>Of course, then there’s WebP, which will give you both.. But that’s another video ;)<br>CompressionAndroidPerformance<br>69</p>
 
@@ -385,7 +386,7 @@ data-ad-format="auto"></ins>
 <!-- Show TOC and tocButton in default, Hide TOC via putting "toc: false" before "---" at [post].md -->
 <div id="toc" class="toc-article">
 <strong class="toc-title">文章目录</strong>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How_PNG_Works"><span class="toc-number">1.</span> <span class="toc-text">How PNG Works</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Understanding_the_Compression"><span class="toc-number">2.</span> <span class="toc-text">Understanding the Compression</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1_Filtering_(prediction)"><span class="toc-number">2.1.</span> <span class="toc-text">1 Filtering (prediction)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2_Compression_(DEFLATE)"><span class="toc-number">2.2.</span> <span class="toc-text">2 Compression (DEFLATE)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Understanding_the_format"><span class="toc-number">3.</span> <span class="toc-text">Understanding the format</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pixel_format"><span class="toc-number">4.</span> <span class="toc-text">Pixel format</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Story_:_GIF_and_the_birth_of_PNG"><span class="toc-number">5.</span> <span class="toc-text">Story : GIF and the birth of PNG</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#In_closing"><span class="toc-number">6.</span> <span class="toc-text">In closing</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How-PNG-Works"><span class="toc-number">1.</span> <span class="toc-text">How PNG Works</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Understanding-the-Compression"><span class="toc-number">2.</span> <span class="toc-text">Understanding the Compression</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Filtering-prediction"><span class="toc-number">2.1.</span> <span class="toc-text">1 Filtering (prediction)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Compression-DEFLATE"><span class="toc-number">2.2.</span> <span class="toc-text">2 Compression (DEFLATE)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Understanding-the-format"><span class="toc-number">3.</span> <span class="toc-text">Understanding the format</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pixel-format"><span class="toc-number">4.</span> <span class="toc-text">Pixel format</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Story-GIF-and-the-birth-of-PNG"><span class="toc-number">5.</span> <span class="toc-text">Story : GIF and the birth of PNG</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#In-closing"><span class="toc-number">6.</span> <span class="toc-text">In closing</span></a></li></ol>
 </div>
 <style type="text/css">
   .left-col .switch-btn {
@@ -488,7 +489,7 @@ data-ad-format="auto"></ins>
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -539,8 +540,8 @@ data-ad-format="auto"></ins>
     </div>
     
 
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
   <style>
     body {

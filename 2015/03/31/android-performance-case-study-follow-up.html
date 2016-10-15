@@ -25,13 +25,14 @@
 <meta name="twitter:description" content="前言本文是一篇译文，原文Android Performance Case Study Follow-up的作者是大名鼎鼎的Romain Guy。本文讲述了Android性能优化的一些技巧、方法和工具。
 译文正文两年前，我发表了一篇名为Android Performance Case Study 的文章，来帮助Android开发者了解需要使用什么工具和技术手段来确定、追踪和优化性能问题。
 那篇文章以">
+<meta name="twitter:image" content="http://androidperformance.com/images/android-performance-case-study-follow-up/falconpro3.png">
   
     <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
@@ -247,8 +248,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前言">前言</h1><p>本文是一篇译文，原文<a href="http://www.curious-creature.com/2015/03/25/android-performance-case-study-follow-up/?utm_source=Android+Weekly&amp;utm_campaign=0692ef161b-Android_Weekly_146&amp;utm_medium=email&amp;utm_term=0_4eb677ad19-0692ef161b-337850757" target="_blank" rel="external">Android Performance Case Study Follow-up</a>的作者是大名鼎鼎的<a href="http://www.curious-creature.com/" target="_blank" rel="external">Romain Guy</a>。本文讲述了Android性能优化的一些技巧、方法和工具。</p>
-<h1 id="译文正文">译文正文</h1><p>两年前，我发表了一篇名为<a href="http://www.curious-creature.com/2012/12/01/android-performance-case-study/" target="_blank" rel="external">Android Performance Case Study</a> 的文章，来帮助Android开发者了解需要使用什么工具和技术手段来确定、追踪和优化性能问题。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是一篇译文，原文<a href="http://www.curious-creature.com/2015/03/25/android-performance-case-study-follow-up/?utm_source=Android+Weekly&amp;utm_campaign=0692ef161b-Android_Weekly_146&amp;utm_medium=email&amp;utm_term=0_4eb677ad19-0692ef161b-337850757" target="_blank" rel="external">Android Performance Case Study Follow-up</a>的作者是大名鼎鼎的<a href="http://www.curious-creature.com/" target="_blank" rel="external">Romain Guy</a>。本文讲述了Android性能优化的一些技巧、方法和工具。</p>
+<h1 id="译文正文"><a href="#译文正文" class="headerlink" title="译文正文"></a>译文正文</h1><p>两年前，我发表了一篇名为<a href="http://www.curious-creature.com/2012/12/01/android-performance-case-study/" target="_blank" rel="external">Android Performance Case Study</a> 的文章，来帮助Android开发者了解需要使用什么工具和技术手段来确定、追踪和优化性能问题。</p>
 <p>那篇文章以一个Twitter客户端 <a href="https://play.google.com/store/apps/details?id=com.jv.materialfalcon" target="_blank" rel="external">Falcon Pro</a>为典范，其开发人员为 Joaquim Vergès. Joaquim人不错，他允许我在我的文章中使用它的程序作为例子，并且快速处理了我发现的所有问题。一切都OK，直到Joaquim 从头开始开发Falcon Pro 3，前不久在他准备发布它的新应用的时候，他联系了我，因为他有一个和滚动相关的性能问题需要我来帮助他，这一次我依然没有源代码可以参考。</p>
 <a id="more"></a>
 <p>Joaquim使用了所有的工具来找出问题所在，他发现Overdraw不是问题的原因，他觉得是 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank" rel="external">ViewPager</a> 的用法导致了这个问题。他给我发来了下面的截图：</p>
@@ -277,15 +278,15 @@
 <ul>
 <li>Use a customizable “inactive” color instead of setting an opacity on the View（ 使用动态的“inactive”颜色(即根据状态来设置View的颜色)而不是设置透明度。）</li>
 <li><p>Return false from hasOverlappingRendering() and the framework will set the proper alpha on the Paint<br>for you（使hasOverlappingRendering()返回false，这样系统会设置适当的alpha，关于这个的用法，这篇<a href="http://imid.me/blog/2014/01/17/best-practices-for-using-alpha/" target="_blank" rel="external">文章</a>中有提到：同时Android提供了hasOverlappingRendering()接口，通过重写该接口可以告知系统当前View是否存在内容重叠的情况，帮助系统优化绘制流程，原理是这样的：对于有重叠内容的View，系统简单粗暴的使用 offscreen buffer来协助处理。当告知系统该View无重叠内容时，系统会分别使用合适的alpha值绘制每一层。）</p>
- <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Returns whether this View has content which overlaps. This function, intended <span class="keyword">to</span> be</span><br><span class="line"> * overridden <span class="keyword">by</span> specific View types, <span class="keyword">is</span> an optimization when alpha <span class="keyword">is</span> <span class="keyword">set</span> <span class="function_start"><span class="keyword">on</span></span> a view. If</span><br><span class="line"> * rendering overlaps <span class="keyword">in</span> a view <span class="keyword">with</span> alpha &lt; <span class="number">1</span>, <span class="keyword">that</span> view <span class="keyword">is</span> drawn <span class="keyword">to</span> an offscreen buffer</span><br><span class="line"> * <span class="keyword">and</span> <span class="keyword">then</span> composited <span class="keyword">it</span> <span class="keyword">into</span> place, which can be expensive. If <span class="keyword">the</span> view has no overlapping</span><br><span class="line"> * rendering, <span class="keyword">the</span> view can draw each primitive <span class="keyword">with</span> <span class="keyword">the</span> appropriate alpha value directly.</span><br><span class="line"> * An example <span class="keyword">of</span> overlapping rendering <span class="keyword">is</span> a TextView <span class="keyword">with</span> a background image, such <span class="keyword">as</span> a</span><br><span class="line"> * Button. An example <span class="keyword">of</span> non-overlapping rendering <span class="keyword">is</span> a TextView <span class="keyword">with</span> no background, <span class="keyword">or</span></span><br><span class="line"> * an ImageView <span class="keyword">with</span> only <span class="keyword">the</span> foreground image. The default implementation returns <span class="constant">true</span>;</span><br><span class="line"> * subclasses should override <span class="keyword">if</span> they have cases which can be optimized.</span><br><span class="line"> *</span><br><span class="line"> * @<span class="constant">return</span> <span class="constant">true</span> <span class="keyword">if</span> <span class="keyword">the</span> content <span class="keyword">in</span> this view might overlap, <span class="constant">false</span> otherwise.</span><br><span class="line"> */</span><br><span class="line">public <span class="type">boolean</span> hasOverlappingRendering() &#123;</span><br><span class="line"><span class="command">    return</span> <span class="constant">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Returns whether this View has content which overlaps. This function, intended <span class="keyword">to</span> be</div><div class="line"> * overridden <span class="keyword">by</span> specific View types, <span class="keyword">is</span> an optimization when alpha <span class="keyword">is</span> <span class="keyword">set</span> <span class="keyword">on</span> a view. If</div><div class="line"> * rendering overlaps <span class="keyword">in</span> a view <span class="keyword">with</span> alpha &lt; <span class="number">1</span>, <span class="keyword">that</span> view <span class="keyword">is</span> drawn <span class="keyword">to</span> an offscreen buffer</div><div class="line"> * <span class="keyword">and</span> <span class="keyword">then</span> composited <span class="keyword">it</span> <span class="keyword">into</span> place, which can be expensive. If <span class="keyword">the</span> view has no overlapping</div><div class="line"> * rendering, <span class="keyword">the</span> view can draw each primitive <span class="keyword">with</span> <span class="keyword">the</span> appropriate alpha value directly.</div><div class="line"> * An example <span class="keyword">of</span> overlapping rendering <span class="keyword">is</span> a TextView <span class="keyword">with</span> a background image, such <span class="keyword">as</span> a</div><div class="line"> * Button. An example <span class="keyword">of</span> non-overlapping rendering <span class="keyword">is</span> a TextView <span class="keyword">with</span> no background, <span class="keyword">or</span></div><div class="line"> * an ImageView <span class="keyword">with</span> only <span class="keyword">the</span> foreground image. The default implementation returns <span class="literal">true</span>;</div><div class="line"> * subclasses should override <span class="keyword">if</span> they have cases which can be optimized.</div><div class="line"> *</div><div class="line"> * @<span class="literal">return</span> <span class="literal">true</span> <span class="keyword">if</span> <span class="keyword">the</span> content <span class="keyword">in</span> this view might overlap, <span class="literal">false</span> otherwise.</div><div class="line"> */</div><div class="line">public <span class="built_in">boolean</span> hasOverlappingRendering() &#123;</div><div class="line"><span class="built_in">    return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>Return true from onSetAlpha() and set an alpha on the Paint used to draw the “gray” circles（使onSetAlpha() 返回True并对Paint设置alpha来绘制“gray”圆圈）</p>
- <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">paint.setAlpha((<span class="built_in">int</span>) <span class="built_in">alpha</span> * <span class="number">255</span>);</span><br><span class="line">canvas.<span class="title">draw</span>*(..., paint);</span><br></pre></td></tr></table></figure>
+ <figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">paint.setAlpha((<span class="built_in">int</span>) <span class="built_in">alpha</span> * <span class="number">255</span>);</div><div class="line">canvas.<span class="title">draw</span>*(..., paint);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>最简单的方法是使用第二种，但是他只能在API16以上使用，如果你要支持旧版本的Android，使用其他两个方法，我相信Joaquim 已经丢弃那个第三方库并使用自己的指示器了。</p>
 <p>我希望这篇文章能让大家清楚如何从看似无辜的和无害的操作中寻找可能会出现性能问题。所以请记住:不要仅仅做出假设,要实际去验证、测量。</p>
-<h1 id="附录">附录</h1><p>更多关于Alpha的使用，可以参考这篇文章：<br><a href="http://imid.me/blog/2014/01/17/best-practices-for-using-alpha/" target="_blank" rel="external">Android Tips: Best Practices for Using Alpha</a></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>更多关于Alpha的使用，可以参考这篇文章：<br><a href="http://imid.me/blog/2014/01/17/best-practices-for-using-alpha/" target="_blank" rel="external">Android Tips: Best Practices for Using Alpha</a></p>
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Gracker -->
@@ -461,7 +462,7 @@ data-ad-format="auto"></ins>
 
 
     
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
         <script>
         var yiliaConfig = {
         fancybox: true,
@@ -512,8 +513,8 @@ data-ad-format="auto"></ins>
     </div>
     
 
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="/js/main.js" type="text/javascript"></script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
 
   <style>
     body {
