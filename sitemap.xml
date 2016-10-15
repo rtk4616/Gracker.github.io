@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/2015/07/20/Android-Performance-Memory-onTrimMemory.html</loc>
+    
+    <lastmod>2016-10-15T07:08:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/2014/05/17/apps-can-no-android4-4-app-longer-write-files-to-your-sd-card.html</loc>
     
     <lastmod>2016-08-29T14:17:58.000Z</lastmod>
@@ -166,13 +173,6 @@
     <loc>http://androidperformance.com/index.html</loc>
     
     <lastmod>2015-07-20T04:54:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2015/07/20/Android-Performance-Memory-onTrimMemory.html</loc>
-    
-    <lastmod>2015-07-20T04:49:37.000Z</lastmod>
     
   </url>
   

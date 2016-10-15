@@ -820,7 +820,7 @@ Use the app’s primary color to indicate the view in focus.&quot;&gt;&lt;/p&gt;
     <link href="http://androidperformance.com/2015/07/20/Android-Performance-Memory-onTrimMemory.html"/>
     <id>http://androidperformance.com/2015/07/20/Android-Performance-Memory-onTrimMemory.html</id>
     <published>2015-07-20T04:42:10.000Z</published>
-    <updated>2015-07-20T04:49:37.000Z</updated>
+    <updated>2016-10-15T07:08:21.000Z</updated>
     
     <content type="html"><![CDATA[<p>OnTrimMemory 回调是 Android 4.0 之后提供的一个API，这个 API 是提供给开发者的，它的主要作用是提示开发者在系统内存不足的时候，通过处理部分资源来释放内存，从而避免被 Android 系统杀死。这样应用在下一次启动的时候，速度就会比较快。</p>
 <p>本文通过问答的方式，从各个方面来讲解 OnTrimMemory 回调的使用过程和效果。想要开发高性能且用户体验良好的 Android 应用，那么这篇文章你不应该错过。</p>
@@ -845,7 +845,7 @@ Use the app’s primary color to indicate the view in focus.&quot;&gt;&lt;/p&gt;
 <h2 id="1-哪些组件可以实现OnTrimMemory回调？"><a href="#1-哪些组件可以实现OnTrimMemory回调？" class="headerlink" title="1. 哪些组件可以实现OnTrimMemory回调？"></a>1. 哪些组件可以实现OnTrimMemory回调？</h2><ul>
 <li>Application.onTrimMemory()</li>
 <li>Activity.onTrimMemory()</li>
-<li>Fragement.OnTrimMemory()</li>
+<li>Fragment.OnTrimMemory()</li>
 <li>Service.onTrimMemory()</li>
 <li>ContentProvider.OnTrimMemory()</li>
 </ul>
