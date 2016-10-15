@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta name="google-site-verification" content="tgaIB70XzZ5Ys1pLv8kQ2bOD5mieUyYsF-rIgZoeICM" />
-  <meta charset="utf-8">
-  
-  <title>Performance</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="专注 Android 性能优化">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Gracker" />
+
+
+    
+     
+        <meta name="google-site-verification" content="tgaIB70XzZ5Ys1pLv8kQ2bOD5mieUyYsF-rIgZoeICM" />
+    
+
+
+<meta name="description" content="专注 Android 性能优化">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Performance">
 <meta property="og:url" content="http://androidperformance.com/page/3/index.html">
@@ -15,186 +29,241 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Performance">
 <meta name="twitter:description" content="专注 Android 性能优化">
-  
-    <link rel="alternative" href="/atom.xml" title="Performance" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Performance" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Performance</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: false,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
 </head>
 <body>
   <div id="container">
     <div class="left-col">
     <div class="overlay"></div>
 <div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			
-			<img lazy-src="/img/favicon.png" class="js-avatar">
-			
-		</a>
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/favicon.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Gracker</a></h1>
+        </hgroup>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">Gracker</a></h1>
-		</hgroup>
+        
+        <p class="header-subtitle">True mastery of any skill takes a lifetime</p>
+        
 
-		
-		<p class="header-subtitle">True mastery of any skill takes a lifetime</p>
-		
-				
+        
 
 
-		
-			<div id="switch-btn" class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						<li>友情链接</li>
-						
-						
-					</ul>
-				</div>
-			</div>
-		
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
 
-		<div id="switch-area" class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/archives">所有文章</a></li>
-				        
-							<li><a href="/tags/随笔">随笔</a></li>
-				        
-							<li><a href="/tags">标签云</a></li>
-				        
-							<li><a href="/about">关于我</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<ul class="social">
-							
-								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
-					        
-								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
-					        
-								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
-					        
-								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
-					        
-								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
-					        
-						</ul>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/DelayLoad/" style="font-size: 12px;">DelayLoad</a> <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/Java/" style="font-size: 12px;">Java</a> <a href="/tags/MAT/" style="font-size: 16px;">MAT</a> <a href="/tags/Menory/" style="font-size: 18px;">Menory</a> <a href="/tags/Nexus/" style="font-size: 10px;">Nexus</a> <a href="/tags/Performance/" style="font-size: 16px;">Performance</a> <a href="/tags/RenderThread/" style="font-size: 10px;">RenderThread</a> <a href="/tags/Singleton/" style="font-size: 10px;">Singleton</a> <a href="/tags/hwui/" style="font-size: 10px;">hwui</a> <a href="/tags/启动优化/" style="font-size: 14px;">启动优化</a> <a href="/tags/设计规范/" style="font-size: 12px;">设计规范</a>
-					</div>
-				</section>
-				
-				
-				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
-			        
-			        </div>
-				</section>
-				
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/随笔">随笔</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa 新浪微博" href="http://weibo.com/gracker520" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/Gracker" title="GitHub"></a>
+                            
+                                <a class="fa 简书" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a>
+                            
+                                <a class="fa 知乎" href="http://www.zhihu.com/people/gracker" title="知乎"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa Email" href="/dreamtale.jg@gmail.com" title="Email"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DelayLoad/">DelayLoad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAT/">MAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Menory/">Menory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nexus/">Nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Performance/">Performance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RenderThread/">RenderThread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Singleton/">Singleton</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hwui/">hwui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/启动优化/">启动优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计规范/">设计规范</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
 
-				
-			</div>
-		</div>
-	</header>				
+                
+            </div>
+        </div>
+    </header>                
 </div>
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gracker</a></h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<a href="/" class="profilepic">
-				<img lazy-src="/img/favicon.png" class="js-avatar">
-			</a>
-			<hgroup>
-			  <h1 class="header-author"><a href="/" title="回到主页">Gracker</a></h1>
-			</hgroup>
-			
-			<p class="header-subtitle">True mastery of any skill takes a lifetime</p>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/archives">所有文章</a></li>
-		        
-					<li><a href="/tags/随笔">随笔</a></li>
-		        
-					<li><a href="/tags">标签云</a></li>
-		        
-					<li><a href="/about">关于我</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-						<ul class="social">
-							
-								<li id="新浪微博"><a class="新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a></li>
-					        
-								<li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a></li>
-					        
-								<li id="简书"><a class="简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a></li>
-					        
-								<li id="知乎"><a class="知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a></li>
-					        
-								<li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
-					        
-						</ul>
-			</nav>
-		</header>				
-	</div>
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Gracker</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/favicon.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Gracker</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">True mastery of any skill takes a lifetime</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/随笔">随笔</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/gracker520" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Gracker" title="GitHub"></a>
+                            
+                                <a class="fa 简书" target="_blank" href="http://www.jianshu.com/users/FK4sc4/latest_articles" title="简书"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="http://www.zhihu.com/people/gracker" title="知乎"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa Email" target="_blank" href="/dreamtale.jg@gmail.com" title="Email"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
       <div class="body-wrap">
   
@@ -202,8 +271,19 @@
   
     <div class="article-meta">
       <a href="/2015/04/11/AndroidMemory-Open-Bitmap-Object-In-MAT.html" class="article-date">
-  	<time datetime="2015-04-11T10:41:32.000Z" itemprop="datePublished">2015-04-11</time>
+      <time datetime="2015-04-11T10:41:32.000Z" itemprop="datePublished">2015-04-11</time>
 </a>
+
+ 
+    <a href="/2015/04/11/AndroidMemory-Open-Bitmap-Object-In-MAT.html#comments" title="Comments">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/04/11/AndroidMemory-Open-Bitmap-Object-In-MAT.html" ></span>
+        
+        
+    </a>
+
     </div>
   
   <div class="article-inner">
@@ -224,28 +304,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在使用MAT查看应用程序内存使用情况的时候,我们经常会碰到Bitmap对象以及BitmapDrawable$BitmapState对象,而且在内存使用上,Bitmap所占用的内存占大多数.在这样的情况下, Bitmap所造成的内存泄露尤其严重, 需要及时发现并且及时处理.在这样的需求下, 当我们在MAT中发现和图片相关的内存泄露的时候, 如果能知道是那一张图片,对分析问题会有很大的帮助.</p>
+          
+              <p>在使用MAT查看应用程序内存使用情况的时候,我们经常会碰到Bitmap对象以及BitmapDrawable$BitmapState对象,而且在内存使用上,Bitmap所占用的内存占大多数.在这样的情况下, Bitmap所造成的内存泄露尤其严重, 需要及时发现并且及时处理.在这样的需求下, 当我们在MAT中发现和图片相关的内存泄露的时候, 如果能知道是那一张图片,对分析问题会有很大的帮助.</p>
 <p>本文就介绍如何将MAT中的Bitmap数组对象还原成一张图片。</p>
-      
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a>
-	</div>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a>
+    </div>
 
 
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
-	</div>
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2015/04/11/AndroidMemory-Open-Bitmap-Object-In-MAT.html#more">more >></a>
+          <a href="/2015/04/11/AndroidMemory-Open-Bitmap-Object-In-MAT.html#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -263,32 +344,24 @@
 
 
 
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
   
     <article id="post-AndroidMemory-Usage-Of-MAT-Pro" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html" class="article-date">
-  	<time datetime="2015-04-11T10:26:36.000Z" itemprop="datePublished">2015-04-11</time>
+      <time datetime="2015-04-11T10:26:36.000Z" itemprop="datePublished">2015-04-11</time>
 </a>
+
+ 
+    <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html#comments" title="Comments">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html" ></span>
+        
+        
+    </a>
+
     </div>
   
   <div class="article-inner">
@@ -309,7 +382,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>第一篇文章<a href="http://androidperformance.com/2015/04/11/AndroidMemory-Usage-Of-MAT/">《Android内存优化之一：MAT使用入门》</a>介绍了MAT的基本使用方法，包括下载、安装、打开HPROF文件，和一些基本的视图。这篇文章介绍一下一些最新的工具使用方法，和第一篇中没有提到的一些其他的用法。</p>
+          
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>第一篇文章<a href="http://androidperformance.com/2015/04/11/AndroidMemory-Usage-Of-MAT/">《Android内存优化之一：MAT使用入门》</a>介绍了MAT的基本使用方法，包括下载、安装、打开HPROF文件，和一些基本的视图。这篇文章介绍一下一些最新的工具使用方法，和第一篇中没有提到的一些其他的用法。</p>
 <h2 id="Java的内存泄露的特点"><a href="#Java的内存泄露的特点" class="headerlink" title="Java的内存泄露的特点"></a>Java的内存泄露的特点</h2><ul>
 <li>Java中的内存泄露主要特征：可达，无用</li>
 <li>无用指的是创建了但是不再使用之后没有释放</li>
@@ -317,26 +391,26 @@
 </ul>
 <h2 id="MAT使用技巧进阶"><a href="#MAT使用技巧进阶" class="headerlink" title="MAT使用技巧进阶"></a>MAT使用技巧进阶</h2><h3 id="使用Android-Studio-Dump内存文件"><a href="#使用Android-Studio-Dump内存文件" class="headerlink" title="使用Android Studio Dump内存文件"></a>使用Android Studio Dump内存文件</h3><p>Android Studio的最新版本可以直接获取hprof文件：</p>
 <p><img src="/images/MAT_Pro/MAT_1.png" alt="Android-Studio"></p>
-      
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a>
-	</div>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a>
+    </div>
 
 
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
-	</div>
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html#more">more >></a>
+          <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT-Pro.html#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -354,32 +428,24 @@
 
 
 
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
   
     <article id="post-AndroidMemory-Usage-Of-MAT" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html" class="article-date">
-  	<time datetime="2015-04-11T10:10:29.000Z" itemprop="datePublished">2015-04-11</time>
+      <time datetime="2015-04-11T10:10:29.000Z" itemprop="datePublished">2015-04-11</time>
 </a>
+
+ 
+    <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html#comments" title="Comments">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/04/11/AndroidMemory-Usage-Of-MAT.html" ></span>
+        
+        
+    </a>
+
     </div>
   
   <div class="article-inner">
@@ -400,29 +466,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="MAT简介"><a href="#MAT简介" class="headerlink" title="MAT简介"></a>MAT简介</h2><h3 id="MAT介绍"><a href="#MAT介绍" class="headerlink" title="MAT介绍"></a>MAT介绍</h3><p>MAT(Memory Analyzer Tool)，一个基于Eclipse的内存分析工具，是一个快速、功能丰富的JAVA heap分析工具，它可以帮助我们查找内存泄漏和减少内存消耗。使用内存分析工具从众多的对象中进行分析，快速的计算出在内存中对象的占用大小，看看是谁阻止了垃圾收集器的回收工作，并可以通过报表直观的查看到可能造成这种结果的对象。  </p>
+          
+              <h2 id="MAT简介"><a href="#MAT简介" class="headerlink" title="MAT简介"></a>MAT简介</h2><h3 id="MAT介绍"><a href="#MAT介绍" class="headerlink" title="MAT介绍"></a>MAT介绍</h3><p>MAT(Memory Analyzer Tool)，一个基于Eclipse的内存分析工具，是一个快速、功能丰富的JAVA heap分析工具，它可以帮助我们查找内存泄漏和减少内存消耗。使用内存分析工具从众多的对象中进行分析，快速的计算出在内存中对象的占用大小，看看是谁阻止了垃圾收集器的回收工作，并可以通过报表直观的查看到可能造成这种结果的对象。  </p>
 <p><img src="/images/MAT/MAT_Intro.png" alt="image"></p>
 <p>当然MAT也有独立的不依赖Eclipse的版本，只不过这个版本在调试Android内存的时候，需要将DDMS生成的文件进行转换，才可以在独立版本的MAT上打开。不过Android SDK中已经提供了这个Tools，所以使用起来也是很方便的。</p>
-      
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a>
-	</div>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a>
+    </div>
 
 
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
-	</div>
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html#more">more >></a>
+          <a href="/2015/04/11/AndroidMemory-Usage-Of-MAT.html#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -440,32 +507,24 @@
 
 
 
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
   
     <article id="post-android-performance-case-study-follow-up" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/03/31/android-performance-case-study-follow-up.html" class="article-date">
-  	<time datetime="2015-03-31T01:29:00.000Z" itemprop="datePublished">2015-03-31</time>
+      <time datetime="2015-03-31T01:29:00.000Z" itemprop="datePublished">2015-03-31</time>
 </a>
+
+ 
+    <a href="/2015/03/31/android-performance-case-study-follow-up.html#comments" title="Comments">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/03/31/android-performance-case-study-follow-up.html" ></span>
+        
+        
+    </a>
+
     </div>
   
   <div class="article-inner">
@@ -486,29 +545,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是一篇译文，原文<a href="http://www.curious-creature.com/2015/03/25/android-performance-case-study-follow-up/?utm_source=Android+Weekly&amp;utm_campaign=0692ef161b-Android_Weekly_146&amp;utm_medium=email&amp;utm_term=0_4eb677ad19-0692ef161b-337850757">Android Performance Case Study Follow-up</a>的作者是大名鼎鼎的<a href="http://www.curious-creature.com/">Romain Guy</a>。本文讲述了Android性能优化的一些技巧、方法和工具。</p>
+          
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是一篇译文，原文<a href="http://www.curious-creature.com/2015/03/25/android-performance-case-study-follow-up/?utm_source=Android+Weekly&amp;utm_campaign=0692ef161b-Android_Weekly_146&amp;utm_medium=email&amp;utm_term=0_4eb677ad19-0692ef161b-337850757">Android Performance Case Study Follow-up</a>的作者是大名鼎鼎的<a href="http://www.curious-creature.com/">Romain Guy</a>。本文讲述了Android性能优化的一些技巧、方法和工具。</p>
 <h1 id="译文正文"><a href="#译文正文" class="headerlink" title="译文正文"></a>译文正文</h1><p>两年前，我发表了一篇名为<a href="http://www.curious-creature.com/2012/12/01/android-performance-case-study/">Android Performance Case Study</a> 的文章，来帮助Android开发者了解需要使用什么工具和技术手段来确定、追踪和优化性能问题。</p>
 <p>那篇文章以一个Twitter客户端 <a href="https://play.google.com/store/apps/details?id=com.jv.materialfalcon">Falcon Pro</a>为典范，其开发人员为 Joaquim Vergès. Joaquim人不错，他允许我在我的文章中使用它的程序作为例子，并且快速处理了我发现的所有问题。一切都OK，直到Joaquim 从头开始开发Falcon Pro 3，前不久在他准备发布它的新应用的时候，他联系了我，因为他有一个和滚动相关的性能问题需要我来帮助他，这一次我依然没有源代码可以参考。</p>
-      
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a><a class="article-category-link" href="/categories/Android/Menory/Performance/">Performance</a>
-	</div>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a><a class="article-category-link" href="/categories/Android/Menory/">Menory</a><a class="article-category-link" href="/categories/Android/Menory/Performance/">Performance</a>
+    </div>
 
 
       
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
-	</div>
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAT/">MAT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Menory/">Menory</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
+    </div>
 
       
         <p class="article-more-link">
-          <a  href="/2015/03/31/android-performance-case-study-follow-up.html#more">more >></a>
+          <a href="/2015/03/31/android-performance-case-study-follow-up.html#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -526,32 +586,24 @@
 
 
 
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
   
     <article id="post-android-tips-round-up-5" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/03/15/android-tips-round-up-5.html" class="article-date">
-  	<time datetime="2015-03-14T16:32:11.000Z" itemprop="datePublished">2015-03-15</time>
+      <time datetime="2015-03-14T16:32:11.000Z" itemprop="datePublished">2015-03-15</time>
 </a>
+
+ 
+    <a href="/2015/03/15/android-tips-round-up-5.html#comments" title="Comments">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/03/15/android-tips-round-up-5.html" ></span>
+        
+        
+    </a>
+
     </div>
   
   <div class="article-inner">
@@ -572,23 +624,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文是一篇译文,这篇是这个系列的第五篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
-      
+          
+              <p>本文是一篇译文,这篇是这个系列的第五篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+    </div>
 
 
       
       
         <p class="article-more-link">
-          <a  href="/2015/03/15/android-tips-round-up-5.html#more">more >></a>
+          <a href="/2015/03/15/android-tips-round-up-5.html#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -606,32 +659,24 @@
 
 
 
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
   
     <article id="post-android-tips-round-up-4" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/03/15/android-tips-round-up-4.html" class="article-date">
-  	<time datetime="2015-03-14T16:31:02.000Z" itemprop="datePublished">2015-03-15</time>
+      <time datetime="2015-03-14T16:31:02.000Z" itemprop="datePublished">2015-03-15</time>
 </a>
+
+ 
+    <a href="/2015/03/15/android-tips-round-up-4.html#comments" title="Comments">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/03/15/android-tips-round-up-4.html" ></span>
+        
+        
+    </a>
+
     </div>
   
   <div class="article-inner">
@@ -652,23 +697,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文是一篇译文,这篇是这个系列的第四篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
-      
+          
+              <p>本文是一篇译文,这篇是这个系列的第四篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+    </div>
 
 
       
       
         <p class="article-more-link">
-          <a  href="/2015/03/15/android-tips-round-up-4.html#more">more >></a>
+          <a href="/2015/03/15/android-tips-round-up-4.html#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -686,32 +732,24 @@
 
 
 
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
   
     <article id="post-android-tips-round-up-3" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/03/15/android-tips-round-up-3.html" class="article-date">
-  	<time datetime="2015-03-14T16:29:57.000Z" itemprop="datePublished">2015-03-15</time>
+      <time datetime="2015-03-14T16:29:57.000Z" itemprop="datePublished">2015-03-15</time>
 </a>
+
+ 
+    <a href="/2015/03/15/android-tips-round-up-3.html#comments" title="Comments">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/03/15/android-tips-round-up-3.html" ></span>
+        
+        
+    </a>
+
     </div>
   
   <div class="article-inner">
@@ -732,23 +770,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文是一篇译文,这篇是这个系列的第三篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
-      
+          
+              <p>本文是一篇译文,这篇是这个系列的第三篇.讲述的是Android开发中遇到的一些好用的小技巧,或者一些实用的API,很多人都知道,但也有人不知道,记录下来,如果能帮助到大家,也是极好的.由于不是严格的博文,所以翻译也不那么严格,有些工具和类我也会经常用,所以我会根据自己的想法去写.有些地方坐在并没有将这个工具的作用讲出来,我会补充上去.</p>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+    </div>
 
 
       
       
         <p class="article-more-link">
-          <a  href="/2015/03/15/android-tips-round-up-3.html#more">more >></a>
+          <a href="/2015/03/15/android-tips-round-up-3.html#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -766,32 +805,24 @@
 
 
 
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
   
     <article id="post-build-rom-for-nexus5" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/02/04/build-rom-for-nexus5.html" class="article-date">
-  	<time datetime="2015-02-04T12:51:19.000Z" itemprop="datePublished">2015-02-04</time>
+      <time datetime="2015-02-04T12:51:19.000Z" itemprop="datePublished">2015-02-04</time>
 </a>
+
+ 
+    <a href="/2015/02/04/build-rom-for-nexus5.html#comments" title="Comments">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/02/04/build-rom-for-nexus5.html" ></span>
+        
+        
+    </a>
+
     </div>
   
   <div class="article-inner">
@@ -812,25 +843,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>接前一篇文章<a href="http://www.androidperformance.com/view-android-source-code-with-androidstudio.html">使用Android Studio查看Android Lollipop源码</a>, 我们知道,仅仅看代码,提高是比较有限的,而且理解起来也比较肤浅,往往过目就忘. 而自己写过的代码,往往会印象比较深刻,在写的时候也会比较容易理解流程. 所以我们在看代码的同时, 如果能修改代码, 在手机上跑起来并看到修改的效果,这无疑会加快看代码的效率和积极性. 所以这篇文章,就讲解一下如何自己编译AndroidL的源码,并且在Nexus5上跑起来. 至于为何需要自己编译固件,而不是直接安装Google给出的工厂固件?原因是Google给出的工厂固件是User版本,是没法随心所欲Push东西进去的. 所以我们需要编译自己的Userdebug版本.</p>
+          
+              <p>接前一篇文章<a href="http://www.androidperformance.com/view-android-source-code-with-androidstudio.html">使用Android Studio查看Android Lollipop源码</a>, 我们知道,仅仅看代码,提高是比较有限的,而且理解起来也比较肤浅,往往过目就忘. 而自己写过的代码,往往会印象比较深刻,在写的时候也会比较容易理解流程. 所以我们在看代码的同时, 如果能修改代码, 在手机上跑起来并看到修改的效果,这无疑会加快看代码的效率和积极性. 所以这篇文章,就讲解一下如何自己编译AndroidL的源码,并且在Nexus5上跑起来. 至于为何需要自己编译固件,而不是直接安装Google给出的工厂固件?原因是Google给出的工厂固件是User版本,是没法随心所欲Push东西进去的. 所以我们需要编译自己的Userdebug版本.</p>
 <p>本文假设你已经下载了AndroidL的源码,并且有一台Nexus5手机(手机系统开发人员必备), 如果你还没有AndroidL的源码,或者你有源码但是没有配置编译的环境,那么 <a href="https://source.android.com/source/initializing.html">Initializing a Build Environment</a> 和<a href="https://source.android.com/source/downloading.html">Downloading the Source</a>这两篇文章你应该先去看一下(我又一次假设你会翻墙,如果你不会翻墙,那么下代码也是一个痛苦的事情). 这后面的教程Google官网也有教程.所以我只针对Nexus5进行讲解.</p>
 <p>另外你需要知道AOSP,AOSP即Android Open Source Project 汉语意思是：谷歌开放源代码项目.我们通过Google官方下载的源代码,就是AOSP的代码, 其中是不包含Google开发的那些个应用的,各个厂商拿到的也是这个版本,在这个版本的基础上进行修改. 而Google发布的工厂固件则是包含全套Google服务的. 厂商如果想安装Google服务,就需要过Google的那一套认证,比较麻烦,而且价格不菲,鉴于Google在国内的尴尬地位,国内很多厂商都没有过这个认证.</p>
-      
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+    </div>
 
 
       
       
         <p class="article-more-link">
-          <a  href="/2015/02/04/build-rom-for-nexus5.html#more">more >></a>
+          <a href="/2015/02/04/build-rom-for-nexus5.html#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -848,32 +880,24 @@
 
 
 
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
   
     <article id="post-android-performance-tools-systrace-1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/01/30/android-performance-tools-systrace-1.html" class="article-date">
-  	<time datetime="2015-01-30T12:24:31.000Z" itemprop="datePublished">2015-01-30</time>
+      <time datetime="2015-01-30T12:24:31.000Z" itemprop="datePublished">2015-01-30</time>
 </a>
+
+ 
+    <a href="/2015/01/30/android-performance-tools-systrace-1.html#comments" title="Comments">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/01/30/android-performance-tools-systrace-1.html" ></span>
+        
+        
+    </a>
+
     </div>
   
   <div class="article-inner">
@@ -894,7 +918,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> 本文是Android性能优化工具系列的第一篇，这个系列主要介绍Android性能优化过程中会使用到的一些工具，以及如何用这些工具来发现问题和解决问题。在性能优化方面，Android有不少性能工具供大家来使用，按照我们一贯地 “发现问题-解决问题”的思路来看，发现问题才是最主要的，一上来就想着如何去解决问题，反而会事倍功半。</p>
+          
+              <p> 本文是Android性能优化工具系列的第一篇，这个系列主要介绍Android性能优化过程中会使用到的一些工具，以及如何用这些工具来发现问题和解决问题。在性能优化方面，Android有不少性能工具供大家来使用，按照我们一贯地 “发现问题-解决问题”的思路来看，发现问题才是最主要的，一上来就想着如何去解决问题，反而会事倍功半。</p>
 <p>这一篇先来简单介绍一下Systrace这个工具。</p>
 <h2 id="Systrace简单介绍"><a href="#Systrace简单介绍" class="headerlink" title="Systrace简单介绍"></a>Systrace简单介绍</h2><p>Systrace是Android4.1中新增的性能数据采样和分析工具。它可帮助开发者收集Android关键子系统（如surfaceflinger、WindowManagerService等Framework部分关键模块、服务，View系统等）的运行信息，从而帮助开发者更直观的分析系统瓶颈，改进性能。</p>
 <p>Systrace的功能包括跟踪系统的I/O操作、内核工作队列、CPU负载以及Android各个子系统的运行状况等。在Android平台中，它主要由3部分组成：</p>
@@ -903,22 +928,22 @@
 <li>数据采集部分：Android定义了一个Trace类。应用程序可利用该类把统计信息输出给ftrace。同时，Android还有一个atrace程序，它可以从ftrace中读取统计信息然后交给数据分析工具来处理。</li>
 <li>数据分析工具：Android提供一个systrace.py（python脚本文件，位于Android SDK目录/tools/systrace中，其内部将调用atrace程序）用来配置数据采集的方式（如采集数据的标签、输出文件名等）和收集ftrace统计数据并生成一个结果网页文件供用户查看。 从本质上说，Systrace是对Linux Kernel中ftrace的封装。应用进程需要利用Android提供的Trace类来使用Systrace.<br>关于Systrace的官方介绍和使用可以看这里：<a href="http://developer.android.com/tools/help/systrace.html" title="SysTrace官方介绍">Systrace</a></li>
 </ul>
-      
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+    </div>
 
 
       
       
         <p class="article-more-link">
-          <a  href="/2015/01/30/android-performance-tools-systrace-1.html#more">more >></a>
+          <a href="/2015/01/30/android-performance-tools-systrace-1.html#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -936,32 +961,24 @@
 
 
 
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
   
     <article id="post-view-android-source-code-with-androidstudio" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2015/01/16/view-android-source-code-with-androidstudio.html" class="article-date">
-  	<time datetime="2015-01-16T13:54:32.000Z" itemprop="datePublished">2015-01-16</time>
+      <time datetime="2015-01-16T13:54:32.000Z" itemprop="datePublished">2015-01-16</time>
 </a>
+
+ 
+    <a href="/2015/01/16/view-android-source-code-with-androidstudio.html#comments" title="Comments">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/01/16/view-android-source-code-with-androidstudio.html" ></span>
+        
+        
+    </a>
+
     </div>
   
   <div class="article-inner">
@@ -982,23 +999,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Android-Studio"><a href="#Android-Studio" class="headerlink" title="Android Studio"></a>Android Studio</h2><p>作为Google的亲儿子,Nexus手机系列所收到的待遇大家有目共睹.Android5.0出来之后,Nexus5第一时间就升级到了最新的系统.那么作为Google亲儿子的Android Studio同样备受Google的重视,我也是第一时间从Eclipse转投到了Android Studio的怀抱中,从最初的测试版本一路升级到现在的1.0正式版本(今天发布了1.1,果断已经升级了).</p>
-      
+          
+              <h2 id="Android-Studio"><a href="#Android-Studio" class="headerlink" title="Android Studio"></a>Android Studio</h2><p>作为Google的亲儿子,Nexus手机系列所收到的待遇大家有目共睹.Android5.0出来之后,Nexus5第一时间就升级到了最新的系统.那么作为Google亲儿子的Android Studio同样备受Google的重视,我也是第一时间从Eclipse转投到了Android Studio的怀抱中,从最初的测试版本一路升级到现在的1.0正式版本(今天发布了1.1,果断已经升级了).</p>
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/Android/">Android</a>
-	</div>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+    </div>
 
 
       
       
         <p class="article-more-link">
-          <a  href="/2015/01/16/view-android-source-code-with-androidstudio.html#more">more >></a>
+          <a href="/2015/01/16/view-android-source-code-with-androidstudio.html#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -1016,25 +1034,6 @@
 
 
 
-
-
-    
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-        <script>
-        var yiliaConfig = {
-        fancybox: true,
-        mathjax: true,
-        animate: true,
-        isHome: true,
-        isPost: false,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        open_in_new: false
-        }
-        </script>
-        
-
   
   
     <nav id="page-nav">
@@ -1043,74 +1042,68 @@
   
 </div>
       <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-      <div class="footer-left">
-        &copy; 2016 Gracker
-      </div>
-        <div class="footer-right">
-          <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的静态博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减双栏 Hexo 博客主题">Yelee</a> by MOxFIVE
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2013-2016 Gracker
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
         </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
     </div>
-    <div class="visit">
-      <span id="busuanzi_container_site_pv" style='display:none'>
-        <span id="site-visit" >本站到访数: 
-        <span id="busuanzi_value_site_uv"></span>
-        </span>
-      </span>
-      <span id="busuanzi_container_page_pv" style='display:none'>
-        <span id="page-visit">, 本页阅读量: 
-        <span id="busuanzi_value_page_pv"></span>
-        </span>
-      </span>
-      <script>
-        (function(){
-            var bp = document.createElement('script');
-            bp.src = '//push.zhanzhang.baidu.com/push.js';
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(bp, s);
-        })();
-      </script>           
-    </div>
-  </div>
 </footer>
     </div>
     
-	<script>
-		var yiliaConfig = {
-			fancybox: false,
-			mathjax: true,
-			animate: true,
-			isHome: true,
-			isPost: false,
-			isArchive: false,
-			isTag: false,
-			isCategory: false,
-			open_in_new: false
-		}
-	</script>
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
 
-<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+    
+        <script>
+            if ($(".left-col").is(":visible")) {
+                var duoshuoQuery = {short_name:"grackertalk"};
+                (function() {
+                    var d = document, s = d.createElement('script');
+                    s.src = 'http://static.duoshuo.com/embed.js';
+                    s.async = true; s.charset = 'UTF-8';
+                    (d.head || d.body).appendChild(s);
+                })();
 
-  <style>
-    body {
-      background: lightgray;
-    }
-    #container .left-col {
-      background: white;
-    }
-    .article-inner {
-      background: white;
-    }
-    .post-nav-button {
-      background: #ececec;
-    }
-    #header .header-nav .social #GitHub {
-      background-color: #bfd3ec;
-    }
-  </style>
+                $(document).ready(function(){
+                    var $duoshuoCount = $(".ds-thread-count");
+                    $duoshuoCount.bind("DOMNodeInserted", function(e) {
+                        var num = $(this).text().replace(/[^0-9]/ig,"");
+                        $(this).siblings(".count-comment").text(num);
+                        $(this).remove();
+                    })
+                })
+            }
+        </script>
+    
+
+     
 
 
 <!-- Google Analytics -->
@@ -1128,31 +1121,32 @@ ga('send', 'pageview');
 
 
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
 <div class="scroll" id="scroll">
-<a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-<a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+             github: ".github-widget a", 
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
