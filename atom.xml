@@ -68,13 +68,13 @@
     <link href="http://androidperformance.com/2016/04/07/how-png-works.html"/>
     <id>http://androidperformance.com/2016/04/07/how-png-works.html</id>
     <published>2016-04-07T12:36:34.000Z</published>
-    <updated>2016-11-09T18:23:37.000Z</updated>
+    <updated>2016-11-09T18:25:48.000Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/images/media/14600331177923.jpg" alt=""></p>
-<p>原文地址：<a href="https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34" target="_blank" rel="external">https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34</a><br>原文作者：<a href="https://medium.com/@duhroach" target="_blank" rel="external">Colt McAnlis</a></p>
+    <content type="html"><![CDATA[<p>原文地址：<a href="https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34" target="_blank" rel="external">https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34</a><br>原文作者：<a href="https://medium.com/@duhroach" target="_blank" rel="external">Colt McAnlis</a></p>
 <h1 id="How-PNG-Works"><a href="#How-PNG-Works" class="headerlink" title="How PNG Works"></a>How PNG Works</h1><p>The Portable Network Graphics (PNG) has become a staple for App development over the past few decades. It’s creeped up everywhere from game development, to web development, and Android development, which means that it’s widely adopted, but also has the opportunity to be widely abused.</p>
 <p>And as I’ve discussed before, PNG provides a nice, high resolution image format, but that means that there’s lots of room for improvement for data compression. But before we can start talking about how to compress PNG files further, we have to first talk about how the format works.</p>
 <a id="more"></a>
+<p><img src="/images/media/14600331177923.jpg" alt=""></p>
 <h1 id="Understanding-the-Compression"><a href="#Understanding-the-Compression" class="headerlink" title="Understanding the Compression"></a>Understanding the Compression</h1><p>PNG’s compression process is entirely lossless; meaning that the compressed file can reconstruct the source image exactly. Done in two stages: Prediction (aka filtering) and then Compression.</p>
 <h2 id="1-Filtering-prediction"><a href="#1-Filtering-prediction" class="headerlink" title="1 Filtering (prediction)"></a>1 Filtering (prediction)</h2><p>Delta encoding is one of the most powerful numeric compression methods out there. The basic idea is that you can represent any value as a difference from the previous value. So,</p>
 <p>[2,3,4,5,6,7,8] can become [2,1,1,1,1,1,1], where<br>[2, 3–2=1, 4–3=1, 5–4=1, 6–5=1, 7–6=1, 8–7=1]</p>
@@ -143,8 +143,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;/images/media/14600331177923.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;原文地址：&lt;a href=&quot;https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34&quot;&gt;https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34&lt;/a&gt;&lt;br&gt;原文作者：&lt;a href=&quot;https://medium.com/@duhroach&quot;&gt;Colt McAnlis&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;原文地址：&lt;a href=&quot;https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34&quot;&gt;https://medium.com/@duhroach/how-png-works-f1174e3cc7b7#.b923t7n34&lt;/a&gt;&lt;br&gt;原文作者：&lt;a href=&quot;https://medium.com/@duhroach&quot;&gt;Colt McAnlis&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&quot;How-PNG-Works&quot;&gt;&lt;a href=&quot;#How-PNG-Works&quot; class=&quot;headerlink&quot; title=&quot;How PNG Works&quot;&gt;&lt;/a&gt;How PNG Works&lt;/h1&gt;&lt;p&gt;The Portable Network Graphics (PNG) has become a staple for App development over the past few decades. It’s creeped up everywhere from game development, to web development, and Android development, which means that it’s widely adopted, but also has the opportunity to be widely abused.&lt;/p&gt;
 &lt;p&gt;And as I’ve discussed before, PNG provides a nice, high resolution image format, but that means that there’s lots of room for improvement for data compression. But before we can start talking about how to compress PNG files further, we have to first talk about how the format works.&lt;/p&gt;
     
