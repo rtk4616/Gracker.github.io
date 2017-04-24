@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://androidperformance.com/"/>
-  <updated>2017-04-23T15:30:52.000Z</updated>
+  <updated>2017-04-24T00:27:24.000Z</updated>
   <id>http://androidperformance.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://androidperformance.com/2017/04/23/About-work.html"/>
     <id>http://androidperformance.com/2017/04/23/About-work.html</id>
     <published>2017-04-23T14:02:29.000Z</published>
-    <updated>2017-04-23T15:30:52.000Z</updated>
+    <updated>2017-04-24T00:27:24.000Z</updated>
     
     <content type="html"><![CDATA[<p>一转眼就 2017 年了，算起来自己已经工作了快四年了，09年到威海上学，12年去上海实习，13年毕业后还是去了上海，14年进了珠海魅族，直到现在。</p>
 <p>这博客从我毕业开始写东西，写写删删，也算是记录了一些东西，自己的工作内容也从 App 开发换到了系统 App 开发，在换到系统开发，也算是走了一圈，一些路程，记录下来，几年后再看看，怀念一下也是不错的。</p>
@@ -66,7 +66,8 @@
 <p>所以我记录工作的软件是 MWeb ，会记录每天所完成的各个项，不论大小，比较重要的工作项，解题思路和想法都会记录在后面，每周的总结也会记录，来源包括 Redmine、邮件、Tower 等，这样不会漏掉一些重要的事情和数据</p>
 <h4 id="文章记录"><a href="#文章记录" class="headerlink" title="文章记录"></a>文章记录</h4><p>文章记录主要的印象笔记，遇到好文章或者比较重要的事情，我都会记录到印象笔记中，定时去整理和查看</p>
 <h2 id="关于-2017"><a href="#关于-2017" class="headerlink" title="关于 2017"></a>关于 2017</h2><p>今年公司比较动荡，身边好几个小伙伴都走人了，公司也在转型，阵痛期。自己也比较犹豫，不过目前没有花太多的时间去想这事，做好目前手上每一件事，该做的去做，机会总是青睐有准备的人。</p>
-<p>最后，谢谢阿春一直陪着我，给我鼓励！Thanks！<br><img src="/images/media/zipai.jpg" alt="媳妇"></p>
+<p>作为一个软件工程师，Coding 能力永远是要放在第一位的，这一点需要向我偶像百万学习（下图，一周Coding 的时间是51个小时）！<br><img src="/images/media/14929935518939.jpg" alt="百万"></p>
+<p>最后，谢谢阿春一直陪着我，给我鼓励！Thanks！<br><img src="/images/media/zipai.jpg" alt="合照"></p>
 ]]></content>
     
     <summary type="html">
@@ -79,6 +80,8 @@
     </summary>
     
       <category term="随笔" scheme="http://androidperformance.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="2017" scheme="http://androidperformance.com/categories/%E9%9A%8F%E7%AC%94/2017/"/>
     
     
       <category term="随笔" scheme="http://androidperformance.com/tags/%E9%9A%8F%E7%AC%94/"/>
