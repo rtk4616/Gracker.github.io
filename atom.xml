@@ -304,15 +304,17 @@
     <link href="http://androidperformance.com/2016/04/05/android-bottom-bar-2.html"/>
     <id>http://androidperformance.com/2016/04/05/android-bottom-bar-2.html</id>
     <published>2016-04-05T15:10:25.000Z</published>
-    <updated>2017-04-26T08:41:02.000Z</updated>
+    <updated>2017-05-25T15:37:03.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="1-样式-Style"><a href="#1-样式-Style" class="headerlink" title="1. 样式-Style"></a>1. 样式-Style</h1><h2 id="1-1-图标和文字-Icons-and-text"><a href="#1-1-图标和文字-Icons-and-text" class="headerlink" title="1.1 图标和文字-Icons and text"></a>1.1 图标和文字-Icons and text</h2><p>Because bottom navigation actions are presented as icons, they should be used for content that can be suitably communicated with icons.<br>由于底部导航操作显示为图标，它应该使用与其内容相符合的图标。根据以下条件来为每个操作设定样式：</p>
+    <content type="html"><![CDATA[<p>Android 官方在三月的某一天更新了一个新的设计规范，所谓设计规范就是告诉开发者和设计师要如何去设计和使用某一个组件。不过这次 Bottom navigation 的发布，让许多人大跌眼镜，毕竟 Bottom navigation 这样的组件，在之前的 MD 设计语言中可是只字未提，Android 开发者与 iOS 开发中最大的不同也是由于 Bottom navigation 是 iOS 应用的必备，而遵循 MD 设计规范的 Android 应用，则对 Bottom navigation 敬而远之。</p>
+<p>本文是 Android Bottom navigation 的第二篇文章，主要介绍样式、行为与规格。</p>
+<a id="more"></a>
+<h1 id="1-样式-Style"><a href="#1-样式-Style" class="headerlink" title="1. 样式-Style"></a>1. 样式-Style</h1><h2 id="1-1-图标和文字-Icons-and-text"><a href="#1-1-图标和文字-Icons-and-text" class="headerlink" title="1.1 图标和文字-Icons and text"></a>1.1 图标和文字-Icons and text</h2><p>Because bottom navigation actions are presented as icons, they should be used for content that can be suitably communicated with icons.<br>由于底部导航操作显示为图标，它应该使用与其内容相符合的图标。根据以下条件来为每个操作设定样式：</p>
 <ul>
 <li>当 Item 是 focus 状态的时候，显示这个 Item View 的图标和文字。</li>
 <li>当 bottom navigation 只有三个 Item 的时候，他们的图标和文字都应该被显示。</li>
 <li>当 bottom navigation 有四个或者五个 Item 的时候，在非激活状态的时候只显示他们的图标即可。</li>
 </ul>
-<a id="more"></a>
 <h2 id="1-2颜色"><a href="#1-2颜色" class="headerlink" title="1.2颜色"></a>1.2颜色</h2><p>Tint the current bottom navigation action (including the icon and any text label present) with the app’s primary color<br>用应用的主色调给底部导航操作（包括图标与当前标签文字）上色。<br><img src="/images/bottombar2/1.png" alt="Do. 
 Use the app’s primary color to indicate the view in focus."></p>
 <p><img src="/images/bottombar2/2.png" alt="Don&#39;t.
@@ -394,12 +396,8 @@ Avoid shrinking text labels to fit on a single line."></p>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;1-样式-Style&quot;&gt;&lt;a href=&quot;#1-样式-Style&quot; class=&quot;headerlink&quot; title=&quot;1. 样式-Style&quot;&gt;&lt;/a&gt;1. 样式-Style&lt;/h1&gt;&lt;h2 id=&quot;1-1-图标和文字-Icons-and-text&quot;&gt;&lt;a href=&quot;#1-1-图标和文字-Icons-and-text&quot; class=&quot;headerlink&quot; title=&quot;1.1 图标和文字-Icons and text&quot;&gt;&lt;/a&gt;1.1 图标和文字-Icons and text&lt;/h2&gt;&lt;p&gt;Because bottom navigation actions are presented as icons, they should be used for content that can be suitably communicated with icons.&lt;br&gt;由于底部导航操作显示为图标，它应该使用与其内容相符合的图标。根据以下条件来为每个操作设定样式：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;当 Item 是 focus 状态的时候，显示这个 Item View 的图标和文字。&lt;/li&gt;
-&lt;li&gt;当 bottom navigation 只有三个 Item 的时候，他们的图标和文字都应该被显示。&lt;/li&gt;
-&lt;li&gt;当 bottom navigation 有四个或者五个 Item 的时候，在非激活状态的时候只显示他们的图标即可。&lt;/li&gt;
-&lt;/ul&gt;
+      &lt;p&gt;Android 官方在三月的某一天更新了一个新的设计规范，所谓设计规范就是告诉开发者和设计师要如何去设计和使用某一个组件。不过这次 Bottom navigation 的发布，让许多人大跌眼镜，毕竟 Bottom navigation 这样的组件，在之前的 MD 设计语言中可是只字未提，Android 开发者与 iOS 开发中最大的不同也是由于 Bottom navigation 是 iOS 应用的必备，而遵循 MD 设计规范的 Android 应用，则对 Bottom navigation 敬而远之。&lt;/p&gt;
+&lt;p&gt;本文是 Android Bottom navigation 的第二篇文章，主要介绍样式、行为与规格。&lt;/p&gt;
     
     </summary>
     
@@ -421,9 +419,10 @@ Avoid shrinking text labels to fit on a single line."></p>
     <link href="http://androidperformance.com/2016/04/05/android-bottom-bar-1.html"/>
     <id>http://androidperformance.com/2016/04/05/android-bottom-bar-1.html</id>
     <published>2016-04-05T14:57:58.000Z</published>
-    <updated>2017-05-25T15:32:51.000Z</updated>
+    <updated>2017-05-25T15:38:02.000Z</updated>
     
     <content type="html"><![CDATA[<p>Android 官方在三月的某一天更新了一个新的设计规范，所谓设计规范就是告诉开发者和设计师要如何去设计和使用某一个组件。不过这次 Bottom navigation 的发布，让许多人大跌眼镜，毕竟 Bottom navigation 这样的组件，在之前的 MD 设计语言中可是只字未提，Android 开发者与 iOS 开发中最大的不同也是由于 Bottom navigation 是 iOS 应用的必备，而遵循 MD 设计规范的 Android 应用，则对 Bottom navigation 敬而远之。</p>
+<p>本文是 Android Bottom navigation 的第一篇文章，主要介绍 Bottom navigation 的使用，以及  Bottom navigation 小变迁。</p>
 <a id="more"></a>
 <h2 id="1-Android-之前的关于底栏的设计规范"><a href="#1-Android-之前的关于底栏的设计规范" class="headerlink" title="1 Android 之前的关于底栏的设计规范"></a>1 Android 之前的关于底栏的设计规范</h2><p><img src="/images/bottombar1/14598674457055.jpg" alt="Google 之前对于底栏的设计规范"></p>
 <h2 id="2-微信的改版"><a href="#2-微信的改版" class="headerlink" title="2. 微信的改版"></a>2. 微信的改版</h2><p>上上一次 Bottom navigation 在 Android 圈引起轩然大波还是微信的改版（5.2版本），在试错之后迅速换回了 Bottom navigation 。</p>
@@ -452,6 +451,7 @@ Avoid shrinking text labels to fit on a single line."></p>
     <summary type="html">
     
       &lt;p&gt;Android 官方在三月的某一天更新了一个新的设计规范，所谓设计规范就是告诉开发者和设计师要如何去设计和使用某一个组件。不过这次 Bottom navigation 的发布，让许多人大跌眼镜，毕竟 Bottom navigation 这样的组件，在之前的 MD 设计语言中可是只字未提，Android 开发者与 iOS 开发中最大的不同也是由于 Bottom navigation 是 iOS 应用的必备，而遵循 MD 设计规范的 Android 应用，则对 Bottom navigation 敬而远之。&lt;/p&gt;
+&lt;p&gt;本文是 Android Bottom navigation 的第一篇文章，主要介绍 Bottom navigation 的使用，以及  Bottom navigation 小变迁。&lt;/p&gt;
     
     </summary>
     
