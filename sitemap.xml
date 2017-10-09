@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/2017/04/23/About-work.html</loc>
+    
+    <lastmod>2017-10-09T07:36:26.988Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/2016/04/05/android-bottom-bar-1.html</loc>
     
     <lastmod>2017-05-26T05:33:24.000Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>http://androidperformance.com/2016/04/19/Avoiding-cold-starts-on-Android.html</loc>
     
     <lastmod>2017-04-26T08:40:38.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2017/04/23/About-work.html</loc>
-    
-    <lastmod>2017-04-25T07:42:01.000Z</lastmod>
     
   </url>
   
