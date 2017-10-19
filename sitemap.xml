@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/2017/10/19/Android-performance-optimization-skills-and-tools.html</loc>
+    
+    <lastmod>2017-10-19T13:03:30.446Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/2017/04/23/About-work.html</loc>
     
     <lastmod>2017-10-09T07:36:26.988Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://androidperformance.com/2017/05/15/Effective-java-for-Android.html</loc>
+    
+    <lastmod>2017-10-08T10:49:21.802Z</lastmod>
     
   </url>
   
@@ -26,13 +40,6 @@
     <loc>http://androidperformance.com/2015/11/18/Android-app-lunch-optimize-delay-load.html</loc>
     
     <lastmod>2017-05-25T15:33:18.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2017/05/15/Effective-java-for-Android.html</loc>
-    
-    <lastmod>2017-05-16T01:26:46.000Z</lastmod>
     
   </url>
   

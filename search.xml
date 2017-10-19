@@ -3,6 +3,97 @@
   
     
     <entry>
+      <title><![CDATA[Android 性能优化必知必会]]></title>
+      <url>/2017/10/19/Android-performance-optimization-skills-and-tools.html</url>
+      <content type="html"><![CDATA[<p>做了这么久性能相关的工作,也接触了不少模块,说实话要做好性能这一块,真心不容易.为什么这么说? 是因为需要接触的知识实在是太多了, Android 是一个整体,牵一发而动全身,不是说只懂一个模块就可以做好.</p>
+<p>在学习的过程中,除了看源码,我还接触到了很多互联网上已有的知识,各位前辈们,将他们的知识和经验倾囊相授,让我少走了很多弯路. 我在自己的笔记里面存了很多很优秀的技术文章和技术文档,现在我决定将这些放到网上,让每一个想进入 Android 系统开发和优化这个领域的人,能通过阅读这篇文章,快速入门. 同时也算是我对知识的一个梳理,查漏补缺,终身学习.</p>
+<p>这篇文章记录了 Android 性能优化所必须掌握的知识,涵盖性能优化相关的方方面面(当然如果读者同学你也有很棒的私藏文章,也可以加入到这篇文章里面).</p>
+<a id="more"></a>
+<h1 id="优化心得和经验"><a href="#优化心得和经验" class="headerlink" title="优化心得和经验"></a>优化心得和经验</h1><ol>
+<li>Android Performance Patterns： <a href="https://www.youtube.com/playlist?list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE" target="_blank" rel="external">https://www.youtube.com/playlist?list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE</a></li>
+<li>给 App 提速：Android 性能优化总结 <a href="http://android.jobbole.com/81944/" target="_blank" rel="external">http://android.jobbole.com/81944/</a></li>
+<li>移动端性能监控方案Hertz ： <a href="https://tech.meituan.com/hertz.html" target="_blank" rel="external">https://tech.meituan.com/hertz.html</a></li>
+</ol>
+<h1 id="响应速度"><a href="#响应速度" class="headerlink" title="响应速度"></a>响应速度</h1><ol>
+<li>Optimizing Boot Times ： <a href="https://source.android.com/devices/tech/perf/boot-times" target="_blank" rel="external">https://source.android.com/devices/tech/perf/boot-times</a></li>
+</ol>
+<h1 id="流畅度"><a href="#流畅度" class="headerlink" title="流畅度"></a>流畅度</h1><ol>
+<li>Evaluating Performance : <a href="https://source.android.com/devices/tech/debug/eval_perf" target="_blank" rel="external">https://source.android.com/devices/tech/debug/eval_perf</a></li>
+<li>Understanding Systrace : <a href="https://source.android.com/devices/tech/debug/systrace" target="_blank" rel="external">https://source.android.com/devices/tech/debug/systrace</a></li>
+<li>Using ftrace : <a href="https://source.android.com/devices/tech/debug/ftrace" target="_blank" rel="external">https://source.android.com/devices/tech/debug/ftrace</a></li>
+<li>Identifying Capacity-Related Jank : <a href="https://source.android.com/devices/tech/debug/jank_capacity" target="_blank" rel="external">https://source.android.com/devices/tech/debug/jank_capacity</a></li>
+<li>Identifying Jitter-Related Jank : <a href="https://source.android.com/devices/tech/debug/jank_jitter" target="_blank" rel="external">https://source.android.com/devices/tech/debug/jank_jitter</a></li>
+</ol>
+<h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><ol>
+<li>Low RAM Configuration :<a href="https://source.android.com/devices/tech/perf/low-ram" target="_blank" rel="external">https://source.android.com/devices/tech/perf/low-ram</a></li>
+<li>Linux Swap 与 Zram 详解：<a href="http://www.tinylab.cn/linux-swap-and-zramfs/#zram-" target="_blank" rel="external">http://www.tinylab.cn/linux-swap-and-zramfs/#zram-</a></li>
+<li>Android 加载不同 DPI 资源与内存消耗间的关系 <a href="http://www.tinylab.cn/android-loading-a-different-relationship-between-dpi-and-memory-consumption-of-resources/" target="_blank" rel="external">http://www.tinylab.cn/android-loading-a-different-relationship-between-dpi-and-memory-consumption-of-resources/</a></li>
+<li>[ZRAM]SWAP内存管理讲解 <a href="https://nekosc.com/technology/zram.html" target="_blank" rel="external">https://nekosc.com/technology/zram.html</a></li>
+<li>Android OOM案例分析 ： <a href="https://tech.meituan.com/oom_analysis.html" target="_blank" rel="external">https://tech.meituan.com/oom_analysis.html</a></li>
+</ol>
+<h1 id="图形栈"><a href="#图形栈" class="headerlink" title="图形栈"></a>图形栈</h1><ol>
+<li>Android硬件加速原理与实现简介 ：<a href="https://tech.meituan.com/hardware-accelerate.html" target="_blank" rel="external">https://tech.meituan.com/hardware-accelerate.html</a></li>
+<li>Android6.0 显示系统（一） Surface创建： <a href="http://blog.csdn.net/kc58236582/article/details/52670528" target="_blank" rel="external">http://blog.csdn.net/kc58236582/article/details/52670528</a></li>
+<li>Android6.0 显示系统（二） SurfaceFlinger创建Surface ：<a href="http://blog.csdn.net/kc58236582/article/details/52680288" target="_blank" rel="external">http://blog.csdn.net/kc58236582/article/details/52680288</a></li>
+<li>Android6.0 显示系统（三） 管理图像缓冲区 ： <a href="http://blog.csdn.net/kc58236582/article/details/52681363" target="_blank" rel="external">http://blog.csdn.net/kc58236582/article/details/52681363</a></li>
+<li>Android6.0 显示系统（五） SurfaceFlinger服务 ： <a href="http://blog.csdn.net/kc58236582/article/details/52763534" target="_blank" rel="external">http://blog.csdn.net/kc58236582/article/details/52763534</a></li>
+<li>Android6.0 显示系统（六） 图像的输出过程 ： <a href="http://blog.csdn.net/kc58236582/article/details/52778333" target="_blank" rel="external">http://blog.csdn.net/kc58236582/article/details/52778333</a></li>
+<li>Android6.0 SurfaceControl分析（一）SurfaceControl创建&amp;使用 Surface创建&amp;使用 ： <a href="http://blog.csdn.net/kc58236582/article/details/64918810" target="_blank" rel="external">http://blog.csdn.net/kc58236582/article/details/64918810</a></li>
+<li>Android6.0 SurfaceControl分析（二）SurfaceControl和SurfaceFlinger通信</li>
+<li>Android6.0 VSync信号如何到用户进程 ： <a href="http://blog.csdn.net/kc58236582/article/details/65445141" target="_blank" rel="external">http://blog.csdn.net/kc58236582/article/details/65445141</a></li>
+</ol>
+<h1 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h1><ol>
+<li>ART and Dalvik : <a href="https://source.android.com/devices/tech/dalvik/" target="_blank" rel="external">https://source.android.com/devices/tech/dalvik/</a></li>
+<li>Android 8.0 ART Improvements : <a href="https://source.android.com/devices/tech/dalvik/improvements" target="_blank" rel="external">https://source.android.com/devices/tech/dalvik/improvements</a></li>
+<li>Dalvik bytecode :  <a href="https://source.android.com/devices/tech/dalvik/dalvik-bytecode" target="_blank" rel="external">https://source.android.com/devices/tech/dalvik/dalvik-bytecode</a></li>
+<li>Dalvik Executable format :  <a href="https://source.android.com/devices/tech/dalvik/dex-format" target="_blank" rel="external">https://source.android.com/devices/tech/dalvik/dex-format</a></li>
+<li>Dalvik Executable instruction formats :  <a href="https://source.android.com/devices/tech/dalvik/instruction-formats" target="_blank" rel="external">https://source.android.com/devices/tech/dalvik/instruction-formats</a></li>
+<li>Constraints : <a href="https://source.android.com/devices/tech/dalvik/constraints" target="_blank" rel="external">https://source.android.com/devices/tech/dalvik/constraints</a></li>
+<li>Configuring ART : <a href="https://source.android.com/devices/tech/dalvik/configure" target="_blank" rel="external">https://source.android.com/devices/tech/dalvik/configure</a></li>
+<li>Debugging ART Garbage Collection : <a href="https://source.android.com/devices/tech/dalvik/gc-debug" target="_blank" rel="external">https://source.android.com/devices/tech/dalvik/gc-debug</a></li>
+<li>Implementing ART Just-In-Time (JIT) Compiler : <a href="https://source.android.com/devices/tech/dalvik/jit-compiler" target="_blank" rel="external">https://source.android.com/devices/tech/dalvik/jit-compiler</a> </li>
+</ol>
+<h1 id="系统框架"><a href="#系统框架" class="headerlink" title="系统框架"></a>系统框架</h1><ol>
+<li>Task Snapshots :<a href="https://source.android.com/devices/tech/perf/task-snapshots" target="_blank" rel="external">https://source.android.com/devices/tech/perf/task-snapshots</a></li>
+</ol>
+<h1 id="Kernel"><a href="#Kernel" class="headerlink" title="Kernel"></a>Kernel</h1><ol>
+<li>内核探索：Regmap 框架：简化慢速 I/O 接口优化性能 <a href="http://www.tinylab.cn/kernel-explore-regmap-framework/" target="_blank" rel="external">http://www.tinylab.cn/kernel-explore-regmap-framework/</a></li>
+<li>嵌入式 Linux 启动时间优化 <a href="http://www.tinylab.cn/elinux-org-boot-time-optimization/" target="_blank" rel="external">http://www.tinylab.cn/elinux-org-boot-time-optimization/</a></li>
+</ol>
+<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><ol>
+<li>cpuset ： <a href="https://www.kernel.org/doc/Documentation/cgroup-v1/cpusets.txt" target="_blank" rel="external">https://www.kernel.org/doc/Documentation/cgroup-v1/cpusets.txt</a></li>
+<li>cgroup ： <a href="https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt" target="_blank" rel="external">https://www.kernel.org/doc/Documentation/cgroup-v1/cgroups.txt</a></li>
+<li>Android进程调度之adj算法 <a href="http://gityuan.com/2016/08/07/android-adj/" target="_blank" rel="external">http://gityuan.com/2016/08/07/android-adj/</a></li>
+<li>Linux进程管理(一) <a href="http://gityuan.com/2017/07/30/linux-process/" target="_blank" rel="external">http://gityuan.com/2017/07/30/linux-process/</a></li>
+<li>Linux进程管理(二)–fork <a href="http://gityuan.com/2017/08/05/linux-process-fork/" target="_blank" rel="external">http://gityuan.com/2017/08/05/linux-process-fork/</a></li>
+<li>Linux进程pid分配法 <a href="http://gityuan.com/2017/08/06/linux_process_pid/" target="_blank" rel="external">http://gityuan.com/2017/08/06/linux_process_pid/</a></li>
+</ol>
+<h1 id="调试工具"><a href="#调试工具" class="headerlink" title="调试工具"></a>调试工具</h1><ol>
+<li>另一个Android性能剖析工具——simpleperf <a href="https://zhuanlan.zhihu.com/p/25277481" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/25277481</a></li>
+</ol>
+<h1 id="硬件相关"><a href="#硬件相关" class="headerlink" title="硬件相关"></a>硬件相关</h1><ol>
+<li>Flash Wear Management in Android Automotive : <a href="https://source.android.com/devices/tech/perf/flash-wear" target="_blank" rel="external">https://source.android.com/devices/tech/perf/flash-wear</a></li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> Android </category>
+            
+            <category> Performance </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Performance </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Effective java for Android[翻译]]]></title>
       <url>/2017/05/15/Effective-java-for-Android.html</url>
       <content type="html"><![CDATA[<p>原文地址：<a href="https://medium.com/rocknnull/effective-java-for-android-cheatsheet-bf4e3433889a" target="_blank" rel="external">effective-java-for-android</a></p>
