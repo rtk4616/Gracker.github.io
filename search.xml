@@ -58,6 +58,12 @@
 <li>Choreographer 原理 : <a href="http://gityuan.com/2017/02/25/choreographer/" target="_blank" rel="external">http://gityuan.com/2017/02/25/choreographer/</a></li>
 <li>SurfaceFlinger 启动篇 : <a href="http://gityuan.com/2017/02/11/surface_flinger/" target="_blank" rel="external">http://gityuan.com/2017/02/11/surface_flinger/</a></li>
 <li>SurfaceFlinger 绘图篇 : <a href="http://gityuan.com/2017/02/18/surface_flinger_2/" target="_blank" rel="external">http://gityuan.com/2017/02/18/surface_flinger_2/</a></li>
+<li>[HWUI]Android 应用程序 UI 硬件加速渲染技术简要介绍和学习计划 : <a href="http://blog.csdn.net/luoshengyang/article/details/45601143" target="_blank" rel="external">http://blog.csdn.net/luoshengyang/article/details/45601143</a></li>
+<li>[HWUI]Android 应用程序 UI 硬件加速渲染环境初始化过程分析 : <a href="http://blog.csdn.net/luoshengyang/article/details/45769759" target="_blank" rel="external">http://blog.csdn.net/luoshengyang/article/details/45769759</a></li>
+<li>[HWUI]Android 应用程序 UI 硬件加速渲染的预加载资源地图集服务（Asset Atlas Service）分析 : <a href="http://blog.csdn.net/luoshengyang/article/details/45831269" target="_blank" rel="external">http://blog.csdn.net/luoshengyang/article/details/45831269</a></li>
+<li>[HWUI]Android 应用程序 UI 硬件加速渲染的 Display List 构建过程分析 : <a href="http://blog.csdn.net/luoshengyang/article/details/45943255" target="_blank" rel="external">http://blog.csdn.net/luoshengyang/article/details/45943255</a></li>
+<li>[HWUI]Android 应用程序 UI 硬件加速渲染的 Display List 渲染过程分析 : <a href="http://blog.csdn.net/luoshengyang/article/details/46281499" target="_blank" rel="external">http://blog.csdn.net/luoshengyang/article/details/46281499</a></li>
+<li>[HWUI]Android 应用程序 UI 硬件加速渲染的动画执行过程分析 : <a href="http://blog.csdn.net/luoshengyang/article/details/46449677" target="_blank" rel="external">http://blog.csdn.net/luoshengyang/article/details/46449677</a></li>
 </ol>
 <h1 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h1><ol>
 <li>ART and Dalvik : <a href="https://source.android.com/devices/tech/dalvik/" target="_blank" rel="external">https://source.android.com/devices/tech/dalvik/</a></li>
@@ -79,6 +85,7 @@
 <li>理解 Android Binder 机制(1/3)：驱动篇 : <a href="http://qiangbo.space/2017-01-15/AndroidAnatomy_Binder_Driver/" target="_blank" rel="external">http://qiangbo.space/2017-01-15/AndroidAnatomy_Binder_Driver/</a></li>
 <li>理解 Android Binder 机制(2/3)：C++ 层 : <a href="http://qiangbo.space/2017-02-12/AndroidAnatomy_Binder_CPP/" target="_blank" rel="external">http://qiangbo.space/2017-02-12/AndroidAnatomy_Binder_CPP/</a></li>
 <li>理解 Android Binder 机制(3/3)：Java 层 : <a href="http://qiangbo.space/2017-03-15/AndroidAnatomy_Binder_Java/" target="_blank" rel="external">http://qiangbo.space/2017-03-15/AndroidAnatomy_Binder_Java/</a></li>
+<li>Android Bander 设计与实现 - 设计篇 : <a href="http://blog.csdn.net/universus/article/details/6211589" target="_blank" rel="external">http://blog.csdn.net/universus/article/details/6211589</a></li>
 <li>四大组件之综述 : <a href="http://gityuan.com/2017/05/19/ams-abstract/" target="_blank" rel="external">http://gityuan.com/2017/05/19/ams-abstract/</a></li>
 <li>四大组件之 ActivityRecord : <a href="http://gityuan.com/2017/06/11/activity_record/" target="_blank" rel="external">http://gityuan.com/2017/06/11/activity_record/</a></li>
 <li>四大组件之 ContentProviderRecord : <a href="http://gityuan.com/2017/06/04/content_provider_record/" target="_blank" rel="external">http://gityuan.com/2017/06/04/content_provider_record/</a></li>
@@ -109,6 +116,7 @@
 <li>如何调试 Android Framework : <a href="http://weishu.me/2016/05/30/how-to-debug-android-framework/" target="_blank" rel="external">http://weishu.me/2016/05/30/how-to-debug-android-framework/</a></li>
 <li>如何调试 Android Native Framework : <a href="http://weishu.me/2017/01/14/how-to-debug-android-native-framework-source/" target="_blank" rel="external">http://weishu.me/2017/01/14/how-to-debug-android-native-framework-source/</a></li>
 <li>Catapult : <a href="https://catapult.gsrc.io/README.md" target="_blank" rel="external">https://catapult.gsrc.io/README.md</a></li>
+<li>  性能分析工具使用：<br>  –Android性能测试工具汇总<br>  –TraceView：正确使用Android性能分析工具——TraceView<br>  –HierarchyViewer：Android UI 优化——使用HierarchyViewer工具<br>  –MAT：Android 性能优化之使用MAT分析内存泄露问题<br>  –LeakCanary：LeakCanary 中文使用说明<br>  –Android性能调优利器StrictMode<br>  –另一个Android性能剖析工具——simpleperf<br>  –Android Monitor</li>
 </ol>
 <h1 id="硬件相关"><a href="#硬件相关" class="headerlink" title="硬件相关"></a>硬件相关</h1><ol>
 <li>Flash Wear Management in Android Automotive : <a href="https://source.android.com/devices/tech/perf/flash-wear" target="_blank" rel="external">https://source.android.com/devices/tech/perf/flash-wear</a></li>
@@ -121,6 +129,10 @@
 <h1 id="Kernel"><a href="#Kernel" class="headerlink" title="Kernel"></a>Kernel</h1><ol>
 <li>内核探索：Regmap 框架：简化慢速 I/O 接口优化性能 <a href="http://www.tinylab.cn/kernel-explore-regmap-framework/" target="_blank" rel="external">http://www.tinylab.cn/kernel-explore-regmap-framework/</a></li>
 <li>嵌入式 Linux 启动时间优化 <a href="http://www.tinylab.cn/elinux-org-boot-time-optimization/" target="_blank" rel="external">http://www.tinylab.cn/elinux-org-boot-time-optimization/</a></li>
+</ol>
+<h1 id="我辈楷模"><a href="#我辈楷模" class="headerlink" title="我辈楷模"></a>我辈楷模</h1><ol>
+<li>我到底有多么努力 : <a href="https://mp.weixin.qq.com/s?__biz=MzU3ODAxNDcwNQ==&amp;mid=2247484147&amp;idx=1&amp;sn=cd5f8fead3bcaac2d22a3dd699d2e79f&amp;chksm=fd7a9e6dca0d177b27095d3d12720e83ba1638028799a89a8879929c1ad442529a62a46c5fe3&amp;mpshare=1&amp;scene=1&amp;srcid=1027hi7FsUIG3AirEiJg198C#rd" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MzU3ODAxNDcwNQ==&amp;mid=2247484147&amp;idx=1&amp;sn=cd5f8fead3bcaac2d22a3dd699d2e79f&amp;chksm=fd7a9e6dca0d177b27095d3d12720e83ba1638028799a89a8879929c1ad442529a62a46c5fe3&amp;mpshare=1&amp;scene=1&amp;srcid=1027hi7FsUIG3AirEiJg198C#rd</a></li>
+<li></li>
 </ol>
 ]]></content>
       
