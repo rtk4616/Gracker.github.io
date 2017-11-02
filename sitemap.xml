@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/about/index.html</loc>
+    
+    <lastmod>2017-11-02T17:27:36.879Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/2015/03/31/android-performance-case-study-follow-up.html</loc>
     
     <lastmod>2017-11-02T16:58:24.864Z</lastmod>
@@ -152,13 +159,6 @@
     <loc>http://androidperformance.com/2015/12/31/How-to-calculation-android-app-lunch-time.html</loc>
     
     <lastmod>2016-05-23T01:54:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/about/index.html</loc>
-    
-    <lastmod>2016-04-06T06:36:43.000Z</lastmod>
     
   </url>
   
