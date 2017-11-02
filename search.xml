@@ -15,6 +15,7 @@
 <li>移动端性能监控方案 Hertz : <a href="https://tech.meituan.com/hertz.html" target="_blank" rel="external">https://tech.meituan.com/hertz.html</a></li>
 <li>Android 性能优化后续 : <a href="http://androidperformance.com/2015/03/31/android-performance-case-study-follow-up.html">http://androidperformance.com/2015/03/31/android-performance-case-study-follow-up.html</a></li>
 <li>Android性能优化之虚拟机调优 : <a href="http://weishu.me/2016/12/23/dive-into-android-optimize-vm-heap/" target="_blank" rel="external">http://weishu.me/2016/12/23/dive-into-android-optimize-vm-heap/</a></li>
+<li>[译]Android UI 性能优化 : <a href="https://zhuanlan.zhihu.com/p/27065828" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/27065828</a></li>
 </ol>
 <h1 id="响应速度"><a href="#响应速度" class="headerlink" title="响应速度"></a>响应速度</h1><ol>
 <li>Optimizing Boot Times : <a href="https://source.android.com/devices/tech/perf/boot-times" target="_blank" rel="external">https://source.android.com/devices/tech/perf/boot-times</a></li>
@@ -116,7 +117,8 @@
 <li>如何调试 Android Framework : <a href="http://weishu.me/2016/05/30/how-to-debug-android-framework/" target="_blank" rel="external">http://weishu.me/2016/05/30/how-to-debug-android-framework/</a></li>
 <li>如何调试 Android Native Framework : <a href="http://weishu.me/2017/01/14/how-to-debug-android-native-framework-source/" target="_blank" rel="external">http://weishu.me/2017/01/14/how-to-debug-android-native-framework-source/</a></li>
 <li>Catapult : <a href="https://catapult.gsrc.io/README.md" target="_blank" rel="external">https://catapult.gsrc.io/README.md</a></li>
-<li>  性能分析工具使用：<br>  –Android性能测试工具汇总<br>  –TraceView：正确使用Android性能分析工具——TraceView<br>  –HierarchyViewer：Android UI 优化——使用HierarchyViewer工具<br>  –MAT：Android 性能优化之使用MAT分析内存泄露问题<br>  –LeakCanary：LeakCanary 中文使用说明<br>  –Android性能调优利器StrictMode<br>  –另一个Android性能剖析工具——simpleperf<br>  –Android Monitor</li>
+<li>手把手教你使用Systrace（一）: <a href="https://zhuanlan.zhihu.com/p/27331842" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/27331842</a></li>
+<li>手把手教你使用Systrace（二）——锁优化<br>: <a href="https://zhuanlan.zhihu.com/p/27535205" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/27535205</a></li>
 </ol>
 <h1 id="硬件相关"><a href="#硬件相关" class="headerlink" title="硬件相关"></a>硬件相关</h1><ol>
 <li>Flash Wear Management in Android Automotive : <a href="https://source.android.com/devices/tech/perf/flash-wear" target="_blank" rel="external">https://source.android.com/devices/tech/perf/flash-wear</a></li>
@@ -132,7 +134,7 @@
 </ol>
 <h1 id="我辈楷模"><a href="#我辈楷模" class="headerlink" title="我辈楷模"></a>我辈楷模</h1><ol>
 <li>我到底有多么努力 : <a href="https://mp.weixin.qq.com/s?__biz=MzU3ODAxNDcwNQ==&amp;mid=2247484147&amp;idx=1&amp;sn=cd5f8fead3bcaac2d22a3dd699d2e79f&amp;chksm=fd7a9e6dca0d177b27095d3d12720e83ba1638028799a89a8879929c1ad442529a62a46c5fe3&amp;mpshare=1&amp;scene=1&amp;srcid=1027hi7FsUIG3AirEiJg198C#rd" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MzU3ODAxNDcwNQ==&amp;mid=2247484147&amp;idx=1&amp;sn=cd5f8fead3bcaac2d22a3dd699d2e79f&amp;chksm=fd7a9e6dca0d177b27095d3d12720e83ba1638028799a89a8879929c1ad442529a62a46c5fe3&amp;mpshare=1&amp;scene=1&amp;srcid=1027hi7FsUIG3AirEiJg198C#rd</a></li>
-<li></li>
+<li>工作以来的一些感悟 : <a href="https://zhuanlan.zhihu.com/zmywly8866/20711335" target="_blank" rel="external">https://zhuanlan.zhihu.com/zmywly8866/20711335</a></li>
 </ol>
 ]]></content>
       
