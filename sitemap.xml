@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://androidperformance.com/2017/10/19/Android-performance-optimization-skills-and-tools.html</loc>
+    
+    <lastmod>2017-11-05T14:52:51.236Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://androidperformance.com/about/index.html</loc>
     
     <lastmod>2017-11-02T17:34:59.258Z</lastmod>
@@ -96,13 +103,6 @@
     <loc>http://androidperformance.com/2015/07/20/Android-Performance-Memory-Java.html</loc>
     
     <lastmod>2017-11-02T16:57:10.754Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://androidperformance.com/2017/10/19/Android-performance-optimization-skills-and-tools.html</loc>
-    
-    <lastmod>2017-11-02T16:48:43.535Z</lastmod>
     
   </url>
   
