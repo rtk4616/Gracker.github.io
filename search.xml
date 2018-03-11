@@ -46,18 +46,20 @@
       
         <categories>
             
-            <category> Android </category>
-            
-            <category> Performance </category>
-            
-            <category> Systrace </category>
+            <category> Tools </category>
             
         </categories>
         
         
         <tags>
             
+            <tag> Android </tag>
+            
             <tag> Systrace </tag>
+            
+            <tag> Peroformance </tag>
+            
+            <tag> Tools </tag>
             
         </tags>
         
