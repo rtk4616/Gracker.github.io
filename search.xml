@@ -171,6 +171,8 @@
 <li>洗碗机，谁用谁知道，再也不会抵制在家里做饭了</li>
 <li>扫地机器人，谁不想每天回去家里的地上很干净呢？尤其是在家里有一个长毛怪和两只猫的情况下</li>
 </ol>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -323,6 +325,8 @@
 <li>工作以来的一些感悟 : <a href="https://zhuanlan.zhihu.com/zmywly8866/20711335" target="_blank" rel="external">https://zhuanlan.zhihu.com/zmywly8866/20711335</a></li>
 <li>如何自学Android？<a href="https://zhuanlan.zhihu.com/p/20708611" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/20708611</a></li>
 </ol>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -390,6 +394,8 @@
 <h3 id="文章记录"><a href="#文章记录" class="headerlink" title="文章记录"></a>文章记录</h3><p>文章记录主要的印象笔记，遇到好文章或者比较重要的事情，我都会记录到印象笔记中，定时去整理和查看</p>
 <h2 id="关于-2017"><a href="#关于-2017" class="headerlink" title="关于 2017"></a>关于 2017</h2><p>今年公司比较动荡，身边好几个小伙伴都走人了，公司也在转型，阵痛期。自己也比较犹豫，不过目前没有花太多的时间去想这事，做好目前手上每一件事，该做的去做，机会总是青睐有准备的人。</p>
 <p>作为一个软件工程师，Coding 能力永远是要放在第一位的，这一点需要向我偶像百万学习（下图，一周Coding 的时间是51个小时）！<br><img src="/images/media/14929935518939.jpg" alt="百万"></p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -498,6 +504,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <h1 id="4-层级"><a href="#4-层级" class="headerlink" title="4. 层级"></a>4. 层级</h1><p>由于 snackbars  的层级高度(elevation) 为6dp，而 navigation bar 的层级高度为 8dp，所以 snackbars 显示在 navigation bar 的后面。而 Bottom sheets, navigation drawers 和 keyboards 都显示在 navigation bar 的前面，完全覆盖 navigation bar 。</p>
 <p><img src="/images/bottombar2/23.png" alt="Snackbars appear behind the bottom navigation bar."></p>
 <p><img src="/images/bottombar2/24.png" alt="Orthographic view of app structure"></p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -549,6 +557,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <h5 id="Do-and-Don’t-3-最好提供3-5个底栏-Item-，当底栏-Item-超过五个的时候，会显得每个-Item-过于紧凑，影响美观"><a href="#Do-and-Don’t-3-最好提供3-5个底栏-Item-，当底栏-Item-超过五个的时候，会显得每个-Item-过于紧凑，影响美观" class="headerlink" title="[Do and Don’t] 3. 最好提供3-5个底栏 Item ，当底栏 Item 超过五个的时候，会显得每个 Item 过于紧凑，影响美观"></a>[Do and Don’t] 3. 最好提供3-5个底栏 Item ，当底栏 Item 超过五个的时候，会显得每个 Item 过于紧凑，影响美观</h5><p><img src="/images/bottombar1/14598677362029.jpg" alt="Do. Use up to five top-level destinations in a bottom navigation bar."></p>
 <p><img src="/images/bottombar1/14598677540938.jpg" alt="Don&#39;t. Avoid using more than five destinations in bottom navigation as tap targets will be situated too close to one another."></p>
 <h2 id="5-Bottom-navigation-与-tabs"><a href="#5-Bottom-navigation-与-tabs" class="headerlink" title="5. Bottom navigation 与 tabs"></a>5. Bottom navigation 与 tabs</h2><p>当 Bottom navigation 与 tabs 混合使用的时候，可能会造成使用上的混乱。 举个栗子，点击 tab 和点击 Bottom navigation 可以显示不同的内容组合，这些功能的组合会给用户带来使用上的混乱。<br>另外 Tabs 在体验上和 Bottom navigation 也有很大的不同，Tabs 更依赖手势操作带来的便利，而 Bottom navigation 则由于位置比较靠近手指，使得点击更加方便。</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -639,6 +649,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <li>微博: <a href="http://weibo.com/u/2324939963?topnav=1&amp;wvr=6&amp;topsug=1" target="_blank" rel="external">guoqifa_meizu</a></li>
 </ul>
 <p>他对 Android Framework 研究很深，感兴趣的可以和他聊聊。</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -727,6 +739,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <h3 id="Method-Trace"><a href="#Method-Trace" class="headerlink" title="Method Trace"></a>Method Trace</h3><p><img src="/images/applunch2/3.png" alt="Method Trace"></p>
 <h3 id="源码编译与调试"><a href="#源码编译与调试" class="headerlink" title="源码编译与调试"></a>源码编译与调试</h3><p><img src="/images/applunch2/4.png" alt="源码编译与调试"></p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>本文章所所涉及到的代码我放到了Github上：<br><a href="https://github.com/Gracker/DelayLoadSample" target="_blank" rel="external">https://github.com/Gracker/DelayLoadSample</a></p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -816,6 +830,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 </ol>
 <h1 id="3-一些思考"><a href="#3-一些思考" class="headerlink" title="3. 一些思考"></a>3. 一些思考</h1><p>关于优化的 Delay Load 的实现,从代码层面来看其实是非常简单的.其带来的效果也是很赞的.<br>但是实现之后我们还需要思考一下,为何这么做就可以实现这种功能呢?很显然要回答这个问题,我们需要知道更底层的一些东西.这个还涉及到 Handler/Message/MessageQueue/Looper/VSYNC/ViewRootImpl等知识. 往大里说应该还涉及到AMS/WMS等.由于涉及到的东西比较多,我就不在这一篇里面阐述了, 下一篇文章将会从从原理上讲解一下为何优化的 Delay Load 会起作用.</p>
 <h1 id="4-代码"><a href="#4-代码" class="headerlink" title="4. 代码"></a>4. 代码</h1><p>本文章所所涉及到的代码我放到了Github上：<br><a href="https://github.com/Gracker/DelayLoadSample" target="_blank" rel="external">https://github.com/Gracker/DelayLoadSample</a></p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -946,6 +962,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <p><img src="/images/hwui/renderthread/6.png" alt="Main Thread 和 Render Thread"></p>
 <p><img src="/images/hwui/renderthread/7.png" alt="Render Thread 提前唤醒了 Main Thread"></p>
 <p>可以看到第二张图中，Render Thread 并没有绘制完成，但是由于其提前唤醒了 Main Thread ，所以 Main Thread 在下一个Vsync信号到来的时候，响应了Vsync事件，开始准备下一帧。<br>此时虽然由于第一帧绘制时间过长，导致掉了一帧，但是第二帧没有收到任何影响。</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1029,6 +1047,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <li>《Core JAVA》</li>
 <li>《JAVA API》</li>
 </ul>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1099,6 +1119,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <p>所以说在几个不同的OnTrimMemory回调中释放自己的UI资源，可以有效地提高用户体验。</p>
 <h2 id="6-有哪些典型的使用场景？"><a href="#6-有哪些典型的使用场景？" class="headerlink" title="6. 有哪些典型的使用场景？"></a>6. 有哪些典型的使用场景？</h2><h3 id="6-1-常驻内存的应用"><a href="#6-1-常驻内存的应用" class="headerlink" title="6.1 常驻内存的应用"></a>6.1 常驻内存的应用</h3><p>一些常驻内存的应用，比如Launcher、安全中心、电话等，在用户使用过要退出的时候，需要调用OnTrimMemory来及时释放用户使用的时候所产生的多余的内存资源：比如动态生成的View、图片缓存、Fragment等。</p>
 <h3 id="6-2-有后台Service运行的应用"><a href="#6-2-有后台Service运行的应用" class="headerlink" title="6.2 有后台Service运行的应用"></a>6.2 有后台Service运行的应用</h3><p>这些应用不是常驻内存的，意味着可以被任务管理器杀掉，但是在某些场景下用户不会去杀。<br>这类应用包括：音乐、下载等。用户退出UI界面后，音乐还在继续播放，下载程序还在运行。这时候音乐应该释放部分UI资源和Cache。</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1198,6 +1220,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <p>比如下面的代码就是使用系统的ListView：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;ListView </div><div class="line">    android:<span class="attribute">id</span>=<span class="string">"@android:id/list"</span></div><div class="line">    android:<span class="attribute">layout_width</span>=<span class="string">"fill_parent"</span></div><div class="line">    android:<span class="attribute">layout_height</span>=<span class="string">"fill_parent"</span>/&gt;</div></pre></td></tr></table></figure>
 <h2 id="8-使用内存相关工具检测"><a href="#8-使用内存相关工具检测" class="headerlink" title="8 使用内存相关工具检测"></a>8 使用内存相关工具检测</h2><p>在开发中，不可能保证一次就开发出一个内存管理非常棒的应用，所以在开发的每一个阶段，都要有意识地去针对内存进行专门的检查。目前Android提供了许多布局、内存相关的工具，比如Lint、MAT等。学会这些工具的使用是一个Android开发者必不可少的技能。</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1281,6 +1305,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <p>你可以通过在manifest文件中声明’android:process’属性来实现某个组件运行在另外一个进程的操作。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">service</span> <span class="attr">android:name</span>=<span class="string">".PlaybackService"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:process</span>=<span class="string">":background"</span> /&gt;</span></div></pre></td></tr></table></figure>
 <p>更多关于使用这个技术的细节，请参考原文，链接如下。<br><a href="http://developer.android.com/training/articles/memory.html" target="_blank" rel="external">http://developer.android.com/training/articles/memory.html</a></p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1366,6 +1392,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <li><a href="http://developer.android.com/tools/debugging/debugging-tracing.html" target="_blank" rel="external">Profiling with Traceview and dmtracedump</a></li>
 <li><a href="http://developer.android.com/tools/debugging/systrace.html" target="_blank" rel="external">Analysing Display and Performance with Systrace</a></li>
 </ul>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1434,6 +1462,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>说是多窗口，其实目前只支持双窗口。不过双窗口的窗口利用率其实并不高，多窗口就更加呵呵呵了。这个就看Google之后如何发挥这个了。</p>
 <p>其实多窗口三星早就实现了。而且每个窗口还可以动态调整大小，不过这并没有什么卵用。测评中提到的也不多。可见多窗口现在其实还只是一个炫技的功能。至于使用的话，可能还得要多迭代几次才可以。</p>
 <p>另外这篇文章的简书地址在此：<a href="http://www.jianshu.com/p/8bb7b44930e3" target="_blank" rel="external">Nexus6-with-Android-M开启多窗口模式</a> . 因为我写东西都是在简书上完成，然后才Copy到其他的地方，所以这里也给大家推荐一下简书吧。</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1506,6 +1536,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <li><a href="http://www.ibm.com/developerworks/cn/java/j-jtp06197.html" target="_blank" rel="external">Java 理论与实践: 正确使用 Volatile 变量</a></li>
 <li><a href="http://ifeve.com/double-checked-locking-with-delay-initialization/" target="_blank" rel="external">双重检查锁定与延迟初始化</a></li>
 </ol>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1567,6 +1599,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <h2 id="Perf-Matters"><a href="#Perf-Matters" class="headerlink" title="Perf Matters"></a>Perf Matters</h2><blockquote>
 <p>keep calm, profile your code, and always remember, Perf Matters</p>
 </blockquote>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1632,6 +1666,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <h2 id="Perf-Matters"><a href="#Perf-Matters" class="headerlink" title="Perf Matters"></a>Perf Matters</h2><blockquote>
 <p>keep calm, profile your code, and always remember, Perf Matters</p>
 </blockquote>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1698,6 +1734,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <li><a href="http://androidperformance.com/2014/10/20/android-performance-optimization-overdraw-1.html">Android过度绘制优化-基础篇</a></li>
 <li><a href="http://androidperformance.com/2015/01/13/android-performance-optimization-overdraw-2.html">Android过度绘制优化-实战篇</a></li>
 </ul>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1766,6 +1804,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <p>keep calm, profile your code, and always remember, Perf Matters</p>
 </blockquote>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这是这个系列视频的第一个视频，从内容上来看，是从一个大的角度来看Render Performance，简单地讲述了一下Render Performance基本的概念，出现的原因以及排查的工具。在发现问题–定位问题–解决问题的流程上属于发现问题–定位问题，解决问题则基本没有提到。这也基本符合这一系列视频的基调：即着重于发现问题(使用工具发现问题、挖掘问题出现的原理和原因)和定位问题(使用工具定位)，如何解决问题则需要自己通过实战去进行锻炼，毕竟这种问题并没有一个通用的解决方法，每个应用都有每个应用自己的问题。</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1815,6 +1855,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <li>Android Performance Patterns的Google+社群：</li>
 </ul>
 <p>OK，Let us start！！！</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1863,6 +1905,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <p>图像类型这一栏选择RGB Alpha, 宽度和高度必填, 其值可以在MAT中查看到,第一步的时候有说到这个值的位置, 其他的选择默认即可,然后点击打开. GIMP就会把这个文件打开.</p>
 <h3 id="Mac-amp-amp-Windows"><a href="#Mac-amp-amp-Windows" class="headerlink" title="Mac &amp;&amp; Windows"></a>Mac &amp;&amp; Windows</h3><p>Mac和Windows可以选择使用PhotoShop作为打开的工具, 和Linux唯一不同的地方在于. 保存的文件的格式需要以.raw结尾 (比如image.raw),选择深度为32位. 其余的和Linux相同.</p>
 <p>另外GIMP也有Mac、Windows版本，建议大家在各个平台都使用GIMP，这样学习成本比较低，而且GIMP为免费软件，使用起来功能也非常多。</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -1960,6 +2004,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <p>Displays memory accumulation points in the dominator tree. Displayed are objects with a big difference between the retained size of the parent and the children and the first “interesting” dominator of the accumulation point. These are places where the memory of many small objects is accumulated under one object.</p>
 </blockquote>
 <p><img src="/images/MAT_Pro/MAT_17.png" alt="Big Drops In Dominator Tree"></p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -2106,6 +2152,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <li><a href="http://www.yourkit.com/docs/java/help/sizes.jsp" target="_blank" rel="external">Shallow and retained sizes</a></li>
 <li>MAT的wiki：<a href="http://wiki.eclipse.org/index.php/MemoryAnalyzer" target="_blank" rel="external">http://wiki.eclipse.org/index.php/MemoryAnalyzer</a></li>
 </ol>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -2173,6 +2221,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <p>最简单的方法是使用第二种，但是他只能在API16以上使用，如果你要支持旧版本的Android，使用其他两个方法，我相信Joaquim 已经丢弃那个第三方库并使用自己的指示器了。</p>
 <p>我希望这篇文章能让大家清楚如何从看似无辜的和无害的操作中寻找可能会出现性能问题。所以请记住:不要仅仅做出假设,要实际去验证、测量。</p>
 <h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>更多关于Alpha的使用，可以参考这篇文章：<br><a href="http://imid.me/blog/2014/01/17/best-practices-for-using-alpha/" target="_blank" rel="external">Android Tips: Best Practices for Using Alpha</a></p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -2578,6 +2628,8 @@ Avoid shrinking text labels to fit on a single line."></p>
 <p>我们一般会把这个命令配置成Alias，配置如下：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alias st-<span class="keyword">start</span>=<span class="string">'python /home/gaojianwu/Software/android-studio/sdk/platform-tools/systrace/systrace.py'</span>  </div><div class="line"><span class="keyword">alias</span> st-<span class="keyword">start</span>-gfx-<span class="keyword">trace</span> = ‘st-<span class="keyword">start</span> -t <span class="number">8</span> gfx <span class="keyword">input</span> <span class="keyword">view</span> sched freq wm am hwui workq res dalvik <span class="keyword">sync</span> disk <span class="keyword">load</span> perf hal rs idle mmc’</div></pre></td></tr></table></figure>
 <p>这样在使用的时候，可以直接敲 <strong>st-start-gfx-mx4</strong> 即可，当然为了区分和保持各个文件，还需要加上 <strong>-o xxx.Trace</strong> .上面的命令和参数不必一次就理解，只需要记住如何简单使用即可，在分析的过程中，这些东西都会慢慢熟悉的。</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -2854,6 +2906,8 @@ Avoid shrinking text labels to fit on a single line."></p>
       <content type="html"><![CDATA[<p>Android中,使用EditText作为输入框很方便,但是有时候EditText会自动获取焦点,其行为:点击进入这个页面后,EditText自动获取焦点,导致软键盘直接跳出.有时候这么做很方便,但是大部分时候我们还是希望在点击EditText的时候,软键盘才弹出来.</p>
 <p>这里有个很简单也很实用的技巧,即在EditText的父Layout中,加入下面的两个属性即可:</p>
 <p><pre class="lang:java decode:true ">android:focusable=”true”<br>android:focusableInTouchMode=”true”</pre><br>这样做的原理是让用户进入到这个页面之后,EditText的父控件 获取焦点,这样的话EditText就获取不到焦点,软键盘也不会自动弹起.只有在点击EditText的时候,软键盘才会弹起.</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
@@ -3528,6 +3582,8 @@ public class NotificaitonActivity extends Activity {
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         <categories>
