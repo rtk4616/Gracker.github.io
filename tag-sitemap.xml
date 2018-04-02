@@ -107,29 +107,29 @@
     </url>
 
     <url>
-        <loc>http://androidperformance.com/tags/Android/</loc>
-        <lastmod>2018-03-11T14:21:11.069Z</lastmod>
+        <loc>http://androidperformance.com/tags/Tools/</loc>
+        <lastmod>2018-03-11T16:31:55.372Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://androidperformance.com/tags/Systrace/</loc>
-        <lastmod>2018-03-11T14:21:11.069Z</lastmod>
+        <lastmod>2018-03-11T16:31:55.372Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://androidperformance.com/tags/Android/</loc>
+        <lastmod>2018-04-02T03:57:33.391Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://androidperformance.com/tags/Peroformance/</loc>
-        <lastmod>2018-03-11T14:21:11.069Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://androidperformance.com/tags/Tools/</loc>
-        <lastmod>2018-03-11T14:21:11.069Z</lastmod>
+        <lastmod>2018-04-02T03:57:33.391Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
