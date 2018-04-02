@@ -3,9 +3,9 @@
   
     
     <entry>
-      <title><![CDATA[流畅度1 - 为什么是 60 fps ?]]></title>
+      <title><![CDATA[流畅度知识（一）- 为什么是 60 fps ?]]></title>
       <url>/2018/04/01/why-60-fps.html</url>
-      <content type="html"><![CDATA[<h1 id="流畅度知识（一）-为什么是-60-fps"><a href="#流畅度知识（一）-为什么是-60-fps" class="headerlink" title="流畅度知识（一） - 为什么是 60 fps ?"></a>流畅度知识（一） - 为什么是 60 fps ?</h1><p><img src="/images/media/Android%20Performance%20Patterns.png" alt="Android Performance Patterns"></p>
+      <content type="html"><![CDATA[<p><img src="/images/media/Android%20Performance%20Patterns.png" alt="Android Performance Patterns"></p>
 <p>今天来讲一下为何我们讲到流畅度，要首先说 60 帧。</p>
 <p>我们先来理一下基本的概念：</p>
 <ol>
@@ -30,6 +30,8 @@
 <p>如果你想体验120hz 刷新率的屏幕，建议你试试 ipad pro ，用过之后你会觉得，60 hz 的屏幕确实有改善的空间。</p>
 <p>这一篇主要是简单介绍，如果你想更深入的去了解，可以去 Google 一下，另外 Google 出过一个短视频，介绍了 Why 60 fps， 有条件翻墙的同学可以去看看 ：<a href="https://www.youtube.com/watch?v=CaMTIgxCSqU" target="_blank" rel="external">https://www.youtube.com/watch?v=CaMTIgxCSqU</a></p>
 <p><img src="/images/media/15225938262396.jpg" alt="GPU Profile 的含义"></p>
+<p>博客知识交流不方便，我搞了个<strong>免费</strong> 的知识星期，大家有兴趣的可加进来大家一起讨论，扫描下面的二维码即可加入：</p>
+<p><img src="/images/media/591520762002_.pic.jpg" alt="591520762002_.pi"></p>
 ]]></content>
       
         
